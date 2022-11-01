@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.ui.theme
+package com.ryankoech.krypto.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

@@ -1,4 +1,4 @@
-package com.ryankoech.krypto
+package com.ryankoech.krypto.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ryankoech.krypto.ui.theme.KryptoTheme
+import com.ryankoech.krypto.presentation.theme.KryptoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.ui.theme
+package com.ryankoech.krypto.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
