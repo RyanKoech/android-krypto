@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.presentation.theme
+package com.ryankoech.krypto.presentation.common.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
