@@ -77,8 +77,14 @@ Installed Android Studio or Any other android development IDEs and their respect
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-You can pick a thing to do from the tasks list provided above and work on it.
+Contributions, issues, and feature requests are welcome! <br/>
+You can pick a thing to do from the tasks list provided above and work on it.<br/>
+
+Observe the following in order to have your PR merged successfully.
+- Create branches from the `dev` branch
+- Create a PR to the `dev` branch
+- Prefix branch name with it purpose ie `feature`, `bugfix`, `hotfix`
+- For feature branches use the following naming conventions `feature_<feature-name>_<layer ie domain/data/presentation>`
 
 Feel free to check the [issues page](../../issues/) or [discussions page](../../discussions).
 
