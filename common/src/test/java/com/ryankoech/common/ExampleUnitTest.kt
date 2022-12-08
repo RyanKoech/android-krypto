@@ -1,4 +1,4 @@
-package ke.co.sevenskies.common
+package com.ryankoech.common
 
 import org.junit.Test
 
