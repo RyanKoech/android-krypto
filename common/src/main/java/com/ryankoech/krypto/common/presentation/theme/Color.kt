@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.presentation.common.theme
+package com.ryankoech.krypto.common.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
