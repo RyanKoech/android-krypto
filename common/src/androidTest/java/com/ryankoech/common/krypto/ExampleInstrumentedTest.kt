@@ -1,4 +1,4 @@
-package com.ryankoech.common
+package com.ryankoech.common.krypto
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
