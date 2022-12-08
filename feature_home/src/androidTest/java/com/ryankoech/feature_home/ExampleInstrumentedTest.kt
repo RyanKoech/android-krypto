@@ -1,4 +1,4 @@
-package ke.co.sevenskies.feature_home
+package com.ryankoech.feature_home
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

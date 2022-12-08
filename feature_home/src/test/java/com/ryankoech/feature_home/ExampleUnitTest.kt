@@ -1,4 +1,4 @@
-package ke.co.sevenskies.feature_home
+package com.ryankoech.feature_home
 
 import org.junit.Test
 
