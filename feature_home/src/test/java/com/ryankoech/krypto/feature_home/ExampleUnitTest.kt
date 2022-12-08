@@ -1,4 +1,4 @@
-package com.ryankoech.feature_home
+package com.ryankoech.krypto.feature_home
 
 import org.junit.Test
 
