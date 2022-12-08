@@ -1,4 +1,4 @@
-package com.ryankoech.common
+package com.ryankoech.krypto.common
 
 import org.junit.Test
 
