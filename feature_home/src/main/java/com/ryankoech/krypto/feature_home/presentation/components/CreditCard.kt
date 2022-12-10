@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -23,16 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-
-
-data class CreditCardDetails(
-    val balance : Double = 0.0,
-    val count : Int = 0,
-    val change : Float = 0F,
-)
+import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
+import com.ryankoech.krypto.feature_home.presentation.util.DisplayCurrency
 
 @Composable
-fun CreditCard() {
+fun CreditCard(
+    creditCardDetails: CreditCardDetails,
+    onChangeDisplayCurrency : () -> Unit
+) {
 
     Card(
         modifier = Modifier
@@ -69,6 +68,10 @@ fun CreditCard() {
                     )
                     Spacer(modifier = Modifier.weight(1.0f))
                     Card(
+                        modifier = Modifier
+                            .clickable{
+                                onChangeDisplayCurrency()
+                            },
                         border = BorderStroke(1.dp,Color.Black),
                         backgroundColor = Color(0xffc4f0bb),
                         elevation = 0.dp,
@@ -80,7 +83,7 @@ fun CreditCard() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "USD",
+                                text = creditCardDetails.displayCurrency.toString(),
                                 style = MaterialTheme.typography.h4,
                                 fontSize = 12.sp
                             )
@@ -95,7 +98,7 @@ fun CreditCard() {
                 }
 
                 Text(
-                    text = "$1,723.22",
+                    text = getFormatedBalance(creditCardDetails.balance, creditCardDetails.displayCurrency),
                     style = MaterialTheme.typography.h1,
                     fontSize = 30.sp
                 )
@@ -106,16 +109,18 @@ fun CreditCard() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "2 Assets",
+                        text = "${creditCardDetails.count} Assets",
                         style = MaterialTheme.typography.h4,
                         fontSize = 12.sp
                     )
                     Icon(
+                        modifier = Modifier
+                            .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
                         imageVector = Icons.Filled.ArrowDropDown,
                         contentDescription =""
                     )
                     Text(
-                        text = "+2.23%",
+                        text = getFormattedChange(creditCardDetails.change),
                         style = MaterialTheme.typography.h4
                     )
                 }
@@ -125,12 +130,42 @@ fun CreditCard() {
     }
 }
 
+
+
 @Preview
 @Composable
-fun CreditCardPreview() {
+private fun CreditCardPreview() {
     KryptoTheme {
         Surface {
-            CreditCard()
+            CreditCard(
+                CreditCardDetails(
+                    balance = 12345.4545,
+                    change = 2.54f,
+                    count = 3,
+                    displayCurrency = DisplayCurrency.USD,
+                )
+            ){
+                println("Change  Currency")
+            }
         }
     }
+}
+
+private fun getFormatedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
+    return when (displayCurrency) {
+        DisplayCurrency.USD -> "$ ${String.format("%.2f", balance)}"
+        DisplayCurrency.BTC -> "$displayCurrency ${String.format("%.2f", balance)}"
+        DisplayCurrency.ETH -> "$displayCurrency ${String.format("%.2f", balance)}"
+        DisplayCurrency.BNB -> "$displayCurrency ${String.format("%.2f", balance)}"
+        DisplayCurrency.LTC -> "$displayCurrency ${String.format("%.2f", balance)}"
+    }
+}
+
+private fun getFormattedChange(change : Float) : String {
+    return if(change == 0f)
+        "0%"
+    else if (change < 0f)
+        "${String.format("%.2f", change)}%"
+    else
+        "+${String.format("%.2f", change)}%"
 }
