@@ -33,36 +33,26 @@ Below are some of the key android concepts used/applied in this project:
 - Shared preferences
 - etc
 
-### Project Tasks
-Each feature is divided according to 3 layers; presentation, domain, data 
+### Main Project Tasks
+Each feature is will comprise of 3 layers; presentation, domain, data 
 
-- [ ] Home Feature (Presentation)
-- [ ] Home Feature (Domain)
-- [ ] Home Feature (Data)
-- [ ] Transaction Feature (Presentation)
-- [ ] Transaction Feature (Domain)
-- [ ] Transaction Feature (Data)
-- [ ] Coin List Feature (Presentation)
-- [ ] Coin List Feature (Domain)
-- [ ] Coin List Feature (Data)
-- [ ] Coin Details Feature (Presentation)
-- [ ] Coin Details Feature (Domain)
-- [ ] Coin Details Feature (Data)
-- [ ] Setting Feature (Presentation)
-- [ ] Setting Feature (Domain)
-- [ ] Setting Feature (Data)
+- [ ] Home Feature 
+- [ ] Transaction Feature 
+- [ ] Coin List Feature
+- [ ] Coin Details Feature
+- [ ] Setting Feature
 
 ## UI Designs
 
 ### Light
-<img src="images/design_dark_splash.jpg" height="400" alt="Splash screen"/> <img src="images/design_light_home.jpg" height="400" alt="Home screen"/> <img src="images/design_light_coin_list.jpg" height="400" alt="Coin list screen"/>
-<img src="images/design_light_coin_details.jpg" height="400" alt="Coin details screen"/> <img src="images/design_light_choose_asset.jpg" height="400" alt="Choose asset screen"/> <img src="images/design_light_buy_sell.jpg" height="400" alt="Buy - Sell screen"/>
-<img src="images/design_light_settings.jpg" height="400" alt="Settings screen"/> <img src="images/design_light_app_info.jpg" height="400" alt="App info screen"/> <img src="images/design_light_loading_example.jpg" height="400" alt="Loading example screen"/>
+<img src="images/design_dark_splash.jpg" height="500" alt="Splash screen"/> <img src="images/design_light_home.jpg" height="500" alt="Home screen"/> <img src="images/design_light_coin_list.jpg" height="500" alt="Coin list screen"/>
+<img src="images/design_light_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/design_light_choose_asset.jpg" height="500" alt="Choose asset screen"/> <img src="images/design_light_buy_sell.jpg" height="500" alt="Buy - Sell screen"/>
+<img src="images/design_light_settings.jpg" height="500" alt="Settings screen"/> <img src="images/design_light_app_info.jpg" height="500" alt="App info screen"/> <img src="images/design_light_loading_example.jpg" height="500" alt="Loading example screen"/>
 
 ### Dark
-<img src="images/design_dark_splash.jpg" height="400" alt="Splash screen"/> <img src="images/design_dark_home.jpg" height="400" alt="Home screen"/> <img src="images/design_dark_coin_list.jpg" height="400" alt="Coin list screen"/>
-<img src="images/design_dark_coin_details.jpg" height="400" alt="Coin details screen"/> <img src="images/design_dark_choose_asset.jpg" height="400" alt="Choose asset screen"/> <img src="images/design_dark_buy_sell.jpg" height="400" alt="Buy - Sell screen"/>
-<img src="images/design_dark_settings.jpg" height="400" alt="Settings screen"/> <img src="images/design_dark_app_info.jpg" height="400" alt="App info screen"/> <img src="images/design_dark_loading_example.jpg" height="400" alt="Loading example screen"/>
+<img src="images/design_dark_splash.jpg" height="500" alt="Splash screen"/> <img src="images/design_dark_home.jpg" height="500" alt="Home screen"/> <img src="images/design_dark_coin_list.jpg" height="500" alt="Coin list screen"/>
+<img src="images/design_dark_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/design_dark_choose_asset.jpg" height="500" alt="Choose asset screen"/> <img src="images/design_dark_buy_sell.jpg" height="500" alt="Buy - Sell screen"/>
+<img src="images/design_dark_settings.jpg" height="500" alt="Settings screen"/> <img src="images/design_dark_app_info.jpg" height="500" alt="App info screen"/> <img src="images/design_dark_loading_example.jpg" height="500" alt="Loading example screen"/>
 
 ## Getting Started
 
@@ -83,8 +73,8 @@ You can pick a thing to do from the tasks list provided above and work on it.<br
 Observe the following in order to have your PR merged successfully.
 - Create branches from the `dev` branch
 - Create a PR to the `dev` branch
-- Prefix branch name with it purpose ie `feature`, `bugfix`, `hotfix`
-- For feature branches use the following naming conventions `feature_<feature-name>_<layer ie domain/data/presentation>`
+- Prefix branch name with it purpose ie `feature_`, `bugfix_`, `hotfix_`
+- For feature branches use the following naming conventions `feature_<feature-name>`
 
 Feel free to check the [issues page](../../issues/) or [discussions page](../../discussions).
 
