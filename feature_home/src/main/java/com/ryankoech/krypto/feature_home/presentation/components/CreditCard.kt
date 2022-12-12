@@ -20,7 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.theme.Red400
 import com.ryankoech.krypto.feature_home.presentation.theme.creditCardBlue
 import com.ryankoech.krypto.feature_home.presentation.theme.creditCardGreen
 import com.ryankoech.krypto.feature_home.presentation.theme.creditCardYellow
@@ -84,7 +86,7 @@ fun CreditCard(
                         Row(
                             modifier = Modifier
                                 .padding(start = 6.dp, top = 6.dp, end = 4.dp, bottom = 6.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.Bottom
                         ) {
                             Text(
                                 text = creditCardDetails.displayCurrency.toString(),
@@ -122,11 +124,13 @@ fun CreditCard(
                             .size(32.dp)
                             .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
                         imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription =""
+                        tint = getChangeColor(creditCardDetails.change),
+                        contentDescription ="",
                     )
                     Text(
                         text = getFormattedChange(creditCardDetails.change),
-                        style = MaterialTheme.typography.h4
+                        style = MaterialTheme.typography.h4,
+                        color = getChangeColor(creditCardDetails.change),
                     )
                 }
             }
@@ -176,4 +180,8 @@ private fun getFormattedChange(change : Float) : String {
         stringResource(R.string.credit_card_change,"", roundOffChange)
     else
         stringResource(R.string.credit_card_change, "+",roundOffChange)
+}
+
+private fun getChangeColor(change : Float) : Color {
+    return  if (change < 0f) Red400 else Green500
 }
