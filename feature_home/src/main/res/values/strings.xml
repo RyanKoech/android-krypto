@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="credit_card_title">Estimated Balance</string>
+    <string name="credit_card_balance">%s %s</string>
+    <string name="credit_card_change">%s%s%%</string>
+    <plurals name="credit_card_assets">
+        <item quantity="one">%d Asset</item>
+        <item quantity="other">%d Assets</item>
+    </plurals>
+
+</resources>
