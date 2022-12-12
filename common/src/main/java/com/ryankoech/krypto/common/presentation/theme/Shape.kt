@@ -1,11 +1,11 @@
-package com.ryankoech.krypto.presentation.common.theme
+package com.ryankoech.krypto.common.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
+import androidx.compose.material.*
 import androidx.compose.ui.unit.dp
 
 val Shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(100),
     medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
+    large = RoundedCornerShape(20.dp)
 )
