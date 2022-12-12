@@ -4,29 +4,33 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.toSize
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.feature_home.presentation.theme.creditCardBlue
+import com.ryankoech.krypto.feature_home.presentation.theme.creditCardGreen
+import com.ryankoech.krypto.feature_home.presentation.theme.creditCardYellow
+import com.ryankoech.krypto.feature_home.presentation.theme.displayCurrencyBlue
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 import com.ryankoech.krypto.feature_home.presentation.util.DisplayCurrency
+import ke.co.sevenskies.feature_home.R
+import java.text.DecimalFormat
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CreditCard(
     creditCardDetails: CreditCardDetails,
@@ -36,9 +40,9 @@ fun CreditCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp),
+            .height(LocalConfiguration.current.screenHeightDp.dp/4),
         elevation = 5.dp,
-        shape = RoundedCornerShape(20.dp)
+        shape = MaterialTheme.shapes.large
     ) {
 
         Box(
@@ -47,10 +51,10 @@ fun CreditCard(
                 .background(
                     brush = Brush.linearGradient(
                         colors = listOf(
-                            Color(0xff7cf057),
-                            Color(0xff7cf057),
-                            Color(0xffe5ff7b),
-                            Color(0xff6bcfda),
+                            creditCardGreen,
+                            creditCardGreen,
+                            creditCardYellow,
+                            creditCardBlue,
                         )
                     )
                 ),
@@ -63,7 +67,7 @@ fun CreditCard(
 
                 Row {
                     Text(
-                        text = "Estimated Balance",
+                        text = stringResource(R.string.credit_card_title),
                         style = MaterialTheme.typography.h4
                     )
                     Spacer(modifier = Modifier.weight(1.0f))
@@ -73,9 +77,9 @@ fun CreditCard(
                                 onChangeDisplayCurrency()
                             },
                         border = BorderStroke(1.dp,Color.Black),
-                        backgroundColor = Color(0xffc4f0bb),
+                        backgroundColor = displayCurrencyBlue,
                         elevation = 0.dp,
-                        shape = RoundedCornerShape(100)
+                        shape = MaterialTheme.shapes.small
                     ) {
                         Row(
                             modifier = Modifier
@@ -98,7 +102,7 @@ fun CreditCard(
                 }
 
                 Text(
-                    text = getFormatedBalance(creditCardDetails.balance, creditCardDetails.displayCurrency),
+                    text = getFormattedBalance(creditCardDetails.balance, creditCardDetails.displayCurrency),
                     style = MaterialTheme.typography.h1,
                     fontSize = 30.sp
                 )
@@ -109,12 +113,13 @@ fun CreditCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "${creditCardDetails.count} Assets",
+                        text = pluralStringResource(R.plurals.credit_card_assets, creditCardDetails.count, creditCardDetails.count),
                         style = MaterialTheme.typography.h4,
                         fontSize = 12.sp
                     )
                     Icon(
                         modifier = Modifier
+                            .size(32.dp)
                             .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
                         imageVector = Icons.Filled.ArrowDropDown,
                         contentDescription =""
@@ -151,21 +156,24 @@ private fun CreditCardPreview() {
     }
 }
 
-private fun getFormatedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
+@Composable
+private fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
+    val df = DecimalFormat("#.##")
+    val roundOffBalance = df.format(balance)
     return when (displayCurrency) {
-        DisplayCurrency.USD -> "$ ${String.format("%.2f", balance)}"
-        DisplayCurrency.BTC -> "$displayCurrency ${String.format("%.2f", balance)}"
-        DisplayCurrency.ETH -> "$displayCurrency ${String.format("%.2f", balance)}"
-        DisplayCurrency.BNB -> "$displayCurrency ${String.format("%.2f", balance)}"
-        DisplayCurrency.LTC -> "$displayCurrency ${String.format("%.2f", balance)}"
+        DisplayCurrency.USD -> stringResource(R.string.credit_card_balance, "$", roundOffBalance)
+        else -> stringResource(R.string.credit_card_balance, displayCurrency.toString(), roundOffBalance)
     }
 }
 
+@Composable
 private fun getFormattedChange(change : Float) : String {
+    val df = DecimalFormat("#.##")
+    val roundOffChange = df.format(change)
     return if(change == 0f)
-        "0%"
+        stringResource(R.string.credit_card_change, "0")
     else if (change < 0f)
-        "${String.format("%.2f", change)}%"
+        stringResource(R.string.credit_card_change,"", roundOffChange)
     else
-        "+${String.format("%.2f", change)}%"
+        stringResource(R.string.credit_card_change, "+",roundOffChange)
 }
