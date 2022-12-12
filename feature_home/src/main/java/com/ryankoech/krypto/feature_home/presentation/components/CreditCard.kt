@@ -97,7 +97,7 @@ fun CreditCard(
                                 modifier = Modifier
                                     .size(16.dp),
                                 imageVector = Icons.Default.ArrowDropDown,
-                                contentDescription = "",
+                                contentDescription = "Change display currency",
                             )
                         }
                     }
@@ -125,7 +125,7 @@ fun CreditCard(
                             .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
                         imageVector = Icons.Filled.ArrowDropDown,
                         tint = getChangeColor(creditCardDetails.change),
-                        contentDescription ="",
+                        contentDescription = null,
                     )
                     Text(
                         text = getFormattedChange(creditCardDetails.change),
