@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.sp
 import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red400
-import com.ryankoech.krypto.feature_home.presentation.theme.creditCardBlue
-import com.ryankoech.krypto.feature_home.presentation.theme.creditCardGreen
-import com.ryankoech.krypto.feature_home.presentation.theme.creditCardYellow
-import com.ryankoech.krypto.feature_home.presentation.theme.displayCurrencyBlue
+import com.ryankoech.krypto.feature_home.presentation.theme.skyBlue300
+import com.ryankoech.krypto.feature_home.presentation.theme.limeGreen400
+import com.ryankoech.krypto.feature_home.presentation.theme.limeYellow300
+import com.ryankoech.krypto.feature_home.presentation.theme.teaGreen200
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 import com.ryankoech.krypto.feature_home.presentation.util.DisplayCurrency
 import ke.co.sevenskies.feature_home.R
@@ -53,10 +53,10 @@ fun CreditCard(
                 .background(
                     brush = Brush.linearGradient(
                         colors = listOf(
-                            creditCardGreen,
-                            creditCardGreen,
-                            creditCardYellow,
-                            creditCardBlue,
+                            limeGreen400,
+                            limeGreen400,
+                            limeYellow300,
+                            skyBlue300,
                         )
                     )
                 ),
@@ -79,7 +79,7 @@ fun CreditCard(
                                 onChangeDisplayCurrency()
                             },
                         border = BorderStroke(1.dp,Color.Black),
-                        backgroundColor = displayCurrencyBlue,
+                        backgroundColor = teaGreen200,
                         elevation = 0.dp,
                         shape = MaterialTheme.shapes.small
                     ) {
