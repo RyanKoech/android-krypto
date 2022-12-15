@@ -5,8 +5,9 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SaveOwnedCoinUseCase(
+class SaveOwnedCoinUseCase @Inject constructor(
     private val repository : OwnedCoinsRepository
 ) {
 

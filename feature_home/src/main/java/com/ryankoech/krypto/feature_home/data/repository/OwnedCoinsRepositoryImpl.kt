@@ -4,8 +4,9 @@ import com.ryankoech.krypto.feature_home.data.data_source.local.OwnedCoinsDao
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.coroutineScope
+import javax.inject.Inject
 
-class OwnedCoinsRepositoryImpl(
+class OwnedCoinsRepositoryImpl @Inject constructor(
     private val coinsDao: OwnedCoinsDao
 ) : OwnedCoinsRepository {
 
