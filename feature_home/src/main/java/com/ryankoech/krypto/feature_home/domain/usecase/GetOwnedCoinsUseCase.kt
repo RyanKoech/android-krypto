@@ -5,8 +5,9 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
-class GetOwnedCoinsUseCase(
+class GetOwnedCoinsUseCase @Inject constructor(
     private val repository: OwnedCoinsRepository
 ) {
 
@@ -24,6 +25,4 @@ class GetOwnedCoinsUseCase(
                 message = e.message ?: "Unexpected Error Occurred"
             )
         }.flowOn(Dispatchers.IO)
-    }
-
 }
