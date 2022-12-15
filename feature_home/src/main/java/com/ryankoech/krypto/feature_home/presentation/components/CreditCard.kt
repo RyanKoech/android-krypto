@@ -161,7 +161,7 @@ private fun CreditCardPreview() {
 }
 
 @Composable
-private fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
+fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
     val df = DecimalFormat("#.##")
     val roundOffBalance = df.format(balance)
     return when (displayCurrency) {
@@ -171,7 +171,7 @@ private fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurren
 }
 
 @Composable
-private fun getFormattedChange(change : Float) : String {
+fun getFormattedChange(change : Float) : String {
     val df = DecimalFormat("#.##")
     val roundOffChange = df.format(change)
     return if(change == 0f)
@@ -182,6 +182,6 @@ private fun getFormattedChange(change : Float) : String {
         stringResource(R.string.credit_card_change, "+",roundOffChange)
 }
 
-private fun getChangeColor(change : Float) : Color {
+fun getChangeColor(change : Float) : Color {
     return  if (change < 0f) Red400 else Green500
 }
