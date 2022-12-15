@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.presentation.util
+package com.ryankoech.krypto.common.presentation.util
 
 enum class DisplayCurrency {
     USD,

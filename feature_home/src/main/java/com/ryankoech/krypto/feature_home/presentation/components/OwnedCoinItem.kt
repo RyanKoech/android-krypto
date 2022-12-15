@@ -1,6 +1,5 @@
 package com.ryankoech.krypto.feature_home.presentation.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,7 +17,10 @@ import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
-import com.ryankoech.krypto.feature_home.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.getChangeColor
+import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
+import com.ryankoech.krypto.common.presentation.util.getFormattedChange
 import ke.co.sevenskies.feature_home.R
 
 @Composable
