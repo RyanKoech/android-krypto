@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.presentation.components
+package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

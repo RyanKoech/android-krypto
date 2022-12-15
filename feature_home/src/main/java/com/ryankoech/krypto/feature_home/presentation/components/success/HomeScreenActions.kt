@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.presentation.components
+package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
