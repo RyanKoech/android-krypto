@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.presentation.components
+package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
