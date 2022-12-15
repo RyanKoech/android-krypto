@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="credit_card_title">Estimated Balance</string>
-    <string name="credit_card_balance">%s %s</string>
+    <string name="credit_card_balance">%s%s</string>
     <string name="credit_card_change">%s%s%%</string>
     <string name="home_screen_actions_transfer_in">Transfer In</string>
     <string name="home_screen_actions_wipe_wallet">Wipe Wallet</string>
     <string name="home_screen_actions_transfer_out">Transfer Out</string>
+    <string name="coin_amount">%s %s</string>
     <plurals name="credit_card_assets">
         <item quantity="one">%d Asset</item>
         <item quantity="other">%d Assets</item>
