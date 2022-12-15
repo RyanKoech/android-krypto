@@ -20,17 +20,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import com.ryankoech.krypto.common.presentation.theme.Red400
+import com.ryankoech.krypto.common.presentation.util.getChangeColor
+import com.ryankoech.krypto.common.presentation.util.getFormattedChange
 import com.ryankoech.krypto.feature_home.presentation.theme.skyBlue300
 import com.ryankoech.krypto.feature_home.presentation.theme.limeGreen400
 import com.ryankoech.krypto.feature_home.presentation.theme.limeYellow300
 import com.ryankoech.krypto.feature_home.presentation.theme.teaGreen200
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
-import com.ryankoech.krypto.feature_home.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import ke.co.sevenskies.feature_home.R
-import java.text.DecimalFormat
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -158,30 +158,4 @@ private fun CreditCardPreview() {
             }
         }
     }
-}
-
-@Composable
-fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurrency) : String {
-    val df = DecimalFormat("#.##")
-    val roundOffBalance = df.format(balance)
-    return when (displayCurrency) {
-        DisplayCurrency.USD -> stringResource(R.string.credit_card_balance, "$", roundOffBalance)
-        else -> stringResource(R.string.credit_card_balance, displayCurrency.toString(), roundOffBalance)
-    }
-}
-
-@Composable
-fun getFormattedChange(change : Float) : String {
-    val df = DecimalFormat("#.##")
-    val roundOffChange = df.format(change)
-    return if(change == 0f)
-        stringResource(R.string.credit_card_change, "0")
-    else if (change < 0f)
-        stringResource(R.string.credit_card_change,"", roundOffChange)
-    else
-        stringResource(R.string.credit_card_change, "+",roundOffChange)
-}
-
-fun getChangeColor(change : Float) : Color {
-    return  if (change < 0f) Red400 else Green500
 }
