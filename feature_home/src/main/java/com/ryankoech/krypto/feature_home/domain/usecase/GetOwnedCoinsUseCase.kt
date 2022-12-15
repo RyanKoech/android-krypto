@@ -6,7 +6,7 @@ import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 
-class GetCoinsUseCase(
+class GetOwnedCoinsUseCase(
     private val repository: OwnedCoinsRepository
 ) {
 
