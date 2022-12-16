@@ -15,3 +15,26 @@ data class OwnedCoinDto(
     val amount : Double,
     val icon : String,
 )
+
+fun List<OwnedCoinDto>.getBalance() : Double {
+
+    var balance = 0.0
+
+    forEach { coin ->
+        val total = coin.amount * coin.value
+        balance+=total
+    }
+
+    return balance
+}
+
+fun List<OwnedCoinDto>.getChange() : Float {
+
+    var change = 0f
+
+    forEach { coin ->
+        change+=coin.change
+    }
+
+    return change
+}
