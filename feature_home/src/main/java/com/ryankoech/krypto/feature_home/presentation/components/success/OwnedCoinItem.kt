@@ -37,6 +37,8 @@ fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
     ) {
         CoinImage(ownedCoinDto.icon, ownedCoinDto.id)
 
+        Spacer(modifier = Modifier.width(8.dp))
+
         Column(
             modifier = Modifier
                 .padding(4.dp)
@@ -51,7 +53,7 @@ fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
                 Text(
                     modifier = Modifier
                         .padding(end = 2.dp),
-                    text = ownedCoinDto.symbol,
+                    text = ownedCoinDto.symbol.uppercase(),
                     style = MaterialTheme.typography.h3,
                 )
                 Text(
@@ -83,7 +85,7 @@ fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
                     style = MaterialTheme.typography.body1
                 )
                 Text(
-                    text = stringResource(R.string.coin_amount, ownedCoinDto.amount.toString(), ownedCoinDto.symbol),
+                    text = stringResource(R.string.coin_amount, ownedCoinDto.amount.toString(), ownedCoinDto.symbol).uppercase(),
                     style = MaterialTheme.typography.body1
                 )
             }
