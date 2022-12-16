@@ -35,12 +35,13 @@ import ke.co.sevenskies.feature_home.R
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CreditCard(
+    onChangeDisplayCurrency : () -> Unit,
     creditCardDetails: CreditCardDetails,
-    onChangeDisplayCurrency : () -> Unit
+    modifier: Modifier = Modifier
 ) {
 
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(LocalConfiguration.current.screenHeightDp.dp/4),
         elevation = 5.dp,
@@ -147,15 +148,14 @@ private fun CreditCardPreview() {
     KryptoTheme {
         Surface {
             CreditCard(
-                CreditCardDetails(
+                onChangeDisplayCurrency = { println("Change  Currency") },
+                creditCardDetails = CreditCardDetails(
                     balance = 12345.4545,
                     change = 2.54f,
                     count = 3,
                     displayCurrency = DisplayCurrency.USD,
                 )
-            ){
-                println("Change  Currency")
-            }
+            )
         }
     }
 }
