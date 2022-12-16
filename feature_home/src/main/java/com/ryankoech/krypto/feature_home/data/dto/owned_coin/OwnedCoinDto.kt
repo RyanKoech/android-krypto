@@ -10,8 +10,8 @@ data class OwnedCoinDto(
     @PrimaryKey(autoGenerate = false)
     val id : String,
     val symbol : String,
-    val value : Float,
-    val change : Double,
-    val amount : Float,
+    val value : Double,
+    val change : Float,
+    val amount : Double,
     val icon : String,
 )

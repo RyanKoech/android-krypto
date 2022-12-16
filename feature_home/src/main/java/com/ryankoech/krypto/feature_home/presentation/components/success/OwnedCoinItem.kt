@@ -55,14 +55,14 @@ fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
                     style = MaterialTheme.typography.h3,
                 )
                 Text(
-                    text = getFormattedChange(ownedCoinDto.change.toFloat()),
+                    text = getFormattedChange(ownedCoinDto.change),
                     style = MaterialTheme.typography.body1,
-                    color = getChangeColor(ownedCoinDto.change.toFloat())
+                    color = getChangeColor(ownedCoinDto.change)
                 )
                 Spacer(modifier = Modifier.weight(1.0f))
                 Text(
                     text = getFormattedBalance(
-                        balance = (ownedCoinDto.amount * ownedCoinDto.value).toDouble(),
+                        balance = (ownedCoinDto.amount * ownedCoinDto.value),
                         displayCurrency = DisplayCurrency.USD
                     ),
                     style = MaterialTheme.typography.h4
@@ -77,7 +77,7 @@ fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
             ) {
                 Text(
                     text = getFormattedBalance(
-                        balance = ownedCoinDto.value.toDouble(),
+                        balance = ownedCoinDto.value,
                         displayCurrency = DisplayCurrency.USD
                     ),
                     style = MaterialTheme.typography.body1
@@ -105,9 +105,9 @@ fun OwnedCoinItemPreview() {
                         OwnedCoinDto(
                             id = "bitcoin",
                             symbol = "BTC",
-                            amount = 2.10545f,
-                            value = 17300.105f,
-                            change = -2.45,
+                            amount = 2.10545,
+                            value = 17300.105,
+                            change = -2.45f,
                             icon = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
                         )
                     )
