@@ -16,6 +16,6 @@ class GetOwnedCoinsUseCase @Inject constructor(
         }.onStart {
             emit(Resource.Loading())
         }.catch { e ->
-            emit(Resource.Error(e.message ?: "Unexpected Error Occurred"))
+            emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred"))
         }.flowOn(Dispatchers.IO)
 }
