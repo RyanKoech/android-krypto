@@ -8,29 +8,29 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-private val FakeOwnedCoins = listOf<OwnedCoinDto>(
+private val FakeOwnedCoins = listOf(
     OwnedCoinDto(
         id = "bitcoin",
         symbol = "btc",
-        amount = 1f,
-        value = 17434.25f,
-        change = -3.60164,
+        amount = 1.0,
+        value = 17434.25,
+        change = -3.60164f,
         icon = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
     ),
     OwnedCoinDto(
         id = "ethereum",
         symbol = "eth",
-        amount = 1f,
-        value = 1270.21f,
-        change = 1.164,
+        amount = 1.0,
+        value = 1270.21,
+        change = 1.164f,
         icon = "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880"
     ),
     OwnedCoinDto(
         id = "tether",
         symbol = "usdt",
-        amount = 1f,
-        value = 0.99f,
-        change = -0.664,
+        amount = 1.0,
+        value = 0.99,
+        change = -0.664f,
         icon = "https://assets.coingecko.com/coins/images/325/large/Tether.png?1668148663"
     ),
 )
