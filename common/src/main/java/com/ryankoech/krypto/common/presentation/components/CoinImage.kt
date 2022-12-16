@@ -10,19 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import ke.co.sevenskies.common.R
 
-
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun CoinImage(url : String, name : String) {
     Box(
         modifier = Modifier
-            .size(56.dp)
+            .size(60.dp)
             .background(
                 color = Color.Black,
                 shape = RoundedCornerShape(10.dp)
@@ -31,11 +30,10 @@ fun CoinImage(url : String, name : String) {
 
     ) {
 
-        val painter = rememberImagePainter(
-            data = url,
-            builder = {
+        val painter = rememberAsyncImagePainter(
+            ImageRequest.Builder(LocalContext.current).data(data = url).apply(block = fun ImageRequest.Builder.() {
                 crossfade(200)
-            }
+            }).build()
         )
 
         Image(
