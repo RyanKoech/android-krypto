@@ -59,6 +59,9 @@ val FakeOwnedCoins = listOf(
     ),
 )
 
+
+const val FAKE_DELAY = 2000L
+
 class FakeOwnedCoinsReposistoryImpl @Inject constructor(
     private val coinsDao: OwnedCoinsDao
 ) : OwnedCoinsRepository {
@@ -71,7 +74,10 @@ class FakeOwnedCoinsReposistoryImpl @Inject constructor(
 
     override suspend fun getOwnedCoins(): List<OwnedCoinDto> {
         return coroutineScope {
-            FakeOwnedCoins
+            withContext(Dispatchers.IO) {
+                Thread.sleep(FAKE_DELAY)
+                FakeOwnedCoins
+            }
         }
     }
 
