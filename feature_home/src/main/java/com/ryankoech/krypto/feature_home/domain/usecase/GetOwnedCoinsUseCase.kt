@@ -12,10 +12,10 @@ class GetOwnedCoinsUseCase @Inject constructor(
 ) {
 
     operator fun invoke() = flow<Resource<List<OwnedCoinDto>>> {
-            emit(Resource.Success(repository.getOwnedCoins()))
-        }.onStart {
-            emit(Resource.Loading())
-        }.catch { e ->
-            emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred"))
-        }.flowOn(Dispatchers.IO)
+        emit(Resource.Success(repository.getOwnedCoins()))
+    }.onStart {
+        emit(Resource.Loading())
+    }.catch { e ->
+        emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred"))
+    }.flowOn(Dispatchers.IO)
 }
