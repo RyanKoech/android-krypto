@@ -26,7 +26,7 @@ fun getFormattedBalance(balance : Double, displayCurrency: DisplayCurrency) : St
     val roundOffBalance = df.format(balance)
     return when (displayCurrency) {
         DisplayCurrency.USD -> stringResource(R.string.coin_amount_balance, "$", roundOffBalance)
-        else -> stringResource(R.string.coin_amount_balance, displayCurrency.toString(), roundOffBalance)
+        else -> stringResource(R.string.coin_amount_balance, "$displayCurrency ", roundOffBalance)
     }
 }
 
