@@ -9,30 +9,38 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.feature_home.core.ktx.getNextIndex
+import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.getBalance
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.getChange
+import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 
 @Composable
 fun HomeScreenSuccessWithData(
     ownedCoins : List<OwnedCoinDto>,
+    displayCurrencies : List<DisplayCurrencyDto>,
     modifier: Modifier = Modifier,
 ) {
 
+    var currentDisplayCurrencyIndex by remember {
+        mutableStateOf(0)
+    }
+
     val creditCardDetails = CreditCardDetails(
-        balance = ownedCoins.getBalance(),
+        balance = ownedCoins.getBalance(displayCurrencies[currentDisplayCurrencyIndex]),
         change = ownedCoins.getChange(),
         count = ownedCoins.size,
-        displayCurrency = DisplayCurrency.USD,
+        displayCurrency = displayCurrencies[currentDisplayCurrencyIndex].currency,
     )
+
 
     LazyColumn(
         modifier = modifier
@@ -44,7 +52,9 @@ fun HomeScreenSuccessWithData(
 
         item{
             CreditCard(
-                onChangeDisplayCurrency = { println("Change  Currency") },
+                onChangeDisplayCurrency = {
+                    currentDisplayCurrencyIndex = displayCurrencies.getNextIndex(currentDisplayCurrencyIndex)
+                },
                 creditCardDetails = creditCardDetails
             )
         }
@@ -83,9 +93,7 @@ fun HomeScreenSuccessWithDataPreview() {
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
-
-            HomeScreenSuccessWithData(FakeOwnedCoins)
-
+            HomeScreenSuccessWithData(FakeOwnedCoins, FakeDisplayCurrencies)
         }
     }
 
