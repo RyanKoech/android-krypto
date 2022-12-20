@@ -1,5 +1,6 @@
 package com.ryankoech.krypto.feature_home.presentation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -12,13 +13,14 @@ import com.ryankoech.krypto.feature_home.presentation.viewmodel.HomeScreenViewMo
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeScreenViewModel = hiltViewModel()
+    viewModel: HomeScreenViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier
 ) {
 
     val viewState = viewModel.viewState.value
 
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(),
     ) {
         when (viewState.screenState) {
