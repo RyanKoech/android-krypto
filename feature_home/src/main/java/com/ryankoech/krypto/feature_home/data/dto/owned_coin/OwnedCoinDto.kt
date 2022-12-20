@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_home.data.dto.owned_coin
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 
 const val OWNED_COIN_DTO_TABLENAME = "owned_coin_table"
 
@@ -16,7 +17,7 @@ data class OwnedCoinDto(
     val icon : String,
 )
 
-fun List<OwnedCoinDto>.getBalance() : Double {
+fun List<OwnedCoinDto>.getBalance(displayCurrency: DisplayCurrencyDto) : Double {
 
     var balance = 0.0
 
@@ -25,7 +26,7 @@ fun List<OwnedCoinDto>.getBalance() : Double {
         balance+=total
     }
 
-    return balance
+    return balance / displayCurrency.value
 }
 
 fun List<OwnedCoinDto>.getChange() : Float {
