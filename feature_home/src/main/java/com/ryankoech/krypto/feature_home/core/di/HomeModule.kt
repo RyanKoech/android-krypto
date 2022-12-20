@@ -2,11 +2,10 @@ package com.ryankoech.krypto.feature_home.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ryankoech.krypto.feature_home.data.data_source.local.DB_NAME
-import com.ryankoech.krypto.feature_home.data.data_source.local.OwnedCoinsDao
-import com.ryankoech.krypto.feature_home.data.data_source.local.OwnedCoinsDatabase
+import com.ryankoech.krypto.feature_home.data.data_source.local.db.DB_NAME
+import com.ryankoech.krypto.feature_home.data.data_source.local.db.OwnedCoinsDao
+import com.ryankoech.krypto.feature_home.data.data_source.local.db.OwnedCoinsDatabase
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsReposistoryImpl
-import com.ryankoech.krypto.feature_home.data.repository.OwnedCoinsRepositoryImpl
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import dagger.Module
 import dagger.Provides
