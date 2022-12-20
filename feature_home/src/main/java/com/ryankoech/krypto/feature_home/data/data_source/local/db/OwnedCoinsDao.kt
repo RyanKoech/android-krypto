@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.data.data_source.local
+package com.ryankoech.krypto.feature_home.data.data_source.local.db
 
 import androidx.room.Dao
 import androidx.room.Insert

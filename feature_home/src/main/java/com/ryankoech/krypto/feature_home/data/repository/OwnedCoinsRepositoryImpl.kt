@@ -1,7 +1,7 @@
 package com.ryankoech.krypto.feature_home.data.repository
 
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.data.data_source.local.OwnedCoinsDao
+import com.ryankoech.krypto.feature_home.data.data_source.local.db.OwnedCoinsDao
 import com.ryankoech.krypto.feature_home.data.data_source.local.shared_pref.HomeLocalPref
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
