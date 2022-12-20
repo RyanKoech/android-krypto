@@ -6,20 +6,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
+import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.presentation.components.success.*
 
 @Composable
 fun HomeScreenSuccess(
     ownedCoins : List<OwnedCoinDto>,
+    displayCurrencies : List<DisplayCurrencyDto>,
     modifier: Modifier = Modifier
 ) {
 
     if(ownedCoins.isEmpty()){
         HomeScreenSuccessNoData(modifier)
     }else{
-        HomeScreenSuccessWithData(ownedCoins, modifier)
+        HomeScreenSuccessWithData(ownedCoins, displayCurrencies, modifier)
     }
 
 }
@@ -31,7 +34,7 @@ fun HomeScreenSuccessPreview() {
     KryptoTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            HomeScreenSuccess(FakeOwnedCoins)
+            HomeScreenSuccess(FakeOwnedCoins, FakeDisplayCurrencies)
 
         }
     }
