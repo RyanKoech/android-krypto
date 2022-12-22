@@ -71,7 +71,7 @@ fun CreditCard(
                 Row {
                     Text(
                         text = stringResource(R.string.credit_card_title),
-                        style = MaterialTheme.typography.h4
+                        style = MaterialTheme.typography.h3
                     )
                     Spacer(modifier = Modifier.weight(1.0f))
                     Card(
@@ -107,7 +107,7 @@ fun CreditCard(
                 Text(
                     text = getFormattedBalance(creditCardDetails.balance, creditCardDetails.displayCurrency),
                     style = MaterialTheme.typography.h1,
-                    fontSize = 30.sp
+                    fontSize = 32.sp
                 )
 
                 Spacer(modifier = Modifier.weight(1.0f))
@@ -118,7 +118,7 @@ fun CreditCard(
                     Text(
                         text = pluralStringResource(R.plurals.credit_card_assets, creditCardDetails.count, creditCardDetails.count),
                         style = MaterialTheme.typography.h4,
-                        fontSize = 12.sp
+                        fontSize = 13.sp
                     )
                     Icon(
                         modifier = Modifier
