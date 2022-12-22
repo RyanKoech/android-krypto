@@ -14,4 +14,5 @@ interface OwnedCoinsRepository {
 
     suspend fun getDisplayCurrencyData() : List<DisplayCurrencyDto>?
 
+    suspend fun wipeDatabase()
 }
