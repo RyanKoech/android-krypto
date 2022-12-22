@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_home.data.repository
 
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.feature_home.data.data_source.local.db.OwnedCoinsDao
+import com.ryankoech.krypto.feature_home.data.data_source.local.db.OwnedCoinsDatabase
 import com.ryankoech.krypto.feature_home.data.data_source.local.shared_pref.HomeLocalPref
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class OwnedCoinsRepositoryImpl @Inject constructor(
     private val coinsDao: OwnedCoinsDao,
     private val homeLocalPref: HomeLocalPref,
+    private val ownedCoinsDatabase : OwnedCoinsDatabase
 ) : OwnedCoinsRepository {
 
     override suspend fun saveOwnedCoin(coin: OwnedCoinDto): Long {
@@ -36,6 +38,12 @@ class OwnedCoinsRepositoryImpl @Inject constructor(
     override suspend fun getDisplayCurrencyData(): List<DisplayCurrencyDto>? {
         return coroutineScope {
             homeLocalPref.getDisplayCurrencyData()
+        }
+    }
+
+    override suspend fun wipeDatabase() {
+        return coroutineScope{
+            ownedCoinsDatabase.clearAllTables()
         }
     }
 

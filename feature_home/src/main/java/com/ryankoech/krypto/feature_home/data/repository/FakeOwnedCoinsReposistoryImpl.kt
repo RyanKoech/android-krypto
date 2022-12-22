@@ -98,4 +98,8 @@ class FakeOwnedCoinsReposistoryImpl @Inject constructor(
         return FakeDisplayCurrencies
     }
 
+    override suspend fun wipeDatabase() {
+        println("Database cleared")
+    }
+
 }
