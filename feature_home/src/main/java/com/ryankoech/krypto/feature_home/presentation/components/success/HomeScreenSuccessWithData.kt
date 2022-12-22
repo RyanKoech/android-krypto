@@ -27,6 +27,9 @@ import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 fun HomeScreenSuccessWithData(
     ownedCoins : List<OwnedCoinDto>,
     displayCurrencies : List<DisplayCurrencyDto>,
+    onTransferInClick : () -> Unit,
+    onTransferOutClick : () -> Unit,
+    onWipeWalletClick : () -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -61,7 +64,7 @@ fun HomeScreenSuccessWithData(
 
         item{ Spacer(modifier = Modifier.height(32.dp)) }
 
-        item{ HomeScreenActions() }
+        item{ HomeScreenActions(onTransferInClick, onTransferOutClick, onWipeWalletClick) }
 
         item{ Spacer(modifier = Modifier.height(32.dp)) }
 
@@ -93,7 +96,7 @@ fun HomeScreenSuccessWithDataPreview() {
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
-            HomeScreenSuccessWithData(FakeOwnedCoins, FakeDisplayCurrencies)
+            HomeScreenSuccessWithData(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {})
         }
     }
 
