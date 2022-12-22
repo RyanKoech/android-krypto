@@ -148,7 +148,7 @@ private fun CreditCardPreview() {
     KryptoTheme {
         Surface {
             CreditCard(
-                onChangeDisplayCurrency = { println("Change  Currency") },
+                onChangeDisplayCurrency = { },
                 creditCardDetails = CreditCardDetails(
                     balance = 12345.4545,
                     change = 2.54f,
