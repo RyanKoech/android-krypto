@@ -1,6 +1,7 @@
 package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -24,16 +25,23 @@ import com.ryankoech.krypto.common.presentation.util.getFormattedChange
 import ke.co.sevenskies.feature_home.R
 
 @Composable
-fun OwnedCoinItem(ownedCoinDto: OwnedCoinDto) {
+fun OwnedCoinItem(
+    onClick : () -> Unit,
+    ownedCoinDto: OwnedCoinDto,
+    modifier: Modifier = Modifier
+) {
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .background(
                 color = Color.White,
                 shape = RoundedCornerShape(10.dp)
-            ),
+            )
+            .clickable {
+                onClick()
+            },
     ) {
         CoinImage(ownedCoinDto.icon, ownedCoinDto.id)
 
@@ -104,6 +112,7 @@ fun OwnedCoinItemPreview() {
             ) {
                 Column {
                     OwnedCoinItem(
+                        {},
                         OwnedCoinDto(
                             id = "bitcoin",
                             symbol = "BTC",

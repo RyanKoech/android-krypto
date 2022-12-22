@@ -78,7 +78,7 @@ fun HomeScreenSuccessWithData(
         item{ Spacer(modifier = Modifier.height(24.dp)) }
 
         items(items = ownedCoins){ ownedCoin ->
-            OwnedCoinItem(ownedCoin)
+            OwnedCoinItem({},ownedCoin)
             Spacer(modifier = modifier.height(16.dp))
         }
 
