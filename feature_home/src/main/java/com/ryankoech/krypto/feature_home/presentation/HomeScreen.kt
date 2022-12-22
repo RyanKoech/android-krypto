@@ -1,6 +1,5 @@
 package com.ryankoech.krypto.feature_home.presentation
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -13,6 +12,8 @@ import com.ryankoech.krypto.feature_home.presentation.viewmodel.HomeScreenViewMo
 
 @Composable
 fun HomeScreen(
+    onTransferInClick : () -> Unit,
+    onTransferOutClick : () -> Unit,
     viewModel: HomeScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -31,8 +32,13 @@ fun HomeScreen(
                 HomeScreenError()
             }
             ScreenState.SUCCESS -> {
-                HomeScreenSuccess(viewState.ownedCoins, viewState.displayCurrencies)
-
+                HomeScreenSuccess(
+                    ownedCoins = viewState.ownedCoins,
+                    displayCurrencies = viewState.displayCurrencies,
+                    onTransferInClick = onTransferInClick,
+                    onTransferOutClick = onTransferOutClick,
+                    onWipeWalletClick = { viewModel.wipeOwnedCoinsDatabase() }
+                )
             }
         }
     }
@@ -42,6 +48,6 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     KryptoTheme {
-        HomeScreen()
+        HomeScreen({}, {})
     }
 }

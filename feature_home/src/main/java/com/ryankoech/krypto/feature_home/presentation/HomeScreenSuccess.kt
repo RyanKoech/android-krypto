@@ -16,13 +16,23 @@ import com.ryankoech.krypto.feature_home.presentation.components.success.*
 fun HomeScreenSuccess(
     ownedCoins : List<OwnedCoinDto>,
     displayCurrencies : List<DisplayCurrencyDto>,
+    onTransferInClick : () -> Unit,
+    onTransferOutClick : () -> Unit,
+    onWipeWalletClick : () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     if(ownedCoins.isEmpty()){
         HomeScreenSuccessNoData(modifier)
     }else{
-        HomeScreenSuccessWithData(ownedCoins, displayCurrencies, modifier)
+        HomeScreenSuccessWithData(
+            ownedCoins = ownedCoins,
+            displayCurrencies = displayCurrencies,
+            onTransferInClick = onTransferInClick,
+            onTransferOutClick = onTransferOutClick,
+            onWipeWalletClick = onWipeWalletClick,
+            modifier = modifier
+        )
     }
 
 }
@@ -34,7 +44,7 @@ fun HomeScreenSuccessPreview() {
     KryptoTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            HomeScreenSuccess(FakeOwnedCoins, FakeDisplayCurrencies)
+            HomeScreenSuccess(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {})
 
         }
     }
