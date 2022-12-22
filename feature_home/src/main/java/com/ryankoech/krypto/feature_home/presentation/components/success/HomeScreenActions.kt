@@ -20,7 +20,11 @@ import com.ryankoech.krypto.feature_home.presentation.theme.maroon50
 import ke.co.sevenskies.feature_home.R
 
 @Composable
-fun HomeScreenActions() {
+fun HomeScreenActions(
+    onTransferInClick : () -> Unit,
+    onTransferOutClick : () -> Unit,
+    onWipeWalletClick : () -> Unit,
+) {
 
     Row(
         modifier = Modifier
@@ -29,30 +33,33 @@ fun HomeScreenActions() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         HomeScreenActionItem(
+            onClick = onTransferInClick,
             text = stringResource(R.string.home_screen_actions_transfer_in),
             color = Green200,
             drawableResource = R.drawable.icon_download
-        ){}
+        )
         HomeScreenActionItem(
+            onClick = onWipeWalletClick,
             text = stringResource(R.string.home_screen_actions_wipe_wallet),
             color = maroon50,
             drawableResource = R.drawable.icon_delete
-        ){}
+        )
         HomeScreenActionItem(
+            onClick = onTransferOutClick,
             text = stringResource(R.string.home_screen_actions_transfer_out),
             color = teaGreen200,
             drawableResource = R.drawable.icon_upload
-        ){}
+        )
     }
 
 }
 
 @Composable
 fun HomeScreenActionItem(
+    onClick : () -> Unit,
     text : String,
     @DrawableRes drawableResource : Int,
     color : Color,
-    onClick : () -> Unit
 ) {
 
     Column(
@@ -101,7 +108,7 @@ fun HomeScreenActionItem(
 fun HomeScreenActionsPreview() {
     KryptoTheme {
         Surface {
-            HomeScreenActions()
+            HomeScreenActions({}, {}, {})
         }
     }
 }
@@ -113,10 +120,11 @@ fun HomeScreenActionItemPreview() {
     KryptoTheme {
         Surface {
             HomeScreenActionItem(
+                onClick = {},
                 text = "Wipe Wallet",
                 color = Color(0xffa1f5b9),
                 drawableResource = R.drawable.icon_download
-            ){}
+            )
         }
     }
 }
