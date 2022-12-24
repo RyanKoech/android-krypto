@@ -5,6 +5,7 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class SaveOwnedCoinUseCase @Inject constructor(
@@ -19,9 +20,8 @@ class SaveOwnedCoinUseCase @Inject constructor(
                     data = id
                 )
             }catch (e : Exception) {
-                Resource.Error(
-                    e.message?: "Unexpected Error Occurred"
-                )
+                Timber.e(e)
+                Resource.Error(e.message?: "Unexpected Error Occurred" )
             }
         }
     }

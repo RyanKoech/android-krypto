@@ -9,6 +9,7 @@ import com.ryankoech.krypto.feature_home.core.ktx.toDisplayCurrencyList
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.coroutineScope
+import timber.log.Timber
 import javax.inject.Inject
 
 class HomeLocalPref @Inject constructor(
@@ -33,7 +34,7 @@ class HomeLocalPref @Inject constructor(
                 editor?.putString(DISPLAY_CURRENCY_KEY, gson.toJson(displayCurrencyData))
                 editor?.apply()
             } catch (e :Exception){
-                e.printStackTrace()
+                Timber.e(e)
             }
         }
     }
@@ -49,6 +50,7 @@ class HomeLocalPref @Inject constructor(
                     gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
                 displayCurrencyData
             }catch (e : Exception) {
+                Timber.e(e)
                 null
             }
         }

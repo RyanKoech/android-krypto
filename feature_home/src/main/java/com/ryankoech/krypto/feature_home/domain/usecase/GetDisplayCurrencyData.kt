@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
+import timber.log.Timber
 import java.util.concurrent.Flow
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ class GetDisplayCurrencyData @Inject constructor(
     }.onStart {
         emit(Resource.Success(defaultList))
     }.catch { e ->
-        e.printStackTrace()
+        Timber.e(e)
         emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred", defaultList))
     }.flowOn(Dispatchers.IO)
 }

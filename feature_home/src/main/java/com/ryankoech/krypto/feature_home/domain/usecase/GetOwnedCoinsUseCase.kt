@@ -5,6 +5,7 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class GetOwnedCoinsUseCase @Inject constructor(
@@ -16,6 +17,7 @@ class GetOwnedCoinsUseCase @Inject constructor(
     }.onStart {
         emit(Resource.Loading())
     }.catch { e ->
+        Timber.e(e)
         emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred"))
     }.flowOn(Dispatchers.IO)
 }

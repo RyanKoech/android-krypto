@@ -3,6 +3,7 @@ package com.ryankoech.krypto.feature_home.domain.usecase
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 class SaveDisplayCurrencyData @Inject constructor(
@@ -13,7 +14,7 @@ class SaveDisplayCurrencyData @Inject constructor(
         try {
             Resource.Success(repository.saveDisplayCurrencyData(displayCurrencyData))
         }catch (e : Throwable) {
-            e.printStackTrace()
+            Timber.e(e)
             Resource.Error(e.localizedMessage ?: "An Unexpected Error Occurred")
         }
 
