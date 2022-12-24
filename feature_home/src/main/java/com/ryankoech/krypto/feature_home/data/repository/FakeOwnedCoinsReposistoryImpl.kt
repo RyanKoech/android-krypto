@@ -8,6 +8,7 @@ import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 val FakeOwnedCoins = listOf(
@@ -91,7 +92,7 @@ class FakeOwnedCoinsReposistoryImpl @Inject constructor(
     }
 
     override suspend fun saveDisplayCurrencyData(displayCurrencyDataMap: HashMap<DisplayCurrency, Double>) {
-        println("Saved Local DisplayCurrency Data")
+        Timber.d("Saved Local DisplayCurrency Data")
     }
 
     override suspend fun getDisplayCurrencyData(): List<DisplayCurrencyDto>?{
@@ -99,7 +100,7 @@ class FakeOwnedCoinsReposistoryImpl @Inject constructor(
     }
 
     override suspend fun wipeDatabase() {
-        println("Database cleared")
+        Timber.d("Database cleared")
     }
 
 }
