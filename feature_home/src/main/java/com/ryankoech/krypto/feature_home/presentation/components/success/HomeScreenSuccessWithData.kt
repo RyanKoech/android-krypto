@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +33,18 @@ fun HomeScreenSuccessWithData(
 
     var currentDisplayCurrencyIndex by remember {
         mutableStateOf(0)
+    }
+
+    var isDialogOpen by remember {
+        mutableStateOf(false)
+    }
+
+    val openDialog = {
+        isDialogOpen = true
+    }
+
+    val closeDialog = {
+        isDialogOpen = false
     }
 
     val creditCardDetails = CreditCardDetails(
@@ -64,7 +74,20 @@ fun HomeScreenSuccessWithData(
 
         item{ Spacer(modifier = Modifier.height(32.dp)) }
 
-        item{ HomeScreenActions(onTransferInClick, onTransferOutClick, onWipeWalletClick) }
+        item{ HomeScreenActions(onTransferInClick, onTransferOutClick, openDialog) }
+
+        if(isDialogOpen) {
+            item {
+                ConfirmDialog(
+                    onDismissRequest = closeDialog,
+                    onConfirm = {
+                        isDialogOpen = false
+                        onWipeWalletClick()
+                    },
+                    onDismiss = closeDialog
+                )
+            }
+        }
 
         item{ Spacer(modifier = Modifier.height(32.dp)) }
 
