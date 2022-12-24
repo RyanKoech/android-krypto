@@ -68,6 +68,9 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
 
+    // timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
