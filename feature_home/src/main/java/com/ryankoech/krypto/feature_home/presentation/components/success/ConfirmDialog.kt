@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import ke.co.sevenskies.feature_home.R
+import com.ryankoech.krypto.feature_home.R
 
 @Composable
 fun ConfirmDialog(

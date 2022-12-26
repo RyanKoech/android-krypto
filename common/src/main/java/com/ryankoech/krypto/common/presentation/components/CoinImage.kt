@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import ke.co.sevenskies.common.R
+import com.ryankoech.krypto.common.R
 
 @Composable
 fun CoinImage(url : String, name : String) {

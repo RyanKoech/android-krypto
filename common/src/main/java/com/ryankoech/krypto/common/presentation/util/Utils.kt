@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.Red400
-import ke.co.sevenskies.common.R
+import com.ryankoech.krypto.common.R
 import java.text.DecimalFormat
 
 @Composable

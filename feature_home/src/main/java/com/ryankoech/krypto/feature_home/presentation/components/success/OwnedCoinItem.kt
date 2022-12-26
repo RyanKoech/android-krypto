@@ -22,7 +22,7 @@ import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.common.presentation.util.getChangeColor
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedChange
-import ke.co.sevenskies.feature_home.R
+import com.ryankoech.krypto.feature_home.R
 
 @Composable
 fun OwnedCoinItem(
