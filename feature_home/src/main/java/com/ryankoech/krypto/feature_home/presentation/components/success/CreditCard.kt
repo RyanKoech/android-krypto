@@ -30,7 +30,7 @@ import com.ryankoech.krypto.feature_home.presentation.theme.teaGreen200
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
-import ke.co.sevenskies.feature_home.R
+import com.ryankoech.krypto.feature_home.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

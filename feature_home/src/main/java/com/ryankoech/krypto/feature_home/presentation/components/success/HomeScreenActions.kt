@@ -17,7 +17,7 @@ import com.ryankoech.krypto.common.presentation.theme.Green200
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.presentation.theme.teaGreen200
 import com.ryankoech.krypto.feature_home.presentation.theme.maroon50
-import ke.co.sevenskies.feature_home.R
+import com.ryankoech.krypto.feature_home.R
 
 @Composable
 fun HomeScreenActions(

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'ke.co.sevenskies.common'
+    namespace 'com.ryankoech.krypto.common'
     compileSdk 32
 
     defaultConfig {

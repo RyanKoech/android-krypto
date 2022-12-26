@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import ke.co.sevenskies.common.R
+import com.ryankoech.krypto.common.R
 
 val CircularStd = FontFamily(
     Font(R.font.circular_std_book, weight = FontWeight.Medium),

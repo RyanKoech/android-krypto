@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'ke.co.sevenskies.feature_home'
+    namespace 'com.ryankoech.krypto.feature_home'
     compileSdk 33
 
     defaultConfig {

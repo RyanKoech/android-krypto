@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import ke.co.sevenskies.feature_home.R
+import com.ryankoech.krypto.feature_home.R
 
 @Composable
 fun HomeScreenSuccessNoData(
