@@ -11,10 +11,10 @@ import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinsUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.WipeDatabaseUseCase
 import com.ryankoech.krypto.feature_home.presentation.viewstate.HomeScreenViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,6 +26,8 @@ class HomeScreenViewModel @Inject constructor(
 
     private val _viewState = mutableStateOf(HomeScreenViewState())
     val viewState : State<HomeScreenViewState> = _viewState
+    val _message = MutableSharedFlow<String>()
+    val message : SharedFlow<String> get() = _message
 
     init {
         getDisplayCurrencies()
@@ -85,9 +87,12 @@ class HomeScreenViewModel @Inject constructor(
                 when (res) {
                     is Resource.Error -> {
                         // Emit Error to UI
+                        _message.tryEmit("An error occurred while wiping portfolio.")
                     }
                     is Resource.Success -> {
-                        // Emit Success to UI
+                        _viewState.value = _viewState.value.copy(
+                            ownedCoins = emptyList()
+                        )
                     }
                     else -> {}
                 }
