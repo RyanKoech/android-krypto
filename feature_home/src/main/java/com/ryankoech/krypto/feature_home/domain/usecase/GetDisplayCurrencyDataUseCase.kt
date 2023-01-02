@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
-class GetDisplayCurrencyData @Inject constructor(
+class GetDisplayCurrencyDataUseCase @Inject constructor(
     @Named(HILT_NAME_REPO_FOR_ALL) private val repository: OwnedCoinsRepository
 ) {
 
