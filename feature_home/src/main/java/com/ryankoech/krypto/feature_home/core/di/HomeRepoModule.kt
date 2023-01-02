@@ -1,6 +1,6 @@
 package com.ryankoech.krypto.feature_home.core.di
 
-import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsReposistoryImpl
+import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
 import com.ryankoech.krypto.feature_home.data.repository.OwnedCoinsRepositoryImpl
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import dagger.Binds
@@ -29,7 +29,7 @@ abstract class HomeRepoModule {
     @Singleton
     @Named(HILT_NAMED_REPO_FAKE)
     abstract fun provideFakeRepository(
-        ownedCoinsRepositoryImpl: FakeOwnedCoinsReposistoryImpl
+        ownedCoinsRepositoryImpl: FakeOwnedCoinsRepositoryImpl
     ) : OwnedCoinsRepository
 
 }
