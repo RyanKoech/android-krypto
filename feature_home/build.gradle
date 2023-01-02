@@ -78,9 +78,31 @@ dependencies {
     // google truth
     testImplementation "com.google.truth:truth:$google_truth_version"
 
+    // mockk
+    testImplementation "io.mockk:mockk-android:$mockk_version"
+    testImplementation "io.mockk:mockk-agent:$mockk_version"
+
+    // coroutines test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // turbine
+    testImplementation "app.cash.turbine:turbine:$turbine_version"
+
+    // junit4
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+
+    // espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // compose ui
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // google truth
+    androidTestImplementation "com.google.truth:truth:$google_truth_version"
+
+    // mockk
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+    androidTestImplementation "io.mockk:mockk-agent:$mockk_version"
 }
