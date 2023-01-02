@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
-import com.ryankoech.krypto.feature_home.domain.usecase.GetDisplayCurrencyData
+import com.ryankoech.krypto.feature_home.domain.usecase.GetDisplayCurrencyDataUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinsUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.WipeDatabaseUseCase
 import com.ryankoech.krypto.feature_home.presentation.viewstate.HomeScreenViewState
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val getOwnedCoinsUseCase : GetOwnedCoinsUseCase,
-    private val getDisplayCurrencyData: GetDisplayCurrencyData,
+    private val getDisplayCurrencyDataUseCase: GetDisplayCurrencyDataUseCase,
     private val wipeDatabaseUseCase: WipeDatabaseUseCase,
 ) : ViewModel() {
 
@@ -61,7 +61,7 @@ class HomeScreenViewModel @Inject constructor(
 
     private fun getDisplayCurrencies() {
 
-        getDisplayCurrencyData()
+        getDisplayCurrencyDataUseCase()
             .onEach { res ->
                 when(res) {
                     is Resource.Error -> {
