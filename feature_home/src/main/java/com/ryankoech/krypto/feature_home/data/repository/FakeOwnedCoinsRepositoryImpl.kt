@@ -69,8 +69,6 @@ val FakeDisplayCurrencies = listOf(
     DisplayCurrencyDto(DisplayCurrency.LTC, 74.13),
 ).sortedBy { it.currency.ordinal }
 
-const val FAKE_DELAY = 2000L
-
 class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository {
 
     override suspend fun saveOwnedCoin(coin: OwnedCoinDto): String {
@@ -83,7 +81,6 @@ class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository 
     override suspend fun getOwnedCoins(): List<OwnedCoinDto> {
         return coroutineScope {
             withContext(Dispatchers.IO) {
-                Thread.sleep(FAKE_DELAY)
                 FakeOwnedCoins
             }
         }
