@@ -4,6 +4,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
 import com.ryankoech.krypto.feature_home.domain.usecase.GetDisplayCurrencyDataUseCase
@@ -25,7 +26,7 @@ class HomeScreenSuccessTest {
     @Before
     fun setUp() {
 
-        displayCurrencyList = GetDisplayCurrencyDataUseCase(FakeOwnedCoinsRepositoryImpl()).defaultList
+        displayCurrencyList = FakeDisplayCurrencies
     }
 
 
