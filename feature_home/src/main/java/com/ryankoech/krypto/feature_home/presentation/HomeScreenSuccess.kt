@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
@@ -25,7 +26,9 @@ fun HomeScreenSuccess(
 ) {
 
     if(ownedCoins.isEmpty()){
-        HomeScreenSuccessNoData(modifier)
+        HomeScreenSuccessNoData(
+            modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA)
+        )
     }else{
         HomeScreenSuccessWithData(
             ownedCoins = ownedCoins,
@@ -33,7 +36,7 @@ fun HomeScreenSuccess(
             onTransferInClick = onTransferInClick,
             onTransferOutClick = onTransferOutClick,
             onWipeWalletClick = onWipeWalletClick,
-            modifier = modifier
+            modifier = modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_WITH_DATA)
         )
     }
 
