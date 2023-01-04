@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import com.ryankoech.krypto.common.R
+import com.ryankoech.krypto.common.R as commonR
+import com.ryankoech.krypto.feature_home.R
 
 @Composable
 fun HomeScreenError(
@@ -16,9 +18,9 @@ fun HomeScreenError(
     ErrorScreen(
         modifier = modifier,
         onButtonClick = {},
-        messageText = "Something Went Wrong",
-        buttonText = "Try Again",
-        res = R.drawable.error,
+        messageText = stringResource(R.string.home_screen_error_message),
+        buttonText = stringResource(R.string.home_screen_error_action),
+        res = commonR.drawable.error,
     )
 }
 
