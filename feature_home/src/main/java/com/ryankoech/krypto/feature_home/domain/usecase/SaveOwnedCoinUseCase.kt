@@ -14,18 +14,14 @@ class SaveOwnedCoinUseCase @Inject constructor(
     @Named(HILT_NAME_REPO_FOR_ALL) private val repository : OwnedCoinsRepository
 ) {
 
-    suspend operator fun invoke(coin : OwnedCoinDto) : Resource<Long> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val id = repository.saveOwnedCoin(coin)
-                Resource.Success(
-                    data = id
-                )
-            }catch (e : Exception) {
-                Timber.e(e)
-                Resource.Error(e.message?: "Unexpected Error Occurred" )
-            }
+    suspend operator fun invoke(coin : OwnedCoinDto) : Resource<String> =
+        try {
+            val id = repository.saveOwnedCoin(coin)
+            Resource.Success(
+                data = id
+            )
+        }catch (e : Exception) {
+            Timber.e(e)
+            Resource.Error(e.message?: "Unexpected Error Occurred" )
         }
-    }
-
 }

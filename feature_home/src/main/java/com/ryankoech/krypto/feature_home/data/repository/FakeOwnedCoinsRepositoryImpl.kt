@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
 
 val FakeOwnedCoins = listOf(
     OwnedCoinDto(
@@ -70,12 +71,12 @@ val FakeDisplayCurrencies = listOf(
 
 const val FAKE_DELAY = 2000L
 
-class FakeOwnedCoinsRepositoryImpl : OwnedCoinsRepository {
+class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository {
 
-    override suspend fun saveOwnedCoin(coin: OwnedCoinDto): Long {
+    override suspend fun saveOwnedCoin(coin: OwnedCoinDto): String {
         Timber.d("Saved Owned Coin")
         return coroutineScope {
-            1L
+            coin.id
         }
     }
 

@@ -16,9 +16,10 @@ class OwnedCoinsRepositoryImpl @Inject constructor(
     private val ownedCoinsDatabase : OwnedCoinsDatabase
 ) : OwnedCoinsRepository {
 
-    override suspend fun saveOwnedCoin(coin: OwnedCoinDto): Long {
+    override suspend fun saveOwnedCoin(coin: OwnedCoinDto): String {
         return coroutineScope {
             coinsDao.insertNewCoin(coin)
+            coin.id
         }
     }
 
