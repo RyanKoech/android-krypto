@@ -11,6 +11,8 @@ import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.R as commonR
 import com.ryankoech.krypto.feature_home.R
 
+const val TEST_TAG_HOME_SCREEN_ERROR = "test_tag_home_screen_error"
+
 @Composable
 fun HomeScreenError(
     modifier : Modifier = Modifier

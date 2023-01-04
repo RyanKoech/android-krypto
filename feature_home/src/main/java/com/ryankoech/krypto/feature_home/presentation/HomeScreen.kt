@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -36,13 +37,18 @@ fun HomeScreen(
     ) {
         when (viewState.screenState) {
             ScreenState.LOADING -> {
-                HomeScreenLoading()
+                HomeScreenLoading(
+                    modifier = Modifier.testTag(TEST_TAG_HOME_SCREEN_LOADING)
+                )
             }
             ScreenState.ERROR -> {
-                HomeScreenError()
+                HomeScreenError(
+                    modifier = Modifier.testTag(TEST_TAG_HOME_SCREEN_ERROR)
+                )
             }
             ScreenState.SUCCESS -> {
                 HomeScreenSuccess(
+                    modifier = Modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS ),
                     ownedCoins = viewState.ownedCoins,
                     displayCurrencies = viewState.displayCurrencies,
                     onTransferInClick = onTransferInClick,

@@ -12,6 +12,8 @@ import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.presentation.components.success.*
 
+const val TEST_TAG_HOME_SCREEN_SUCCESS = "test_tag_home_screen_success"
+
 @Composable
 fun HomeScreenSuccess(
     ownedCoins : List<OwnedCoinDto>,
