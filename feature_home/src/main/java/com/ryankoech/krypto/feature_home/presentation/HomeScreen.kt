@@ -24,7 +24,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val viewState = viewModel.viewState.value
 
-    viewModel._message.collectAsEffect { toastMessage ->
+    viewModel.message.collectAsEffect { toastMessage ->
         if(toastMessage.isNotEmpty()){
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
         }

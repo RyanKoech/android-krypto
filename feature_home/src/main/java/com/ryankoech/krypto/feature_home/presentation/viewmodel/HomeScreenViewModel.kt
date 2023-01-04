@@ -26,7 +26,7 @@ class HomeScreenViewModel @Inject constructor(
 
     private val _viewState = mutableStateOf(HomeScreenViewState())
     val viewState : State<HomeScreenViewState> = _viewState
-    val _message = MutableSharedFlow<String>()
+    private val _message = MutableSharedFlow<String>()
     val message : SharedFlow<String> get() = _message
 
     init {
@@ -87,7 +87,7 @@ class HomeScreenViewModel @Inject constructor(
                 when (res) {
                     is Resource.Error -> {
                         // Emit Error to UI
-                        _message.tryEmit("An error occurred while wiping portfolio.")
+                        _message.emit("An error occurred while wiping portfolio.")
                     }
                     is Resource.Success -> {
                         _viewState.value = _viewState.value.copy(
