@@ -13,6 +13,8 @@ import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.presentation.components.loading.CreditCardLoading
 import com.ryankoech.krypto.feature_home.presentation.components.loading.HomeScreenActionsLoading
 
+const val TEST_TAG_HOME_SCREEN_LOADING = "test_tag_home_screen_loading"
+
 @Composable
 fun HomeScreenLoading(
     modifier: Modifier = Modifier
