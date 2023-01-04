@@ -6,7 +6,7 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 
 interface OwnedCoinsRepository {
 
-    suspend fun saveOwnedCoin(coin : OwnedCoinDto) : Long
+    suspend fun saveOwnedCoin(coin : OwnedCoinDto) : String
 
     suspend fun getOwnedCoins() : List<OwnedCoinDto>
 

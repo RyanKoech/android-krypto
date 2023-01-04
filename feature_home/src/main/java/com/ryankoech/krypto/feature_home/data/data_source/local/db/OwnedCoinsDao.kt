@@ -11,7 +11,7 @@ import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 interface OwnedCoinsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNewCoin(coin : OwnedCoinDto) : Long
+    suspend fun insertNewCoin(coin : OwnedCoinDto)
 
     @Query("SELECT * FROM $OWNED_COIN_DTO_TABLENAME")
     suspend fun getOwnedCoins() : List<OwnedCoinDto>
