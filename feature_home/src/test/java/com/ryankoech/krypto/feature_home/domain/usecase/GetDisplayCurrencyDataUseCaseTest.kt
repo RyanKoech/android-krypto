@@ -38,7 +38,7 @@ class GetDisplayCurrencyDataUseCaseTest {
     }
 
     @Test
-    fun `repository throw exception - return Result type Error` () = runTest {
+    fun `repository throw exception - return Result type Error with default list` () = runTest {
 
         val mockRepository = mockk<OwnedCoinsRepository>()
 
@@ -49,7 +49,9 @@ class GetDisplayCurrencyDataUseCaseTest {
         getDisplayCurrencyDataUseCase().test {
 
             awaitItem()
-            assertThat(awaitItem().message).isEqualTo(exceptionMessage)
+            val result = awaitItem()
+            assertThat(result.data).isEqualTo(getDisplayCurrencyDataUseCase.defaultList)
+            assertThat(result.message).isEqualTo(exceptionMessage)
             awaitComplete()
 
         }
