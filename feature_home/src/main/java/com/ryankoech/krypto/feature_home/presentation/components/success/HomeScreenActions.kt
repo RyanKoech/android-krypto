@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,6 +19,8 @@ import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.presentation.theme.teaGreen200
 import com.ryankoech.krypto.feature_home.presentation.theme.maroon50
 import com.ryankoech.krypto.feature_home.R
+
+const val HOME_SCREEN_ACTION_ITEM_WIPE_WALLET = "home_screen_action_item_wipe_wallet"
 
 @Composable
 fun HomeScreenActions(
@@ -39,6 +42,8 @@ fun HomeScreenActions(
             drawableResource = R.drawable.icon_download
         )
         HomeScreenActionItem(
+            modifier = Modifier
+                .testTag(HOME_SCREEN_ACTION_ITEM_WIPE_WALLET),
             onClick = onWipeWalletClick,
             text = stringResource(R.string.home_screen_actions_wipe_wallet),
             color = maroon50,
@@ -60,9 +65,11 @@ fun HomeScreenActionItem(
     text : String,
     @DrawableRes drawableResource : Int,
     color : Color,
+    modifier: Modifier = Modifier
 ) {
 
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
