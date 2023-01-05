@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Krypto"
 include ':app'
+include ':feature_home'
+include ':common'

@@ -1,24 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'dagger.hilt.android.plugin'
-    id 'kotlin-kapt'
 }
 
 android {
+    namespace 'com.ryankoech.krypto.common'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ryankoech.krypto"
         minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -40,41 +34,39 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
-    namespace 'com.ryankoech.krypto'
 }
 
 dependencies {
 
     // core android
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "androidx.core:core-ktx:$ktx_core_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "com.google.android.material:material:$material_version"
 
-    // compose
+    //Compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
 
-    // local modules
-    implementation project(":common")
+    // coil compose
+    implementation "io.coil-kt:coil-compose:$coil_compose"
+    implementation "io.coil-kt:coil-gif:$coil_compose"
 
-    // dagger-hilt - for dependency injection
-    implementation "com.google.dagger:hilt-android:$hilt_android_version"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
+    // junit4
+    testImplementation "junit:junit:$junit_version"
 
-    // timber
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    // junit4
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    // espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // compose ui
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // google truth
+    androidTestImplementation "com.google.truth:truth:$google_truth_version"
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="credit_card_title">Estimated Balance</string>
+    <string name="home_screen_actions_transfer_in">Transfer In</string>
+    <string name="home_screen_actions_wipe_wallet">Wipe Wallet</string>
+    <string name="home_screen_actions_transfer_out">Transfer Out</string>
+    <string name="coin_amount">%s %s</string>
+    <string name="title_warning">Warning!</string>
+    <string name="text_wipe_wallet_confirm_dialog">This action will clear your entire portfolio. Do you wish to proceed?</string>
+    <string name="button_text_wipe_yes">Yes, wipe it</string>
+    <string name="button_text_wipe_no">No, cancel wipe</string>
+    <string name="home_screen_error_message">Something Went Wrong</string>
+    <string name="home_screen_error_action">Try Again</string>
+    <string name="home_screen_success_not_data_message">Such emptiness</string>
+    <string name="home_screen_success_no_data_action">Add Your first Coin</string>
+    <plurals name="credit_card_assets">
+        <item quantity="one">%d Asset</item>
+        <item quantity="other">%d Assets</item>
+    </plurals>
+
+</resources>

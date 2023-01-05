@@ -1,24 +1,20 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
 }
 
 android {
+    namespace 'com.ryankoech.krypto.feature_home'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ryankoech.krypto"
         minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -40,27 +36,33 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
+
     packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
+        resources.excludes.add("META-INF/*")
     }
-    namespace 'com.ryankoech.krypto'
 }
 
 dependencies {
 
     // core android
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "androidx.core:core-ktx:$ktx_core_version"
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "com.google.android.material:material:$material_version"
 
-    // compose
+    // local modules
+    implementation project(":common")
+
+    //Compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
 
-    // local modules
-    implementation project(":common")
+    // room - for storing data locally
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     // dagger-hilt - for dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_android_version"
@@ -68,13 +70,43 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
 
+    // gson
+    implementation "com.google.code.gson:gson:$gson_version"
+
     // timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    // junit4
+    testImplementation "junit:junit:$junit_version"
+
+    // google truth
+    testImplementation "com.google.truth:truth:$google_truth_version"
+
+    // mockk
+    testImplementation "io.mockk:mockk-android:$mockk_version"
+    testImplementation "io.mockk:mockk-agent:$mockk_version"
+
+    // coroutines test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // turbine
+    testImplementation "app.cash.turbine:turbine:$turbine_version"
+
+    // junit4
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+
+    // espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // compose ui
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // google truth
+    androidTestImplementation "com.google.truth:truth:$google_truth_version"
+
+    // mockk
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+    androidTestImplementation "io.mockk:mockk-agent:$mockk_version"
 }
