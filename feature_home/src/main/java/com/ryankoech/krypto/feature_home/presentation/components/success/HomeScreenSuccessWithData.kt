@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -22,6 +23,7 @@ import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 
 const val TEST_TAG_HOME_SCREEN_SUCCESS_WITH_DATA = "test_tag_home_screen_success_with_data"
+const val TEST_TAG_HOME_SCREEN_SUCCESS_WITH_DATA_CONFIRM_DIALOG = "test_tag_home_screen_success_with_data_confirm_dialog"
 
 @Composable
 fun HomeScreenSuccessWithData(
@@ -81,6 +83,8 @@ fun HomeScreenSuccessWithData(
         if(isDialogOpen) {
             item {
                 ConfirmDialog(
+                    modifier = Modifier
+                        .testTag(TEST_TAG_HOME_SCREEN_SUCCESS_WITH_DATA_CONFIRM_DIALOG),
                     onDismissRequest = closeDialog,
                     onConfirm = {
                         isDialogOpen = false
