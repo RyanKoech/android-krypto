@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +40,8 @@ fun CreditCard(
     creditCardDetails: CreditCardDetails,
     modifier: Modifier = Modifier
 ) {
+
+    val context = LocalContext.current
 
     Card(
         modifier = modifier
@@ -105,7 +108,7 @@ fun CreditCard(
                 }
 
                 Text(
-                    text = getFormattedBalance(creditCardDetails.balance, creditCardDetails.displayCurrency),
+                    text = getFormattedBalance(context, creditCardDetails.balance, creditCardDetails.displayCurrency),
                     style = MaterialTheme.typography.h1,
                     fontSize = 32.sp
                 )
@@ -129,7 +132,7 @@ fun CreditCard(
                         contentDescription = null,
                     )
                     Text(
-                        text = getFormattedChange(creditCardDetails.change),
+                        text = getFormattedChange(context, creditCardDetails.change),
                         style = MaterialTheme.typography.h4,
                         color = getChangeColor(creditCardDetails.change),
                     )
