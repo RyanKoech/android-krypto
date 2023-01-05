@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,8 @@ fun OwnedCoinItem(
     ownedCoinDto: OwnedCoinDto,
     modifier: Modifier = Modifier
 ) {
+
+    val context = LocalContext.current
 
     Row(
         modifier = modifier
@@ -65,13 +68,14 @@ fun OwnedCoinItem(
                     style = MaterialTheme.typography.h3,
                 )
                 Text(
-                    text = getFormattedChange(ownedCoinDto.change),
+                    text = getFormattedChange(context, ownedCoinDto.change),
                     style = MaterialTheme.typography.body1,
                     color = getChangeColor(ownedCoinDto.change)
                 )
                 Spacer(modifier = Modifier.weight(1.0f))
                 Text(
                     text = getFormattedBalance(
+                        context = context,
                         balance = (ownedCoinDto.amount * ownedCoinDto.value),
                         displayCurrency = DisplayCurrency.USD
                     ),
@@ -87,6 +91,7 @@ fun OwnedCoinItem(
             ) {
                 Text(
                     text = getFormattedBalance(
+                        context = context,
                         balance = ownedCoinDto.value,
                         displayCurrency = DisplayCurrency.USD
                     ),
