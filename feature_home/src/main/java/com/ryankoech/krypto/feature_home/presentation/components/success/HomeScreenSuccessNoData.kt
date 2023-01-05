@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -18,8 +19,8 @@ fun HomeScreenSuccessNoData(
     ErrorScreen(
         modifier = modifier,
         onButtonClick = {},
-        messageText = "Such emptiness",
-        buttonText = "Add Your first Coin",
+        messageText = stringResource(R.string.home_screen_success_not_data_message),
+        buttonText = stringResource(R.string.home_screen_success_no_data_action),
         res = R.drawable.astronaut
     )
 }

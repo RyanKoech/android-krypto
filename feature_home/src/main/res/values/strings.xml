@@ -11,6 +11,8 @@
     <string name="button_text_wipe_no">No, cancel wipe</string>
     <string name="home_screen_error_message">Something Went Wrong</string>
     <string name="home_screen_error_action">Try Again</string>
+    <string name="home_screen_success_not_data_message">Such emptiness</string>
+    <string name="home_screen_success_no_data_action">Add Your first Coin</string>
     <plurals name="credit_card_assets">
         <item quantity="one">%d Asset</item>
         <item quantity="other">%d Assets</item>
