@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.ryankoech.krypto.common'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -53,10 +53,20 @@ dependencies {
     implementation "io.coil-kt:coil-compose:$coil_compose"
     implementation "io.coil-kt:coil-gif:$coil_compose"
 
+    // junit4
     testImplementation "junit:junit:$junit_version"
+
+    // junit4
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+
+    // espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // compose ui
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // google truth
+    androidTestImplementation "com.google.truth:truth:$google_truth_version"
 }
