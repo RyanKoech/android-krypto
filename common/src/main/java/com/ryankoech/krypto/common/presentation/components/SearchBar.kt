@@ -10,10 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.widget.Placeholder
 import com.ryankoech.krypto.common.R
 import com.ryankoech.krypto.common.presentation.theme.Green200
-import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 
 @Composable
