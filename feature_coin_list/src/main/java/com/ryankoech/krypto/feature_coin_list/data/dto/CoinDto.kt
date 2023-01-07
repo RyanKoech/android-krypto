@@ -21,11 +21,11 @@ data class CoinDto(
     val market_cap_change_24h: Double,
     val market_cap_change_percentage_24h: Double,
     val market_cap_rank: Int,
-    val max_supply: Double,
+    val max_supply: Double?,
     val name: String,
     val price_change_24h: Double,
     val price_change_percentage_24h: Double,
-    val roi: Any,
+    val roi: Roi?,
     val symbol: String,
     val total_supply: Double,
     val total_volume: Long
