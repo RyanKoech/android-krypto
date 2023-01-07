@@ -1,6 +1,6 @@
 package com.ryankoech.krypto.feature_coin_list.core.di
 
-import com.ryankoech.krypto.BuildConfig
+import com.ryankoech.krypto.feature_coin_list.BuildConfig
 import com.ryankoech.krypto.feature_coin_list.data.data_source.remote.CoinServiceApi
 import dagger.Module
 import dagger.Provides
@@ -10,7 +10,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
