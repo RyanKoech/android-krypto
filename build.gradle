@@ -21,6 +21,8 @@ buildscript {
         mockk_version = '1.13.3'
         coroutines_test_version = '1.6.4'
         turbine_version = '0.12.1'
+        okhttp_logging_interceptor_version = '5.0.0-alpha.9'
+        retrofit_version = '2.9.0'
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.42"
