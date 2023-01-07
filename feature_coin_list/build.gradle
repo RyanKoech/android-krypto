@@ -62,6 +62,19 @@ dependencies {
     // junit4
     testImplementation "junit:junit:$junit_version"
 
+    // google truth
+    testImplementation "com.google.truth:truth:$google_truth_version"
+
+    // mockk
+    testImplementation "io.mockk:mockk-android:$mockk_version"
+    testImplementation "io.mockk:mockk-agent:$mockk_version"
+
+    // coroutines test
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // turbine
+    testImplementation "app.cash.turbine:turbine:$turbine_version"
+
     // junit4
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
 
