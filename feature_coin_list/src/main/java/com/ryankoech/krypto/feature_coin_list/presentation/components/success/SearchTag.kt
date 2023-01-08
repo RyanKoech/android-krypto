@@ -1,5 +1,6 @@
 package com.ryankoech.krypto.feature_coin_list.presentation.components.success
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,29 +15,36 @@ import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_coin_list.R
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
+import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
+import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.theme.black100
 import com.ryankoech.krypto.feature_coin_list.presentation.theme.limeGreenYellow400
+import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.DEFAULT_SORT_INFO
 
 @Composable
 fun SearchTag(
-    onClick : () -> Unit,
-    isSelected : Boolean,
-    order : Order,
+    editSortingInfo : (sortCoinBy : SortCoinBy) -> Unit,
+    sortCoinBy: SortCoinBy,
+    sortInfoState : SortInfo,
     text : String,
     modifier: Modifier = Modifier,
 ) {
 
     val spacingValue = 4.dp
+    val isSelected = sortCoinBy == sortInfoState.sortBy
+    val order = sortInfoState.order
 
     Button(
-        modifier = modifier,
+        modifier = modifier.animateContentSize(),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = if(isSelected) limeGreenYellow400 else black100,
         ),
         elevation = ButtonDefaults.elevation(
             defaultElevation = 0.dp
         ),
-        onClick = onClick
+        onClick = {
+            editSortingInfo(sortCoinBy)
+        }
     ) {
 
         Spacer(modifier = Modifier.width(spacingValue/2))
@@ -73,9 +81,9 @@ fun SearchTagPreview() {
     KryptoTheme {
         Surface {
             SearchTag(
-                onClick = {},
-                isSelected = true,
-                order = Order.ASC,
+                editSortingInfo = {},
+                sortCoinBy = SortCoinBy.MARKET_CAP,
+                sortInfoState = DEFAULT_SORT_INFO,
                 text = "Market Cap"
             )
         }
