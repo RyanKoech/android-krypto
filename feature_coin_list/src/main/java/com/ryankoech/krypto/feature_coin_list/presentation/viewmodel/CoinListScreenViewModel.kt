@@ -31,12 +31,12 @@ class CoinListScreenViewModel @Inject constructor(
     val viewState : State<CoinListScreenviewState> = _viewState
 
     init {
-        getCoins(DEFAULT_SORT_INFO)
+        getCoins(DEFAULT_SORT_INFO, "")
     }
 
-    fun getCoins(sortInfo: SortInfo) {
+    fun getCoins(sortInfo: SortInfo, filterString : String) {
 
-        getCoinsUseCase(sortInfo)
+        getCoinsUseCase(sortInfo, filterString)
             .onEach { res ->
             when(res){
                 is Resource.Error -> {

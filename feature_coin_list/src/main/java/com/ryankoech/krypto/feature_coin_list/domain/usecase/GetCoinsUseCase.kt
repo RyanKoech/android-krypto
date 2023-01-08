@@ -23,12 +23,21 @@ class GetCoinsUseCase @Inject constructor(
 
     var cacheCoin : List<CoinDto>? = null
 
-    operator fun invoke(sortInfo: SortInfo) = flow {
+    operator fun invoke(sortInfo: SortInfo, filterString : String = "") = flow {
         // Basic Cache
         val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) repository.getCoins() else Response.success(cacheCoin)
 
         if(response.isSuccessful && !response.body().isNullOrEmpty()){
-            val sortedData = sortData(sortInfo, response.body()!!.toCoinEntity())
+            val filteredCoins =  response.body()!!.toCoinEntity().filter {
+                it.name.contains(
+                    filterString,
+                    true
+                ) || it.symbol.contains(
+                    filterString,
+                    true
+                )
+            }
+            val sortedData = sortData(sortInfo, filteredCoins)
             emit(Resource.Success(data = sortedData))
         }else{
             emit(Resource.Error("Response not Successful."))
