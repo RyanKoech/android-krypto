@@ -60,10 +60,10 @@ class GetCoinsUseCase @Inject constructor(
             SortCoinBy.PRICE -> {
                 when(sortInfo.order){
                     Order.ASC -> {
-                        unsortedData.sortedBy { it.marketCap }
+                        unsortedData.sortedBy { it.price }
                     }
                     Order.DESC -> {
-                        unsortedData.sortedByDescending { it.marketCap }
+                        unsortedData.sortedByDescending { it.price}
                     }
                 }
             }
