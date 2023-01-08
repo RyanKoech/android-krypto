@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_coin_list.domain.usecase
 
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAME_REPO_FOR_ALL
+import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
@@ -11,6 +12,7 @@ import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
+import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
@@ -19,8 +21,11 @@ class GetCoinsUseCase @Inject constructor(
     @Named(HILT_NAME_REPO_FOR_ALL) private val repository: CoinRepository
 ) {
 
+    var cacheCoin : List<CoinDto>? = null
+
     operator fun invoke(sortInfo: SortInfo) = flow {
-        val response = repository.getCoins()
+        // Basic Cache
+        val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) repository.getCoins() else Response.success(cacheCoin)
 
         if(response.isSuccessful && !response.body().isNullOrEmpty()){
             val sortedData = sortData(sortInfo, response.body()!!.toCoinEntity())
