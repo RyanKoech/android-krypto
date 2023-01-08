@@ -29,6 +29,15 @@ fun CoinListScreen(
         )
     }
 
+    var filterStringState by remember {
+        mutableStateOf("")
+    }
+
+    fun editFilterStringState(subString :String) {
+        viewModel.getCoins(sortInfoState, subString)
+        filterStringState = subString
+    }
+
     fun editSortingInfo(sortCoinBy: SortCoinBy) {
 
         val newSortInfo = if(sortCoinBy == sortInfoState.sortBy){
@@ -48,7 +57,7 @@ fun CoinListScreen(
             )
         }
 
-        viewModel.getCoins(newSortInfo)
+        viewModel.getCoins(newSortInfo, filterStringState)
         sortInfoState = newSortInfo
     }
 
@@ -66,7 +75,9 @@ fun CoinListScreen(
                 CoinListScreenSuccess(
                     editSortInfo = ::editSortingInfo,
                     sortInfoState = sortInfoState,
-                    coins = viewState.coins
+                    coins = viewState.coins,
+                    filterStringState = filterStringState,
+                    editFilterStringState = ::editFilterStringState
                 )
             }
         }
