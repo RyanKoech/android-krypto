@@ -11,5 +11,5 @@ data class Coin(
     val marketCap : Long,
     val allTimeHigh : Double,
     val high24Hr : Double,
-    val totalVolume : Long,
+    val totalVolume : Double,
 )
