@@ -3,4 +3,5 @@
     <string name="coin_image_content_description">%s Image</string>
     <string name="coin_value_change">%s%s%%</string>
     <string name="coin_amount_balance">%s%s</string>
+    <string name="coin_market_cap">MCap $%s %s</string>
 </resources>

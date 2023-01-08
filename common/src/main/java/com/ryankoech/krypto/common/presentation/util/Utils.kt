@@ -33,3 +33,46 @@ fun getInTwoDecimalPlaces(value : Double) : String{
     val df = DecimalFormat("#.##")
     return df.format(value)
 }
+fun getFormattedMarketCap(context: Context, value : Long) : String {
+    val million = 1_000_000
+    val billion = 1_000_000_000
+    val trillion = 1_000_000_000_000
+    val quadrillion = 1_000_000_000_000_000
+    val quintillion = 1_000_000_000_000_000_000
+
+    return if(value < million) {
+        val df = DecimalFormat("#,###.##")
+        context.getString(R.string.coin_market_cap, df.format(value), "")
+    }else if(value < billion){
+        context.getString(
+            R.string.coin_market_cap,
+            getInFourDecimalPlaces(value.toDouble() / million.toDouble()),
+            "M"
+        )
+    }else if(value < trillion){
+        context.getString(
+            R.string.coin_market_cap,
+            getInFourDecimalPlaces(value.toDouble() / billion.toDouble()),
+            "Bn"
+        )
+    }else if(value < quadrillion){
+        context.getString(
+            R.string.coin_market_cap,
+            getInFourDecimalPlaces(value.toDouble() / trillion.toDouble()),
+            "Tr"
+        )
+    }else if(value < quintillion){
+        context.getString(
+            R.string.coin_market_cap,
+            getInFourDecimalPlaces(value.toDouble() / quadrillion.toDouble()),
+            "Tr"
+        )
+    }else {
+        "Over $1 Qnt"
+    }
+}
+
+fun getInFourDecimalPlaces(value : Double) : String{
+    val df = DecimalFormat("#,##0.0000")
+    return df.format(value)
+}
