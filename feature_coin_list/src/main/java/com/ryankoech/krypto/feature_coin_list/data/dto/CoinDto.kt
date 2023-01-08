@@ -35,6 +35,7 @@ fun List<CoinDto>.toCoinEntity() : List<Coin> =
     map {
         Coin(
             id = it.id,
+            name = it.name,
             symbol = it.symbol,
             price = it.current_price,
             marketCapRank = it.market_cap_rank,

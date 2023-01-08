@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_coin_list.domain.entity
 
 data class Coin(
     val id : String,
+    val name : String,
     val symbol : String,
     val marketCapRank : Int,
     val image : String,
