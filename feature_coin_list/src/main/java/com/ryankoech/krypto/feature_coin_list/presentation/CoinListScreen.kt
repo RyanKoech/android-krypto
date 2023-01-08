@@ -65,7 +65,8 @@ fun CoinListScreen(
             ScreenState.SUCCESS -> {
                 CoinListScreenSuccess(
                     editSortInfo = ::editSortingInfo,
-                    sortInfoState = sortInfoState
+                    sortInfoState = sortInfoState,
+                    coins = viewState.coins
                 )
             }
         }
