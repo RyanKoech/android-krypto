@@ -4,6 +4,7 @@ import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.Roi
 import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import retrofit2.Response
+import javax.inject.Inject
 
 val FAKE_COIN_LIST = listOf(
     CoinDto(
@@ -208,7 +209,7 @@ val FAKE_COIN_LIST = listOf(
     )
 )
 
-class FakeCoinRepositoryImpl : CoinRepository {
+class FakeCoinRepositoryImpl @Inject constructor() : CoinRepository {
     override suspend fun getCoins(): Response<List<CoinDto>> {
         return Response.success(FAKE_COIN_LIST)
     }
