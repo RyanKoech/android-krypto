@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import javax.inject.Inject
 
-val sortInfo = SortInfo(
+val DEFAULT_SORT_INFO = SortInfo(
     sortBy = SortCoinBy.MARKET_CAP,
     order = Order.DESC
 )
@@ -31,10 +31,10 @@ class CoinListScreenViewModel @Inject constructor(
     val viewState : State<CoinListScreenviewState> = _viewState
 
     init {
-        getCoins(sortInfo)
+        getCoins(DEFAULT_SORT_INFO)
     }
 
-    private fun getCoins(sortInfo: SortInfo) {
+    fun getCoins(sortInfo: SortInfo) {
 
         getCoinsUseCase(sortInfo)
             .onEach { res ->
