@@ -30,7 +30,7 @@ fun getChangeColor(change : Float) : Color {
 }
 
 fun getInTwoDecimalPlaces(value : Double) : String{
-    val df = DecimalFormat("#.##")
+    val df = DecimalFormat("#,##0.00")
     return df.format(value)
 }
 fun getFormattedMarketCap(context: Context, value : Long) : String {
