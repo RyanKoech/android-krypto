@@ -28,7 +28,7 @@ data class CoinDto(
     val roi: Roi?,
     val symbol: String,
     val total_supply: Double,
-    val total_volume: Long
+    val total_volume: Double
 )
 
 fun List<CoinDto>.toCoinEntity() : List<Coin> =
