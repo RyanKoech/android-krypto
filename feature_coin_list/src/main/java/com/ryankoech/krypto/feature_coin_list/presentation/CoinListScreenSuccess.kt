@@ -21,9 +21,11 @@ import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.DEFAULT_SOR
 
 @Composable
 fun CoinListScreenSuccess(
-    editSortInfo : (sortCoinBy : SortCoinBy) -> Unit,
+    editSortInfo : (SortCoinBy) -> Unit,
     sortInfoState : SortInfo,
     coins : List<Coin>,
+    filterStringState : String,
+    editFilterStringState : (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -34,15 +36,12 @@ fun CoinListScreenSuccess(
                 top = 12.dp,
             )
     ) {
-        var value by remember {
-            mutableStateOf("")
-        }
 
         SearchBar(
             modifier = Modifier
                 .padding(horizontal = 12.dp),
-            value = value,
-            onValueChange = { value = it },
+            value = filterStringState,
+            onValueChange = editFilterStringState,
             placeholder = "Discover asset, coin or token"
         )
 
@@ -105,7 +104,9 @@ fun CoinListSuccessScreenPreview(){
             CoinListScreenSuccess(
                 editSortInfo = {},
                 sortInfoState = DEFAULT_SORT_INFO,
-                coins = FAKE_COIN_LIST.toCoinEntity()
+                coins = FAKE_COIN_LIST.toCoinEntity(),
+                filterStringState = "",
+                editFilterStringState = {}
             )
 
         }
