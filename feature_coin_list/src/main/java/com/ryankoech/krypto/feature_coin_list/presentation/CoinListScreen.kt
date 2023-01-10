@@ -12,6 +12,7 @@ import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel
+import timber.log.Timber
 
 @Composable
 fun CoinListScreen(
@@ -64,22 +65,19 @@ fun CoinListScreen(
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
-        when(viewState.screenState){
-            ScreenState.LOADING -> {
-                //TODO : Show Loading Screen
-            }
-            ScreenState.ERROR -> {
-                //TODO : Show Error Screen
-            }
-            ScreenState.SUCCESS -> {
-                CoinListScreenSuccess(
-                    editSortInfo = ::editSortingInfo,
-                    sortInfoState = sortInfoState,
-                    coins = viewState.coins,
-                    filterStringState = filterStringState,
-                    editFilterStringState = ::editFilterStringState
-                )
-            }
+
+        if(viewState.screenState == ScreenState.ERROR) {
+            //TODO : Show Error Screen
+            Timber.d("Display Coin List Error Screen")
+        }else {
+            CoinListScreenSuccess(
+                screenState = viewState.screenState,
+                editSortInfo = ::editSortingInfo,
+                sortInfoState = sortInfoState,
+                coins = viewState.coins,
+                filterStringState = filterStringState,
+                editFilterStringState = ::editFilterStringState
+            )
         }
     }
 }
