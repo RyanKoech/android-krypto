@@ -18,6 +18,7 @@ import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.CoinItem
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.CoinListLoading
+import com.ryankoech.krypto.feature_coin_list.presentation.components.success.NoCoinsFound
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.SearchTag
 import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.DEFAULT_SORT_INFO
 import timber.log.Timber
@@ -83,8 +84,7 @@ fun CoinListScreenSuccess(
         } else {
 
             if( coins.isEmpty() ) {
-                // TODO: Show No Coins Screen
-                Timber.d("Display Coin List Empty List")
+                NoCoinsFound()
             }else {
 
                 LazyColumn(

@@ -12,7 +12,6 @@ import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel
-import timber.log.Timber
 
 @Composable
 fun CoinListScreen(
@@ -67,8 +66,7 @@ fun CoinListScreen(
     ) {
 
         if(viewState.screenState == ScreenState.ERROR) {
-            //TODO : Show Error Screen
-            Timber.d("Display Coin List Error Screen")
+            CoinListScreenError(onButtonClick = { viewModel.getCoins(sortInfoState, filterStringState) })
         }else {
             CoinListScreenSuccess(
                 screenState = viewState.screenState,
