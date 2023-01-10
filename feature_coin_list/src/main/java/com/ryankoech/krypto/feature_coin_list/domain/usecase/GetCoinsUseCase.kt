@@ -21,11 +21,18 @@ class GetCoinsUseCase @Inject constructor(
     @Named(HILT_NAME_REPO_FOR_ALL) private val repository: CoinRepository
 ) {
 
+    // Basic Cache
     var cacheCoin : List<CoinDto>? = null
 
     operator fun invoke(sortInfo: SortInfo, filterString : String = "") = flow {
-        // Basic Cache
-        val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) repository.getCoins() else Response.success(cacheCoin)
+
+        val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) {
+            val response = repository.getCoins()
+            cacheCoin = response.body()
+            response
+        } else {
+            Response.success(cacheCoin)
+        }
 
         if(response.isSuccessful && !response.body().isNullOrEmpty()){
             val filteredCoins =  response.body()!!.toCoinEntity().filter {
