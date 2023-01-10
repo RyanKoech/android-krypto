@@ -27,8 +27,9 @@ fun ErrorScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Box(modifier = Modifier.size(112.dp)) {
+        Box(modifier = Modifier.size(40.dp)) {
             GifImage(
+                modifier = Modifier.fillMaxSize(),
                 res = res
             )
         }
