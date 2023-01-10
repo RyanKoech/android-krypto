@@ -14,9 +14,10 @@ import com.ryankoech.krypto.common.presentation.components.KryptoButton
 @Composable
 fun ErrorScreen(
     modifier : Modifier = Modifier,
-    onButtonClick : () -> Unit,
+    onButtonClick : () -> Unit = {},
     messageText : String,
-    buttonText : String,
+    buttonText : String = "Try Again",
+    showButton : Boolean = true,
     @DrawableRes res : Int,
 ) {
 
@@ -27,7 +28,7 @@ fun ErrorScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Box(modifier = Modifier.size(40.dp)) {
+        Box(modifier = Modifier.size(80.dp)) {
             GifImage(
                 modifier = Modifier.fillMaxSize(),
                 res = res
@@ -41,12 +42,14 @@ fun ErrorScreen(
             style = MaterialTheme.typography.body1
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        if(showButton){
+            Spacer(modifier = Modifier.height(24.dp))
 
-        KryptoButton(
-            text = buttonText,
-            onClick = onButtonClick
-        )
+            KryptoButton(
+                text = buttonText,
+                onClick = onButtonClick
+            )
+        }
 
     }
 
