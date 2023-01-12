@@ -222,4 +222,6 @@ class FakeCoinRepositoryImpl @Inject constructor() : CoinRepository {
     override suspend fun saveCoins(coins: List<CoinLocalDto>) {
         Timber.d("Saved Coins Successfully")
     }
+
+    override suspend fun getCoin(coinId: String): CoinLocalDto = FAKE_COIN_LIST.toLocalCoinDto().first()
 }
