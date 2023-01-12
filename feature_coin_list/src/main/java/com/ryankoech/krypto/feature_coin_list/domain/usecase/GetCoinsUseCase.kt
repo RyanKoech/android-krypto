@@ -4,6 +4,7 @@ import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAME_REPO_FOR_ALL
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
+import com.ryankoech.krypto.feature_coin_list.data.dto.toLocalCoinDto
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import retrofit2.Response
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -22,13 +24,18 @@ class GetCoinsUseCase @Inject constructor(
 ) {
 
     // Basic Cache
-    var cacheCoin : List<CoinDto>? = null
+    private var cacheCoin : List<CoinDto>? = null
 
     operator fun invoke(sortInfo: SortInfo, filterString : String = "") = flow {
 
         val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) {
             val response = repository.getCoins()
             cacheCoin = response.body()
+
+            // Save to local
+            if(!cacheCoin.isNullOrEmpty()) {
+                repository.saveCoins(cacheCoin!!.toLocalCoinDto())
+            }
             response
         } else {
             Response.success(cacheCoin)
