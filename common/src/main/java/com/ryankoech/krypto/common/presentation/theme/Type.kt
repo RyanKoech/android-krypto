@@ -42,7 +42,7 @@ val Typography = Typography(
     caption = TextStyle(
         fontFamily = CircularStd,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontSize = 14.sp,
     ),
     button = TextStyle(
         fontFamily = CircularStd,
