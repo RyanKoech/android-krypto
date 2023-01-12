@@ -25,6 +25,7 @@ import timber.log.Timber
 
 @Composable
 fun CoinListScreenSuccess(
+    coinItemOnClick : (String) -> Unit,
     screenState : ScreenState,
     editSortInfo : (SortCoinBy) -> Unit,
     sortInfoState : SortInfo,
@@ -98,7 +99,7 @@ fun CoinListScreenSuccess(
                         items = coins,
                         key = { it.id }
                     ){ coin ->
-                        CoinItem(onClick = {}, coin = coin)
+                        CoinItem(onClick = coinItemOnClick, coin = coin)
                         Spacer(modifier = Modifier.height(24.dp))
                     }
                 }
@@ -117,6 +118,7 @@ fun CoinListSuccessScreenPreview(){
         ) {
 
             CoinListScreenSuccess(
+                coinItemOnClick = {},
                 screenState = ScreenState.SUCCESS,
                 editSortInfo = {},
                 sortInfoState = DEFAULT_SORT_INFO,

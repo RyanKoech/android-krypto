@@ -25,6 +25,7 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CoinListScreen(
+    coinItemOnClick : (String) -> Unit,
     viewModel: CoinListScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -103,6 +104,7 @@ fun CoinListScreen(
             ){
 
                 CoinListScreenSuccess(
+                    coinItemOnClick = coinItemOnClick,
                     screenState = viewState.screenState,
                     editSortInfo = ::editSortingInfo,
                     sortInfoState = sortInfoState,
@@ -128,6 +130,6 @@ fun CoinListScreen(
 fun CoinListScreenPreview() {
 
     KryptoTheme {
-        CoinListScreen()
+        CoinListScreen({})
     }
 }
