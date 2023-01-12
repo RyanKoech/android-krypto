@@ -10,7 +10,6 @@ import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetCoinsUseCase
-import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetLocalCoinsUseCase
 import com.ryankoech.krypto.feature_coin_list.presentation.viewstate.CoinListScreenviewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -20,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CoinListScreenViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
-    private val getLocalCoinsUseCase : GetLocalCoinsUseCase
 ) : ViewModel() {
 
     companion object{
@@ -44,7 +42,9 @@ class CoinListScreenViewModel @Inject constructor(
             .onEach { res ->
                 when(res){
                     is Resource.Error -> {
-                        getLocalCoins()
+                        _viewState.value = _viewState.value.copy(
+                            screenState = ScreenState.ERROR
+                        )
                     }
                     is Resource.Loading -> {
                         _viewState.value = _viewState.value.copy(
@@ -64,44 +64,6 @@ class CoinListScreenViewModel @Inject constructor(
                     }
                 }
 
-            }.launchIn(viewModelScope)
-
-    }
-
-
-    private fun getLocalCoins() {
-
-        getLocalCoinsUseCase()
-            .onEach { res ->
-                when(res) {
-                    is Resource.Error -> {
-                        _viewState.value = _viewState.value.copy(
-                            screenState = ScreenState.ERROR
-                        )
-                    }
-                    is Resource.Loading -> {
-                        _viewState.value = _viewState.value.copy(
-                            screenState = ScreenState.LOADING
-                        )
-                    }
-                    is Resource.Success -> {
-                        if(res.data.isNullOrEmpty()){
-                            _viewState.value = _viewState.value.copy(
-                                screenState = ScreenState.ERROR
-                            )
-                        }else{
-                            _viewState.value = _viewState.value.copy(
-                                screenState = ScreenState.SUCCESS,
-                                coins = res.data!!
-                            )
-                        }
-                    }
-                    else -> {
-                        _viewState.value = _viewState.value.copy(
-                            screenState = ScreenState.ERROR
-                        )
-                    }
-                }
             }.launchIn(viewModelScope)
 
     }
