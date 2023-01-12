@@ -32,6 +32,13 @@ class GetCoinsUseCase @Inject constructor(
             val response = repository.getCoins()
             cacheCoin = response.body()
 
+            // Clear cache after 1 minute
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    cacheCoin = null
+                }
+            }, 60_000)
+
             // Save to local
             if(!cacheCoin.isNullOrEmpty()) {
                 repository.saveCoins(cacheCoin!!.toLocalCoinDto())
