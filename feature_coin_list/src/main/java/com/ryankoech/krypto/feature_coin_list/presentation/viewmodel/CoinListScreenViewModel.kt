@@ -39,29 +39,29 @@ class CoinListScreenViewModel @Inject constructor(
 
         getCoinsUseCase(sortInfo, filterString)
             .onEach { res ->
-            when(res){
-                is Resource.Error -> {
-                    getLocalCoins()
+                when(res){
+                    is Resource.Error -> {
+                        getLocalCoins()
+                    }
+                    is Resource.Loading -> {
+                        _viewState.value = _viewState.value.copy(
+                            screenState = ScreenState.LOADING
+                        )
+                    }
+                    is Resource.Success -> {
+                        _viewState.value = _viewState.value.copy(
+                            screenState = ScreenState.SUCCESS,
+                            coins = res.data!!
+                        )
+                    }
+                    else -> {
+                        _viewState.value = _viewState.value.copy(
+                            screenState = ScreenState.ERROR
+                        )
+                    }
                 }
-                is Resource.Loading -> {
-                    _viewState.value = _viewState.value.copy(
-                        screenState = ScreenState.LOADING
-                    )
-                }
-                is Resource.Success -> {
-                    _viewState.value = _viewState.value.copy(
-                        screenState = ScreenState.SUCCESS,
-                        coins = res.data!!
-                    )
-                }
-                else -> {
-                    _viewState.value = _viewState.value.copy(
-                        screenState = ScreenState.ERROR
-                    )
-                }
-            }
 
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
 
     }
 
