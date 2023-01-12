@@ -17,16 +17,19 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-val DEFAULT_SORT_INFO = SortInfo(
-    sortBy = SortCoinBy.MARKET_CAP,
-    order = Order.DESC
-)
-
 @HiltViewModel
 class CoinListScreenViewModel @Inject constructor(
     private val getCoinsUseCase: GetCoinsUseCase,
     private val getLocalCoinsUseCase : GetLocalCoinsUseCase
 ) : ViewModel() {
+
+    companion object{
+
+        val DEFAULT_SORT_INFO = SortInfo(
+            sortBy = SortCoinBy.MARKET_CAP,
+            order = Order.DESC
+        )
+    }
 
     private val _viewState = mutableStateOf(CoinListScreenviewState())
     val viewState : State<CoinListScreenviewState> = _viewState
