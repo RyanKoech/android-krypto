@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 const val HILT_NAMED_REPO_FAKE = "FakeRepo"
 const val HILT_NAMED_REPO = "Repo"
-const val HILT_NAME_REPO_FOR_ALL = HILT_NAMED_REPO_FAKE
+const val HILT_NAME_REPO_FOR_ALL = HILT_NAMED_REPO
 
 @Module
 @InstallIn(SingletonComponent::class)
