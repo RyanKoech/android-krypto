@@ -15,4 +15,7 @@ interface CoinDao {
     @Query("SELECT * FROM $TANLENAME_COIN_DTO")
     suspend fun getCoins() : List<CoinLocalDto>
 
+    @Query("SELECT * FROM $TANLENAME_COIN_DTO WHERE id = :coinId")
+    suspend fun getCoin(coinId : String) : CoinLocalDto
+
 }
