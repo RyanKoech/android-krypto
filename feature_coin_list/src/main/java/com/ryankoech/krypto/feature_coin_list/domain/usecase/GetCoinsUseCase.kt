@@ -26,7 +26,7 @@ class GetCoinsUseCase @Inject constructor(
     // Basic Cache
     private var cacheCoin : List<CoinDto>? = null
 
-    operator fun invoke(sortInfo: SortInfo, filterString : String = "") = flow {
+    operator fun invoke(sortInfo: SortInfo, filterString : String = "") = flow<Resource<List<Coin>>> {
 
         val response : Response<List<CoinDto>> = if(cacheCoin.isNullOrEmpty()) {
             val response = repository.getCoins()
@@ -49,59 +49,73 @@ class GetCoinsUseCase @Inject constructor(
         }
 
         if(response.isSuccessful && !response.body().isNullOrEmpty()){
-            val filteredCoins =  response.body()!!.toCoinEntity().filter {
-                it.name.contains(
-                    filterString,
-                    true
-                ) || it.symbol.contains(
-                    filterString,
-                    true
-                )
-            }
-            val sortedData = sortData(sortInfo, filteredCoins)
-            emit(Resource.Success(data = sortedData))
+            val processedCoins = response.body()!!.toCoinEntity().processCoins(filterString, sortInfo)
+            emit(Resource.Success(processedCoins))
         }else{
-            emit(Resource.Error("Response not Successful."))
+            throw Exception("Response not Successful.")
         }
     }.onStart {
         emit(Resource.Loading())
     }.catch { e ->
         Timber.e(e)
-        emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred."))
+        try{
+            val coins = repository.getLocalCoins().toCoinEntity()
+            if(coins.isEmpty()){
+                emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred."))
+            }else {
+                val processedCoins = coins.processCoins(filterString, sortInfo)
+                emit(Resource.Success(processedCoins))
+            }
+        }catch(e : Throwable) {
+            Timber.e(e)
+            emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred."))
+        }
     }
 
-    private fun sortData(sortInfo: SortInfo, unsortedData : List<Coin>) : List<Coin> {
+    private fun List<Coin>.sortData(sortInfo: SortInfo) : List<Coin> {
         return when(sortInfo.sortBy){
             SortCoinBy.MARKET_CAP -> {
                 when(sortInfo.order){
                     Order.ASC -> {
-                        unsortedData.sortedBy { it.marketCap }
+                        sortedBy { it.marketCap }
                     }
                     Order.DESC -> {
-                        unsortedData.sortedByDescending { it.marketCap }
+                        sortedByDescending { it.marketCap }
                     }
                 }
             }
             SortCoinBy.TOTAL_VOLUME -> {
                 when(sortInfo.order){
                     Order.ASC -> {
-                        unsortedData.sortedBy { it.totalVolume }
+                        sortedBy { it.totalVolume }
                     }
                     Order.DESC -> {
-                        unsortedData.sortedByDescending { it.totalVolume }
+                        sortedByDescending { it.totalVolume }
                     }
                 }
             }
             SortCoinBy.PRICE -> {
                 when(sortInfo.order){
                     Order.ASC -> {
-                        unsortedData.sortedBy { it.price }
+                        sortedBy { it.price }
                     }
                     Order.DESC -> {
-                        unsortedData.sortedByDescending { it.price}
+                        sortedByDescending { it.price}
                     }
                 }
             }
         }
     }
+
+    private fun List<Coin>.processCoins(filterString: String, sortInfo: SortInfo) : List<Coin> =
+        filter {
+            it.name.contains(
+                filterString,
+                true
+            ) || it.symbol.contains(
+                filterString,
+                true
+            )
+        }.sortData(sortInfo)
+
 }
