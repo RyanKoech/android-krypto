@@ -1,9 +1,12 @@
 package com.ryankoech.krypto.feature_coin_list.data.repository
 
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.CoinLocalDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.Roi
+import com.ryankoech.krypto.feature_coin_list.data.dto.toLocalCoinDto
 import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import retrofit2.Response
+import timber.log.Timber
 import javax.inject.Inject
 
 val FAKE_COIN_LIST = listOf(
@@ -212,5 +215,11 @@ val FAKE_COIN_LIST = listOf(
 class FakeCoinRepositoryImpl @Inject constructor() : CoinRepository {
     override suspend fun getCoins(): Response<List<CoinDto>> {
         return Response.success(FAKE_COIN_LIST)
+    }
+
+    override suspend fun getLocalCoins(): List<CoinLocalDto> = FAKE_COIN_LIST.toLocalCoinDto()
+
+    override suspend fun saveCoins(coins: List<CoinLocalDto>) {
+        Timber.d("Saved Coins Successfully")
     }
 }
