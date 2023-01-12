@@ -19,7 +19,7 @@ import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.theme.black100
 import com.ryankoech.krypto.feature_coin_list.presentation.theme.limeGreenYellow400
-import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.DEFAULT_SORT_INFO
+import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel.Companion.DEFAULT_SORT_INFO
 
 @Composable
 fun SearchTag(

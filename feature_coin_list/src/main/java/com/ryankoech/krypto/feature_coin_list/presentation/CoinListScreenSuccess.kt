@@ -20,7 +20,7 @@ import com.ryankoech.krypto.feature_coin_list.presentation.components.success.Co
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.CoinListLoading
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.NoCoinsFound
 import com.ryankoech.krypto.feature_coin_list.presentation.components.success.SearchTag
-import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.DEFAULT_SORT_INFO
+import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel.Companion.DEFAULT_SORT_INFO
 import timber.log.Timber
 
 @Composable
