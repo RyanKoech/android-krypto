@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.SearchBar
@@ -16,12 +17,11 @@ import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
-import com.ryankoech.krypto.feature_coin_list.presentation.components.success.CoinItem
-import com.ryankoech.krypto.feature_coin_list.presentation.components.success.CoinListLoading
-import com.ryankoech.krypto.feature_coin_list.presentation.components.success.NoCoinsFound
-import com.ryankoech.krypto.feature_coin_list.presentation.components.success.SearchTag
+import com.ryankoech.krypto.feature_coin_list.presentation.components.success.*
 import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel.Companion.DEFAULT_SORT_INFO
 import timber.log.Timber
+
+const val TEST_TAG_COIN_LIST_SCREEN_SUCCESS = "test tag coin list screen success"
 
 @Composable
 fun CoinListScreenSuccess(
@@ -81,7 +81,10 @@ fun CoinListScreenSuccess(
         }
 
         if(screenState == ScreenState.LOADING) {
-            CoinListLoading()
+            CoinListLoading(
+                modifier = Modifier
+                    .testTag(TEST_TAG_COIN_LIST_LOADING)
+            )
         } else {
 
             if( coins.isEmpty() ) {
