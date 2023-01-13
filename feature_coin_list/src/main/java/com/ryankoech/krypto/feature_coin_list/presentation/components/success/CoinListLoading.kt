@@ -11,6 +11,8 @@ import com.ryankoech.krypto.common.presentation.components.loading.CoinCardLoadi
 import com.ryankoech.krypto.common.presentation.components.loading.loadingEffect
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 
+const val TEST_TAG_COIN_LIST_LOADING = "test tag coin list loading"
+
 @Composable
 fun CoinListLoading(
     modifier: Modifier = Modifier

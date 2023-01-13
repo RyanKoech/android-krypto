@@ -10,6 +10,7 @@ import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -95,7 +96,11 @@ fun CoinListScreen(
     ) {
 
         if(viewState.screenState == ScreenState.ERROR) {
-            CoinListScreenError(onButtonClick = { viewModel.getCoins(sortInfoState, filterStringState) })
+            CoinListScreenError(
+                modifier = Modifier
+                    .testTag(TEST_TAG_COIN_LIST_SCREEN_ERROR),
+                onButtonClick = { viewModel.getCoins(sortInfoState, filterStringState) }
+            )
         }else {
 
             Box(
@@ -104,6 +109,8 @@ fun CoinListScreen(
             ){
 
                 CoinListScreenSuccess(
+                    modifier = Modifier
+                        .testTag(TEST_TAG_COIN_LIST_SCREEN_SUCCESS),
                     coinItemOnClick = coinItemOnClick,
                     screenState = viewState.screenState,
                     editSortInfo = ::editSortingInfo,
