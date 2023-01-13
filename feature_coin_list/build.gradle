@@ -36,6 +36,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
@@ -105,4 +108,8 @@ dependencies {
 
     // google truth
     androidTestImplementation "com.google.truth:truth:$google_truth_version"
+
+    // mockk
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+    androidTestImplementation "io.mockk:mockk-agent:$mockk_version"
 }
