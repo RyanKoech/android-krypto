@@ -22,6 +22,7 @@ import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScr
 import timber.log.Timber
 
 const val TEST_TAG_COIN_LIST_SCREEN_SUCCESS = "test tag coin list screen success"
+const val TEST_TAG_COIN_LIST_SCREEN_SUCCESS_COINS_LAZY_COLUMN = "test tag coin list screen success coins lazy column"
 
 @Composable
 fun CoinListScreenSuccess(
@@ -88,12 +89,16 @@ fun CoinListScreenSuccess(
         } else {
 
             if( coins.isEmpty() ) {
-                NoCoinsFound()
+                NoCoinsFound(
+                    modifier = Modifier
+                        .testTag(TEST_TAG_NO_COINS_FOUND)
+                )
             }else {
 
                 LazyColumn(
                     modifier = Modifier
-                        .weight(1f),
+                        .weight(1f)
+                        .testTag(TEST_TAG_COIN_LIST_SCREEN_SUCCESS_COINS_LAZY_COLUMN),
                     contentPadding = PaddingValues(
                         top =  12.dp, start = 12.dp, end = 12.dp
                     )
