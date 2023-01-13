@@ -7,13 +7,19 @@ import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.dto.toLocalCoinDto
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.data.repository.FakeCoinRepositoryImpl
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
+import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
+import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
 import com.ryankoech.krypto.feature_coin_list.presentation.viewmodel.CoinListScreenViewModel.Companion.DEFAULT_SORT_INFO
 import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
+import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetCoinsUseCase.Companion.sortData
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import okhttp3.ResponseBody
+import org.junit.Before
 
 import org.junit.Test
 import retrofit2.Response
@@ -21,9 +27,60 @@ import retrofit2.Response
 @ExperimentalCoroutinesApi
 class GetCoinsUseCaseTest {
 
+    private val sortByPrice = "price"
+    private val sortByTotalVolume = "totalVolume"
+    private val sortByMarketCap = "marketCap"
+    private val rank1 = "#1"
+    private val rank3 = "#3"
+    private val exceptionMessage = "Mock Exception Message"
     private lateinit var repository: CoinRepository
     private lateinit var getCoinsUseCase: GetCoinsUseCase
-    private val exceptionMessage = "Mock Exception Message"
+    private lateinit var testCoinsList : List<Coin>
+
+    @Before
+    fun setUp() {
+        testCoinsList = listOf(
+            Coin(
+                id = "$sortByPrice$rank1,$sortByMarketCap$rank3",
+                name = "coin1",
+                marketCap = 0,
+                marketCapRank = 3,
+                symbol = "",
+                image = "",
+                change = 0f,
+                price = 3.0,
+                allTimeHigh = 0.0,
+                high24Hr = 0.0,
+                totalVolume = 2.0,
+            ),
+            Coin(
+                id = "$sortByTotalVolume$rank1",
+                name = "coin2",
+                marketCap = 0,
+                marketCapRank = 2,
+                symbol = "",
+                image = "",
+                change = 0f,
+                price = 2.0,
+                allTimeHigh = 0.0,
+                high24Hr = 0.0,
+                totalVolume = 3.0,
+            ),
+            Coin(
+                id = "$sortByPrice$rank3,$sortByTotalVolume$rank3,$sortByMarketCap$rank1",
+                name = "coin3",
+                marketCap = 0,
+                marketCapRank = 1,
+                symbol = "",
+                image = "",
+                change = 0f,
+                price = 1.0,
+                allTimeHigh = 0.0,
+                high24Hr = 0.0,
+                totalVolume = 1.0,
+            )
+        )
+    }
 
     @Test
     fun `remote response successful, return Resource type Success with data`() = runTest {
@@ -166,4 +223,92 @@ class GetCoinsUseCaseTest {
 
         }
     }
+
+    @Test
+    fun `coin list sorting function sort by market cap descending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.MARKET_CAP,
+                order = Order.DESC
+            )
+        ).apply {
+            this.first().id.contains("$sortByMarketCap$rank1")
+            this.last().id.contains("$sortByMarketCap$rank3")
+        }
+    }
+
+    @Test
+    fun `coin list sorting function sort by market cap ascending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.MARKET_CAP,
+                order = Order.ASC
+            )
+        ).apply {
+            this.first().id.contains("$sortByMarketCap$rank3")
+            this.last().id.contains("$sortByMarketCap$rank1")
+        }
+    }
+
+
+    @Test
+    fun `coin list sorting function sort by price descending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.PRICE,
+                order = Order.DESC
+            )
+        ).apply {
+            this.first().id.contains("$sortByPrice$rank1")
+            this.last().id.contains("$sortByPrice$rank3")
+        }
+    }
+
+
+    @Test
+    fun `coin list sorting function sort by price ascending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.PRICE,
+                order = Order.ASC
+            )
+        ).apply {
+            this.first().id.contains("$sortByMarketCap$rank3")
+            this.last().id.contains("$sortByMarketCap$rank1")
+        }
+    }
+
+    @Test
+    fun `coin list sorting function sort by total volume descending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.TOTAL_VOLUME,
+                order = Order.DESC
+            )
+        ).apply {
+            this.first().id.contains("$sortByTotalVolume$rank1")
+            this.last().id.contains("$sortByPrice$rank3")
+        }
+    }
+
+
+    @Test
+    fun `coin list sorting function sort by total volume ascending`() {
+
+        testCoinsList.sortData(
+            SortInfo(
+                sortBy = SortCoinBy.TOTAL_VOLUME,
+                order = Order.ASC
+            )
+        ).apply {
+            this.first().id.contains("$sortByTotalVolume$rank3")
+            this.last().id.contains("$sortByPrice$rank1")
+        }
+    }
+
 }

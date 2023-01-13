@@ -13,6 +13,7 @@ import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
+import org.jetbrains.annotations.VisibleForTesting
 import retrofit2.Response
 import timber.log.Timber
 import java.util.*
@@ -71,51 +72,54 @@ class GetCoinsUseCase @Inject constructor(
             emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred."))
         }
     }
-
-    private fun List<Coin>.sortData(sortInfo: SortInfo) : List<Coin> {
-        return when(sortInfo.sortBy){
-            SortCoinBy.MARKET_CAP -> {
-                when(sortInfo.order){
-                    Order.ASC -> {
-                        sortedBy { it.marketCap }
-                    }
-                    Order.DESC -> {
-                        sortedByDescending { it.marketCap }
-                    }
-                }
-            }
-            SortCoinBy.TOTAL_VOLUME -> {
-                when(sortInfo.order){
-                    Order.ASC -> {
-                        sortedBy { it.totalVolume }
-                    }
-                    Order.DESC -> {
-                        sortedByDescending { it.totalVolume }
+    companion object{
+        @VisibleForTesting
+        fun List<Coin>.sortData(sortInfo: SortInfo): List<Coin> {
+            return when (sortInfo.sortBy) {
+                SortCoinBy.MARKET_CAP -> {
+                    when (sortInfo.order) {
+                        Order.ASC -> {
+                            sortedBy { it.marketCap }
+                        }
+                        Order.DESC -> {
+                            sortedByDescending { it.marketCap }
+                        }
                     }
                 }
-            }
-            SortCoinBy.PRICE -> {
-                when(sortInfo.order){
-                    Order.ASC -> {
-                        sortedBy { it.price }
+                SortCoinBy.TOTAL_VOLUME -> {
+                    when (sortInfo.order) {
+                        Order.ASC -> {
+                            sortedBy { it.totalVolume }
+                        }
+                        Order.DESC -> {
+                            sortedByDescending { it.totalVolume }
+                        }
                     }
-                    Order.DESC -> {
-                        sortedByDescending { it.price}
+                }
+                SortCoinBy.PRICE -> {
+                    when (sortInfo.order) {
+                        Order.ASC -> {
+                            sortedBy { it.price }
+                        }
+                        Order.DESC -> {
+                            sortedByDescending { it.price }
+                        }
                     }
                 }
             }
         }
-    }
 
-    private fun List<Coin>.processCoins(filterString: String, sortInfo: SortInfo) : List<Coin> =
-        filter {
-            it.name.contains(
-                filterString,
-                true
-            ) || it.symbol.contains(
-                filterString,
-                true
-            )
-        }.sortData(sortInfo)
+        @VisibleForTesting
+        fun List<Coin>.processCoins(filterString: String, sortInfo: SortInfo): List<Coin> =
+            filter {
+                it.name.contains(
+                    filterString,
+                    true
+                ) || it.symbol.contains(
+                    filterString,
+                    true
+                )
+            }.sortData(sortInfo)
+    }
 
 }
