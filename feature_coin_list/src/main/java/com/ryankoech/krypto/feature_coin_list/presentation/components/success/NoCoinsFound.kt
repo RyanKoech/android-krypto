@@ -9,6 +9,8 @@ import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.R
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 
+const val TEST_TAG_NO_COINS_FOUND = "test tag no coins found"
+
 @Composable
 fun NoCoinsFound(
     modifier: Modifier = Modifier,
