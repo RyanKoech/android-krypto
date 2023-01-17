@@ -10,12 +10,14 @@ import com.ryankoech.krypto.common.R
 
 @Composable
 fun ChooseAssetScreenError(
+    onRetryButtonClick : () -> Unit,
     modifier: Modifier = Modifier
 ) {
     ErrorScreen(
         modifier = modifier,
         messageText = "Hmm, it's kinda empty here.",
-        res = R.drawable.icon_gif_caution
+        res = R.drawable.icon_gif_caution,
+        onButtonClick = onRetryButtonClick,
     )
 }
 
@@ -25,7 +27,7 @@ fun ChooseAssetScreenErrorPreview() {
 
     KryptoTheme {
         Surface {
-            ChooseAssetScreenError()
+            ChooseAssetScreenError({})
         }
     }
 
