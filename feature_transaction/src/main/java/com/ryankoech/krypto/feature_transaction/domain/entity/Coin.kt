@@ -4,12 +4,14 @@ import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinLocalDto
 
 data class Coin (
+    val id : String,
     val name : String,
     val image : String,
 )
 
 fun List<CoinLocalDto>.toCoinEntity() : List<Coin> = map {
     Coin(
+        id = it.id,
         name = it.name,
         image = it.image
     )
@@ -18,6 +20,7 @@ fun List<CoinLocalDto>.toCoinEntity() : List<Coin> = map {
 @JvmName("toCoinEntityCoinDto")
 fun List<CoinDto>.toCoinEntity() : List<Coin> = map {
     Coin(
+        id = it.id,
         name = it.name,
         image = it.image
     )
