@@ -2,7 +2,6 @@ package com.ryankoech.krypto.feature_transaction.domain.usecase
 
 
 import com.ryankoech.krypto.common.core.util.Resource
-import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAMED_REPO_FAKE
 import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAME_REPO_FOR_ALL
 import com.ryankoech.krypto.feature_coin_list.data.dto.toLocalCoinDto
 import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
@@ -16,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class GetCoinListUseCase @Inject constructor(
-    @Named(HILT_NAMED_REPO_FAKE) private val repository: CoinRepository,
+    @Named(HILT_NAME_REPO_FOR_ALL) private val repository: CoinRepository,
 ) {
 
     private var cache : List<Coin>? = null
