@@ -30,6 +30,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
 }
 
 dependencies {
@@ -53,6 +59,15 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
 
+    //Compose
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.activity:activity-compose:$compose_activity_version"
+
+    // retrofit - for network call
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
     // junit4
     testImplementation "junit:junit:$junit_version"
 
@@ -61,4 +76,9 @@ dependencies {
 
     // espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // compose ui
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 }
