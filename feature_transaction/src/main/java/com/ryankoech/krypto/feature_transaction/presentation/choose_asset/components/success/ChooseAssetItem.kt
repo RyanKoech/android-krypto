@@ -1,6 +1,7 @@
 package com.ryankoech.krypto.feature_transaction.presentation.choose_asset.components.success
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -21,6 +22,7 @@ import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
 
 @Composable
 fun ChooseAssetItem(
+    onClick : (String) -> Unit,
     coin: Coin,
     modifier: Modifier = Modifier
 ) {
@@ -28,13 +30,13 @@ fun ChooseAssetItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            // .padding(
-            //     vertical = 8.dp
-            // )
             .bottomBorder(
                 1.dp,
                 Color(0xfff6f6f6)
-            ),
+            )
+            .clickable {
+                onClick(coin.id)
+            },
         verticalAlignment = Alignment.CenterVertically,
     ) {
 
@@ -77,7 +79,9 @@ fun PreviewChooseAssetItem() {
         Surface {
             Column {
                 ChooseAssetItem(
+                    {},
                     Coin(
+                        id = "bitcoin",
                         image = "",
                         name = "Bitcoin"
                     )
