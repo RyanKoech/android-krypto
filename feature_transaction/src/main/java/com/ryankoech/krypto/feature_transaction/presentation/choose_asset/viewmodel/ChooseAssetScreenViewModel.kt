@@ -23,11 +23,11 @@ class ChooseAssetScreenViewModel @Inject constructor(
     val viewState : State<ChooseAssetScreenViewState> = _viewState
 
     init {
-        getCoinList()
+        getCoinList("")
     }
 
-    private fun getCoinList() {
-        getCoinListUseCase()
+    fun getCoinList(filterString : String) {
+        getCoinListUseCase(filterString)
             .onEach { res ->
                 when(res) {
                     is Resource.Error -> {

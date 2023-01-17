@@ -21,7 +21,7 @@ class GetCoinListUseCase @Inject constructor(
 
     private var cache : List<Coin>? = null
 
-    operator fun invoke() = flow<Resource<List<Coin>>> {
+    operator fun invoke(filterString : String = "") = flow<Resource<List<Coin>>> {
         val coins : List<Coin> = if(cache.isNullOrEmpty()) {
             val localCoins = repository.getLocalCoins().toCoinEntity()
             cache = localCoins
@@ -45,7 +45,11 @@ class GetCoinListUseCase @Inject constructor(
             }
 
         }else {
-            emit(Resource.Success(coins))
+            emit(Resource.Success(
+                coins.filter {
+                    it.name.contains(filterString,true)
+                }
+            ))
         }
 
     }.onStart {
