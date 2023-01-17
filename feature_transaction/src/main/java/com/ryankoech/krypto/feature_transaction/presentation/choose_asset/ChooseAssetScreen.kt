@@ -27,10 +27,14 @@ fun ChooseAssetScreen(
 
     when(viewState.screenState){
         ScreenState.LOADING -> {
-
+            ChooseAssetScreenLoading()
         }
         ScreenState.ERROR -> {
-
+            ChooseAssetScreenError(
+                onRetryButtonClick = {
+                    viewModel.getCoinList(searchValue)
+                }
+            )
         }
         ScreenState.SUCCESS -> {
 
