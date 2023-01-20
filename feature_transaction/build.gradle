@@ -65,6 +65,10 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
 
+    // accompanist pager
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version" // Pager
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version" // Pager Indicators
+
     // retrofit - for network call
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
