@@ -1,6 +1,5 @@
 package com.ryankoech.krypto.feature_transaction.presentation.choose_asset.components.success
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -83,7 +82,9 @@ fun PreviewChooseAssetItem() {
                     Coin(
                         id = "bitcoin",
                         image = "",
-                        name = "Bitcoin"
+                        name = "Bitcoin",
+                        symbol = "BTC",
+                        price = 20_000.0
                     )
                 )
             }
