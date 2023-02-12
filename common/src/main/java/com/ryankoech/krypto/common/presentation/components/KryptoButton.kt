@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.Green200
 
@@ -15,13 +16,14 @@ import com.ryankoech.krypto.common.presentation.theme.Green200
 fun KryptoButton(
     modifier: Modifier = Modifier,
     text : String,
+    color : Color = Green200,
     onClick : () -> Unit
 ) {
 
     Button(
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Green200
+            backgroundColor = color
         ),
         shape = MaterialTheme.shapes.medium,
         elevation = ButtonDefaults.elevation(
