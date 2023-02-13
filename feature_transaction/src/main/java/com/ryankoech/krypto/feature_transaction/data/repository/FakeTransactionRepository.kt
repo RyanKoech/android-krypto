@@ -11,14 +11,14 @@ val bitCoinTransaction = listOf(
         date = 1675655596952,
         coinId = "bitcoin",
         currentPrice = 20000.00,
-        amount = 1.5F,
+        amount = 1.5,
         transactionType = TransactionType.BUY
     ),
     TransactionDto(
         date = 1675655696952,
         coinId = "bitcoin",
         currentPrice = 24000.00,
-        amount = 0.5F,
+        amount = 0.5,
         transactionType = TransactionType.SELL
     ),
 )
