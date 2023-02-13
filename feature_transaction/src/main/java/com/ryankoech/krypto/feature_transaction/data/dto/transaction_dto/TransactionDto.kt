@@ -12,5 +12,5 @@ data class TransactionDto(
     val coinId : String,
     val transactionType : TransactionType,
     val currentPrice : Double,
-    val amount : Float,
+    val amount : Double,
 )
