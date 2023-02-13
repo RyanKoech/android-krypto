@@ -56,6 +56,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_android_version"
     implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
     implementation project(path: ':feature_coin_list')
+    implementation project(path: ':feature_home')
     kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
 
