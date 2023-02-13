@@ -21,7 +21,7 @@ class CoinRepositoryImpl @Inject constructor(
         dao.insertCoins(coins)
     }
 
-    override suspend fun getCoin(coinId: String): CoinLocalDto  = dao.getCoin(coinId)
+    override suspend fun getCoin(coinId: String): CoinLocalDto?  = dao.getCoin(coinId)
 
 
 }

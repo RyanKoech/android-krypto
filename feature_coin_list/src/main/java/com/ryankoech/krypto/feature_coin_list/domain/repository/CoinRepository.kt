@@ -12,5 +12,5 @@ interface CoinRepository {
 
     suspend fun saveCoins(coins : List<CoinLocalDto>)
 
-    suspend fun getCoin(coinId : String) : CoinLocalDto
+    suspend fun getCoin(coinId : String) : CoinLocalDto?
 }
