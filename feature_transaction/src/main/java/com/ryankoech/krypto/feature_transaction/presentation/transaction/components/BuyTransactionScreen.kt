@@ -1,12 +1,9 @@
 package com.ryankoech.krypto.feature_transaction.presentation.transaction.components
 
-import android.widget.EditText
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -15,16 +12,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
+import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
+import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_transaction.R
+import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
+import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
 import com.ryankoech.krypto.feature_transaction.domain.entity.toCoinEntity
 import java.util.*
@@ -32,6 +33,8 @@ import java.util.*
 @Composable
 fun BuyTransactionScreen(
     coin : Coin,
+    onTransactionButtonClick : (TransactionDto) -> Unit,
+    screenState : ScreenState,
     modifier : Modifier = Modifier
 ) {
 
@@ -41,6 +44,24 @@ fun BuyTransactionScreen(
         textAlign = TextAlign.Center
     )
     val spacing = 24.dp
+
+    var enteredQuantity by remember {
+        mutableStateOf("")
+    }
+
+    val onEnteredQuantityChange = onEnteredQuantityChange@{ text : String ->
+        if(text.isEmpty()){
+            enteredQuantity = text
+            return@onEnteredQuantityChange
+        }
+
+        try {
+            enteredQuantity = text
+        }catch(_ : Throwable) {
+            return@onEnteredQuantityChange
+        }
+
+    }
 
     Column(
         modifier = modifier
@@ -72,8 +93,8 @@ fun BuyTransactionScreen(
             Spacer(Modifier.height(spacing))
 
             TextField(
-                value = "",
-                onValueChange = {},
+                value = enteredQuantity,
+                onValueChange = onEnteredQuantityChange,
                 textStyle = textFieldTextStyle,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 placeholder = {
@@ -105,7 +126,23 @@ fun BuyTransactionScreen(
             modifier = Modifier
                 .fillMaxWidth(),
             text = "Buy " + coin.name,
-            onClick = {}
+            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
+            onClick = onClick@{
+
+                if(enteredQuantity.toDoubleOrNull() == null){
+                    return@onClick
+                }
+
+                val transaction = TransactionDto(
+                    date = Calendar.getInstance().timeInMillis,
+                    coinId = coin.id,
+                    transactionType = TransactionType.BUY,
+                    currentPrice = coin.price,
+                    amount = enteredQuantity.toDouble()
+                )
+
+                onTransactionButtonClick(transaction)
+            }
         )
 
     }
@@ -118,7 +155,9 @@ fun BuyTransactionScreenPreview() {
     KryptoTheme {
         Surface {
             BuyTransactionScreen(
-                FAKE_COIN_LIST.toCoinEntity().first()
+                FAKE_COIN_LIST.toCoinEntity().first(),
+                {},
+                ScreenState.SUCCESS
             )
         }
     }
