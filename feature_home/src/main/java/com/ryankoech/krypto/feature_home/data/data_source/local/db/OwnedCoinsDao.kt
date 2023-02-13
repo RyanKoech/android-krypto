@@ -15,4 +15,7 @@ interface OwnedCoinsDao {
 
     @Query("SELECT * FROM $OWNED_COIN_DTO_TABLENAME")
     suspend fun getOwnedCoins() : List<OwnedCoinDto>
+
+    @Query("SELECT * FROM $OWNED_COIN_DTO_TABLENAME WHERE id = :coinId")
+    suspend fun getOwnedCoin(coinId : String) : OwnedCoinDto
 }
