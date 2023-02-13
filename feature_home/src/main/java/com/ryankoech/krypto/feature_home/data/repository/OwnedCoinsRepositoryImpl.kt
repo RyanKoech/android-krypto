@@ -23,6 +23,13 @@ class OwnedCoinsRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getOwnedCoin(coinId: String): OwnedCoinDto {
+        return coroutineScope {
+            coinsDao.getOwnedCoin(coinId)
+        }
+    }
+
+
     override suspend fun getOwnedCoins(): List<OwnedCoinDto> {
         return coroutineScope {
             coinsDao.getOwnedCoins()
