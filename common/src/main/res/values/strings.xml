@@ -2,6 +2,11 @@
 <resources>
     <string name="coin_image_content_description">%s Image</string>
     <string name="coin_value_change">%s%s%%</string>
-    <string name="coin_amount_balance">%s%s</string>
+    <string name="coin_amount_balance">%s%s %s</string>
     <string name="coin_market_cap">MCap $%s %s</string>
+    <string name="symbol_million">M</string>
+    <string name="symbol_billion">Bn</string>
+    <string name="symbol_trillion">Tr</string>
+    <string name="symbol_quadrillion">Qdr</string>
+    <string name="symbol_quintillion_fallback">Over %s1 Qnt</string>
 </resources>

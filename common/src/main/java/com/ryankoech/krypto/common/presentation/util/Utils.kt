@@ -18,10 +18,32 @@ fun getFormattedChange(context: Context, change : Float) : String {
 }
 
 fun getFormattedBalance(context : Context, balance : Double, displayCurrency: DisplayCurrency) : String {
+    val million = 1_000_000
+    val billion = 1_000_000_000
+    val trillion = 1_000_000_000_000
+    val quadrillion = 1_000_000_000_000_000
+    val quintillion = 1_000_000_000_000_000_000
+
+    val extension : String = if(balance < million) {
+        ""
+    }else if(balance < billion){
+        context.getString(R.string.symbol_million)
+    }else if(balance < trillion){
+        context.getString(R.string.symbol_billion)
+    }else if(balance < quadrillion){
+        context.getString(R.string.symbol_trillion)
+    }else if(balance < quintillion){
+        context.getString(R.string.symbol_quadrillion)
+    }else {
+        return when (displayCurrency) {
+            DisplayCurrency.USD -> context.getString(R.string.symbol_quintillion_fallback, "$")
+            else -> context.getString(R.string.symbol_quintillion_fallback, "$displayCurrency ")
+        }
+    }
     val roundOffBalance = getInTwoDecimalPlaces(balance)
     return when (displayCurrency) {
-        DisplayCurrency.USD -> context.getString(R.string.coin_amount_balance, "$", roundOffBalance)
-        else -> context.getString(R.string.coin_amount_balance, "$displayCurrency ", roundOffBalance)
+        DisplayCurrency.USD -> context.getString(R.string.coin_amount_balance, "$", roundOffBalance, extension)
+        else -> context.getString(R.string.coin_amount_balance, "$displayCurrency ", roundOffBalance, extension)
     }
 }
 
@@ -47,28 +69,28 @@ fun getFormattedMarketCap(context: Context, value : Long) : String {
         context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / million.toDouble()),
-            "M"
+            context.getString(R.string.symbol_million)
         )
     }else if(value < trillion){
         context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / billion.toDouble()),
-            "Bn"
+            context.getString(R.string.symbol_billion)
         )
     }else if(value < quadrillion){
         context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / trillion.toDouble()),
-            "Tr"
+            context.getString(R.string.symbol_trillion)
         )
     }else if(value < quintillion){
         context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / quadrillion.toDouble()),
-            "Tr"
+            context.getString(R.string.symbol_quadrillion)
         )
     }else {
-        "Over $1 Qnt"
+        context.getString(R.string.symbol_quintillion_fallback, "$")
     }
 }
 
