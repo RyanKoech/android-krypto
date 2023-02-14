@@ -15,14 +15,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ryankoech.krypto.common.core.ktx.isNull
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
-import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
-import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_transaction.R
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
@@ -129,7 +128,7 @@ fun BuyTransactionScreen(
             enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
             onClick = onClick@{
 
-                if(enteredQuantity.toDoubleOrNull() == null){
+                if(enteredQuantity.toDoubleOrNull().isNull()){
                     return@onClick
                 }
 

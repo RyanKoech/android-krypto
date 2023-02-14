@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ryankoech.krypto.common.core.ktx.isNull
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red200
@@ -151,7 +152,7 @@ fun SellTransactionScreen(
             enabled = screenState == ScreenState.SUCCESS && enteredQuanity.toDoubleOrNull() != null,
             onClick = onClick@{
 
-                if(enteredQuanity.toDoubleOrNull() == null){
+                if(enteredQuanity.toDoubleOrNull().isNull()){
                     return@onClick
                 }
 
