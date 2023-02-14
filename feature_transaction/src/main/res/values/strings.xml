@@ -9,4 +9,5 @@
     <string name="error_max_balance">You can not exceed your %s balance.</string>
     <string name="tab_title_buy">Buy</string>
     <string name="tab_title_sell">Sell</string>
+    <string name="error_message">Something went wrong. Try again later.</string>
 </resources>

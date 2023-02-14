@@ -108,7 +108,8 @@ class TransactionScreenViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         _viewState.value = _viewState.value.copy(
-                            screenState = ScreenState.SUCCESS
+                            screenState = ScreenState.SUCCESS,
+                            backToHome = true,
                         )
                     }
                 }
