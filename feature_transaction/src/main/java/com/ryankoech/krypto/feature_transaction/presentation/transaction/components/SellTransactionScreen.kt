@@ -190,6 +190,10 @@ fun SellTransactionScreen(
                     return@onClick
                 }
 
+                if(enteredQuantity.toDouble() > ownedCoin.amount){
+                    return@onClick
+                }
+
                 val transaction = TransactionDto(
                     date = Calendar.getInstance().timeInMillis,
                     coinId = coin.id,
