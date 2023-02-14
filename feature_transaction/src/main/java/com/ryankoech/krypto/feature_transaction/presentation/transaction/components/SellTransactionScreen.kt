@@ -112,6 +112,7 @@ fun SellTransactionScreen(
                 value = enteredQuantity,
                 onValueChange = onEnteredQuantityChange,
                 textStyle = textFieldTextStyle,
+                singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 placeholder = {
                     Text(
