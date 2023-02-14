@@ -11,6 +11,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -117,7 +118,7 @@ fun SellTransactionScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .alpha(0.4f),
-                        text = "Quantity",
+                        text = stringResource(R.string.placeholder_transaction_amount),
                         style = textFieldTextStyle,
                         color = Color.Black
                     )
@@ -133,7 +134,7 @@ fun SellTransactionScreen(
 
             if(enterQuantityError){
                 Text(
-                    text = "You can not exceed your " + coin.name + " balance.",
+                    text = stringResource(R.string.error_max_balance, coin.name),
                     style = MaterialTheme.typography.caption,
                     color = Red400
                 )
@@ -142,7 +143,7 @@ fun SellTransactionScreen(
             }
 
             Text(
-                text = "${getFormattedBalance(context, coin.price, DisplayCurrency.USD)} per coin.",
+                text = stringResource(R.string.price_coin, getFormattedBalance(context, coin.price, DisplayCurrency.USD)),
                 style = MaterialTheme.typography.caption,
             )
 
@@ -165,7 +166,7 @@ fun SellTransactionScreen(
                                 vertical = 4.dp,
                                 horizontal = 6.dp
                             ),
-                        text = getFormattedBalance(context, enteredQuantity.toDouble() * ownedCoin.value, DisplayCurrency.USD),
+                        text = stringResource(R.string.amount_tag_selling, getFormattedBalance(context, enteredQuantity.toDouble() * ownedCoin.value, DisplayCurrency.USD)),
                         style = MaterialTheme.typography.caption.copy(
                             fontSize = 12.sp
                         )
@@ -179,7 +180,7 @@ fun SellTransactionScreen(
         KryptoButton(
             modifier = Modifier
                 .fillMaxWidth(),
-            text = "Sell " + coin.name,
+            text = stringResource(R.string.button_label_sell, coin.name),
             color = Red200,
             enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
             onClick = onClick@{
