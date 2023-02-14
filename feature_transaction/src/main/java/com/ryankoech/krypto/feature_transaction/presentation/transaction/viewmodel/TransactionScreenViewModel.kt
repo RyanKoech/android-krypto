@@ -29,7 +29,6 @@ class TransactionScreenViewModel @Inject constructor(
     val viewState : State<TransactionScreenViewState> = _viewState
 
     fun getCoinAmount(coinId : String) {
-        Timber.d("getCoinAmount")
 
         getOwnedCoinUseCase(coinId)
             .onEach { res ->
@@ -57,15 +56,17 @@ class TransactionScreenViewModel @Inject constructor(
 
     fun saveCoinTransaction (transaction : TransactionDto) {
 
-        val newOwnedCoin = _viewState.value.ownedCoin.copy(
-            amount = if( transaction.transactionType == TransactionType.BUY) {
-                _viewState.value.ownedCoin.amount + transaction.amount
-            }else {
-                _viewState.value.ownedCoin.amount - transaction.amount
-            }
+        _viewState.value = _viewState.value.copy(
+            ownedCoin = _viewState.value.ownedCoin.copy(
+                amount = if( transaction.transactionType == TransactionType.BUY) {
+                    _viewState.value.ownedCoin.amount + transaction.amount
+                }else {
+                    _viewState.value.ownedCoin.amount - transaction.amount
+                }
+            )
         )
 
-        saveOwnedCoinUseCase(newOwnedCoin)
+        saveOwnedCoinUseCase(_viewState.value.ownedCoin)
             .onEach { res ->
                 when(res) {
                     is Resource.Error -> {
@@ -85,12 +86,11 @@ class TransactionScreenViewModel @Inject constructor(
                         )
                     }
                 }
-            }
+            }.launchIn(viewModelScope)
 
     }
 
     private fun insertTransaction(transaction : TransactionDto) {
-
         saveCoinTransactionUseCase(transaction)
             .onEach { res ->
                 when(res) {
@@ -110,7 +110,7 @@ class TransactionScreenViewModel @Inject constructor(
                         )
                     }
                 }
-            }
+            }.launchIn(viewModelScope)
 
     }
 
