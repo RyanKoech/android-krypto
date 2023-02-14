@@ -4,7 +4,7 @@ import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.Transac
 
 interface TransactionRepository {
 
-    fun addTransaction(transaction : TransactionDto)
+    suspend fun addTransaction(transaction : TransactionDto)
 
-    fun getCoinTransactions(coinId : String) : List<TransactionDto>
+    suspend fun getCoinTransactions(coinId : String) : List<TransactionDto>
 }
