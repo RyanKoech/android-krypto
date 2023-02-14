@@ -1,5 +1,6 @@
 package com.ryankoech.krypto.feature_transaction.presentation.transaction
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
@@ -9,6 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,6 +21,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_transaction.R
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
@@ -35,14 +38,29 @@ import java.util.*
 @Composable
 fun TransactionScreen(
     coin : Coin,
+    navigateBackToHomeScreen : () -> Unit,
     viewModel : TransactionScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
 
+    val context = LocalContext.current
     val viewState = viewModel.viewState.value
 
     LaunchedEffect(key1 = Unit){
         viewModel.getCoinAmount(coin.id)
+    }
+
+    val errorMessage = stringResource(R.string.error_message)
+    LaunchedEffect(key1 = viewState.screenState){
+        if(viewState.screenState == ScreenState.ERROR){
+            Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    LaunchedEffect(key1 = viewState.backToHome){
+        if(viewState.backToHome){
+            navigateBackToHomeScreen()
+        }
     }
 
     val onTransactionButtonClick = { transaction : TransactionDto ->
@@ -130,6 +148,7 @@ fun TransactionScreenPreview() {
         Surface {
             TransactionScreen(
                 FAKE_COIN_LIST.toCoinEntity().first(),
+                {}
             )
         }
     }

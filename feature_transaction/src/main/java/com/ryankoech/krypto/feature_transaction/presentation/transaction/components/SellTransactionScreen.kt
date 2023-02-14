@@ -198,6 +198,7 @@ fun SellTransactionScreen(
                     amount = enteredQuantity.toDouble()
                 )
 
+                enteredQuantity = ""
                 onTransactionButtonClick(transaction)
             }
         )
