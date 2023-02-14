@@ -62,7 +62,9 @@ class TransactionScreenViewModel @Inject constructor(
                     _viewState.value.ownedCoin.amount + transaction.amount
                 }else {
                     _viewState.value.ownedCoin.amount - transaction.amount
-                }
+                },
+                value = transaction.currentPrice,
+                change = (transaction.currentPrice - _viewState.value.ownedCoin.value / _viewState.value.ownedCoin.value * 100).toFloat()
             )
         )
 
