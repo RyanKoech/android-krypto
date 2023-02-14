@@ -24,12 +24,12 @@ val bitCoinTransaction = listOf(
 )
 
 class FakeTransactionRepository @Inject constructor() : TransactionRepository {
-    override fun addTransaction(transaction: TransactionDto) {
+    override suspend fun addTransaction(transaction: TransactionDto) {
         Timber.d("Added transaction.")
         Timber.d(transaction.toString())
     }
 
-    override fun getCoinTransactions(coinId: String): List<TransactionDto> {
+    override suspend fun getCoinTransactions(coinId: String): List<TransactionDto> {
         return if(coinId == bitCoinTransaction.first().coinId){
             bitCoinTransaction
         } else {
