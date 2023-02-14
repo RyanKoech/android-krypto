@@ -1,5 +1,6 @@
 package com.ryankoech.krypto.feature_transaction.presentation.transaction.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -15,8 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ryankoech.krypto.common.core.ktx.isNotNull
 import com.ryankoech.krypto.common.core.ktx.isNull
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
+import com.ryankoech.krypto.common.presentation.theme.Green200
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red200
 import com.ryankoech.krypto.common.presentation.theme.Red400
@@ -37,7 +40,7 @@ import java.util.*
 fun SellTransactionScreen(
     coin : Coin,
     onTransactionButtonClick : (TransactionDto) -> Unit,
-    ownedCoinDto: OwnedCoinDto,
+    ownedCoin: OwnedCoinDto,
     screenState : ScreenState,
     modifier: Modifier = Modifier,
 ) {
@@ -48,7 +51,7 @@ fun SellTransactionScreen(
         textAlign = TextAlign.Center
     )
     val spacing = 24.dp
-    var enteredQuanity by remember {
+    var enteredQuantity by remember {
         mutableStateOf("")
     }
     var enterQuantityError by remember {
@@ -57,16 +60,16 @@ fun SellTransactionScreen(
 
     val onEnteredQuantityChange = onEnteredQuantityChange@{ text : String ->
         if(text.isEmpty()){
-            enteredQuanity = text
+            enteredQuantity = text
             return@onEnteredQuantityChange
         }
 
         try {
-            if (text.toDouble() > ownedCoinDto.amount) {
-                enteredQuanity = ownedCoinDto.amount.toString()
+            if (text.toDouble() > ownedCoin.amount) {
+                enteredQuantity = ownedCoin.amount.toString()
                 enterQuantityError = true
             } else {
-                enteredQuanity = text
+                enteredQuantity = text
                 enterQuantityError = false
             }
         }catch(_ : Throwable) {
@@ -105,7 +108,7 @@ fun SellTransactionScreen(
             Spacer(Modifier.height(spacing))
 
             TextField(
-                value = enteredQuanity,
+                value = enteredQuantity,
                 onValueChange = onEnteredQuantityChange,
                 textStyle = textFieldTextStyle,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -142,6 +145,35 @@ fun SellTransactionScreen(
                 text = "${getFormattedBalance(context, coin.price, DisplayCurrency.USD)} per coin.",
                 style = MaterialTheme.typography.caption,
             )
+
+            if(enteredQuantity.toDoubleOrNull().isNotNull() && enteredQuantity.toDouble() > 0) {
+
+                Spacer(Modifier.height(spacing))
+
+                Box(
+                    modifier = Modifier
+                        .background(
+                            color = Green200.copy(
+                                alpha = 0.8F
+                            ),
+                            shape = MaterialTheme.shapes.small
+                        ),
+                ){
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                vertical = 4.dp,
+                                horizontal = 6.dp
+                            ),
+                        text = getFormattedBalance(context, enteredQuantity.toDouble() * ownedCoin.value, DisplayCurrency.USD),
+                        style = MaterialTheme.typography.caption.copy(
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+
+            }
+
         }
 
         KryptoButton(
@@ -149,10 +181,10 @@ fun SellTransactionScreen(
                 .fillMaxWidth(),
             text = "Sell " + coin.name,
             color = Red200,
-            enabled = screenState == ScreenState.SUCCESS && enteredQuanity.toDoubleOrNull() != null,
+            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
             onClick = onClick@{
 
-                if(enteredQuanity.toDoubleOrNull().isNull()){
+                if(enteredQuantity.toDoubleOrNull().isNull()){
                     return@onClick
                 }
 
@@ -161,7 +193,7 @@ fun SellTransactionScreen(
                     coinId = coin.id,
                     transactionType = TransactionType.SELL,
                     currentPrice = coin.price,
-                    amount = enteredQuanity.toDouble()
+                    amount = enteredQuantity.toDouble()
                 )
 
                 onTransactionButtonClick(transaction)

@@ -64,7 +64,7 @@ fun TransactionScreen(
                 SellTransactionScreen(
                     coin = coin,
                     onTransactionButtonClick = onTransactionButtonClick,
-                    ownedCoinDto = viewState.ownedCoin,
+                    ownedCoin = viewState.ownedCoin,
                     screenState = viewState.screenState
                 )
             },

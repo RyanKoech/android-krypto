@@ -1,5 +1,6 @@
 package com.ryankoech.krypto.feature_transaction.presentation.transaction.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -15,8 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ryankoech.krypto.common.core.ktx.isNotNull
 import com.ryankoech.krypto.common.core.ktx.isNull
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
+import com.ryankoech.krypto.common.presentation.theme.Green200
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.common.presentation.util.ScreenState
@@ -119,6 +122,34 @@ fun BuyTransactionScreen(
                 text = "${getFormattedBalance(context, coin.price, DisplayCurrency.USD)} per coin.",
                 style = MaterialTheme.typography.caption,
             )
+
+            if(enteredQuantity.toDoubleOrNull().isNotNull() && enteredQuantity.toDouble() > 0) {
+
+                Spacer(Modifier.height(spacing))
+
+                Box(
+                    modifier = Modifier
+                        .background(
+                            color = Green200.copy(
+                                alpha = 0.8F
+                            ),
+                            shape = MaterialTheme.shapes.small
+                        ),
+                ){
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                vertical = 4.dp,
+                                horizontal = 6.dp
+                            ),
+                        text = getFormattedBalance(context, enteredQuantity.toDouble() * coin.price, DisplayCurrency.USD),
+                        style = MaterialTheme.typography.caption.copy(
+                            fontSize = 12.sp
+                        )
+                    )
+                }
+
+            }
         }
 
         KryptoButton(
