@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.mylibrary
+package com.ryankoech.krypto.feature_coin_details
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ryankoech.krypto.mylibrary.test", appContext.packageName)
+        assertEquals("com.ryankoech.krypto.feature_coin_details.test", appContext.packageName)
     }
 }
