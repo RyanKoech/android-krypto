@@ -37,6 +37,13 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "com.google.android.material:material:$material_version"
 
+    // retrofit - for network call
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // okhttp logging interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version"
+
     // junit4
     testImplementation "junit:junit:$junit_version"
 
