@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.mylibrary
+package com.ryankoech.krypto.feature_coin_details
 
 import org.junit.Test
 
