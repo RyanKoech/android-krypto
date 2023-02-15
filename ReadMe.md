@@ -37,7 +37,7 @@ Below are some of the key android concepts used/applied in this project:
 Each feature is will comprise of 3 layers; presentation, domain, data 
 
 - [x] Home Feature 
-- [ ] Transaction Feature 
+- [x] Transaction Feature 
 - [x] Coin List Feature
 - [ ] Coin Details Feature
 - [ ] Setting Feature
