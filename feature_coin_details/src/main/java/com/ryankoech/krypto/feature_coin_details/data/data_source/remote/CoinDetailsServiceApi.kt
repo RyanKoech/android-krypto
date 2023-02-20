@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface CoinServiceApi {
+interface CoinDetailsServiceApi {
 
     @GET("/coins/{id}/market_chart")
     suspend fun getCoinMarketChart(
