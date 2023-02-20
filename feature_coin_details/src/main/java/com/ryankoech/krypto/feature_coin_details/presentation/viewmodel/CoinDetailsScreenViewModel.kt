@@ -8,10 +8,12 @@ import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.feature_coin_details.domain.usecase.GetCoinMarketChartUseCase
 import com.ryankoech.krypto.feature_coin_details.presentation.viewstate.CoinDetailsScreenViewState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@HiltViewModel
 class CoinDetailsScreenViewModel @Inject constructor(
     private val getCoinMarketChartUseCase: GetCoinMarketChartUseCase
 ) : ViewModel(){
