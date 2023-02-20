@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -49,9 +51,22 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
 
+    // dagger-hilt - for dependency injection
+    implementation "com.google.dagger:hilt-android:$hilt_android_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
+
     // coil compose
     implementation "io.coil-kt:coil-compose:$coil_compose"
     implementation "io.coil-kt:coil-gif:$coil_compose"
+
+    // retrofit - for network call
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // okhttp logging interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version"
 
     // junit4
     testImplementation "junit:junit:$junit_version"
