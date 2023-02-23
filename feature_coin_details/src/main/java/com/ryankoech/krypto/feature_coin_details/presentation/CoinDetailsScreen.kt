@@ -15,7 +15,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
+import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
 import com.ryankoech.krypto.feature_coin_details.R
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.CoinDetailsHeader
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.CoinStatisticsCard
@@ -135,10 +137,10 @@ fun CoinDetailsScreen(
         item{
 
             val coinStatistics = listOf(
-                CoinStatistic("Market Cap", "$352.1234 Bn", R.drawable.icon_pie_chart),
-                CoinStatistic("All Time High", "$352.1234 Bn", R.drawable.icon_pie_chart),
-                CoinStatistic("24hr High", "$352.1234 Bn", R.drawable.icon_pie_chart),
-                CoinStatistic("Total Volume", "$352.1234 Bn", R.drawable.icon_pie_chart),
+                CoinStatistic("Market Cap", getFormattedMarketCap(context, coin.marketCap), R.drawable.icon_pie_chart),
+                CoinStatistic("All Time High", getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_pie_chart),
+                CoinStatistic("24hr High", getFormattedBalance(context, coin.high24Hr), R.drawable.icon_pie_chart),
+                CoinStatistic("Total Volume", getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_pie_chart),
             )
 
             LazyVerticalGrid(

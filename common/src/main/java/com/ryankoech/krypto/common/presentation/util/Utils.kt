@@ -17,7 +17,7 @@ fun getFormattedChange(context: Context, change : Float) : String {
         context.getString(R.string.coin_value_change, "+",roundOffChange)
 }
 
-fun getFormattedBalance(context : Context, balance : Double, displayCurrency: DisplayCurrency) : String {
+fun getFormattedBalance(context : Context, balance : Double, displayCurrency: DisplayCurrency = DisplayCurrency.USD) : String {
     val million = 1_000_000
     val billion = 1_000_000_000
     val trillion = 1_000_000_000_000
@@ -55,6 +55,7 @@ fun getInTwoDecimalPlaces(value : Double) : String{
     val df = DecimalFormat("#,##0.00")
     return df.format(value)
 }
+
 fun getFormattedMarketCap(context: Context, value : Long) : String {
     val million = 1_000_000
     val billion = 1_000_000_000
@@ -93,6 +94,47 @@ fun getFormattedMarketCap(context: Context, value : Long) : String {
         context.getString(R.string.symbol_quintillion_fallback, "$")
     }
 }
+
+
+fun getFormattedTotalVolume(context: Context, value : Long) : String {
+    val million = 1_000_000
+    val billion = 1_000_000_000
+    val trillion = 1_000_000_000_000
+    val quadrillion = 1_000_000_000_000_000
+    val quintillion = 1_000_000_000_000_000_000
+
+    return if(value < million) {
+        val df = DecimalFormat("#,###.##")
+        context.getString(R.string.coin_total_volume, df.format(value), "")
+    }else if(value < billion){
+        context.getString(
+            R.string.coin_total_volume,
+            getInFourDecimalPlaces(value.toDouble() / million.toDouble()),
+            context.getString(R.string.symbol_million)
+        )
+    }else if(value < trillion){
+        context.getString(
+            R.string.coin_total_volume,
+            getInFourDecimalPlaces(value.toDouble() / billion.toDouble()),
+            context.getString(R.string.symbol_billion)
+        )
+    }else if(value < quadrillion){
+        context.getString(
+            R.string.coin_total_volume,
+            getInFourDecimalPlaces(value.toDouble() / trillion.toDouble()),
+            context.getString(R.string.symbol_trillion)
+        )
+    }else if(value < quintillion){
+        context.getString(
+            R.string.coin_total_volume,
+            getInFourDecimalPlaces(value.toDouble() / quadrillion.toDouble()),
+            context.getString(R.string.symbol_quadrillion)
+        )
+    }else {
+        context.getString(R.string.symbol_quintillion_fallback, "")
+    }
+}
+
 
 fun getInFourDecimalPlaces(value : Double) : String{
     val df = DecimalFormat("#,##0.0000")
