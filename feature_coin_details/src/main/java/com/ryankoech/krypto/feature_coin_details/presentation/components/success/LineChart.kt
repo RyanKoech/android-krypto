@@ -24,7 +24,7 @@ fun LineChart(
     modifier: Modifier = Modifier
 ) {
     val spacing = 0f
-    val graphColor = Color.Red
+    val graphColor = Color(0xff39b23f)
     val transparentGraphColor = remember { graphColor.copy(alpha = 0.5f) }
     val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0 }
     val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
@@ -66,7 +66,7 @@ fun LineChart(
 
         drawPath(
             path = strokePath,
-            color = Color.Red,
+            color = transparentGraphColor,
             style = Stroke(
                 width = 3.dp.toPx(),
                 cap = StrokeCap.Round
@@ -84,7 +84,12 @@ fun LineChart(
             brush = Brush.verticalGradient(
                 colors = listOf(
                     transparentGraphColor,
-                    Color.Transparent
+                    transparentGraphColor.copy(
+                        alpha = 0.8F
+                    ),
+                    transparentGraphColor.copy(
+                        alpha = 0.1F
+                    )
                 ),
                 endY = size.height - spacing
             )
@@ -122,7 +127,6 @@ fun LineChartPreview() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
-                    .background(color = Color.Black)
             )
         }
     }
