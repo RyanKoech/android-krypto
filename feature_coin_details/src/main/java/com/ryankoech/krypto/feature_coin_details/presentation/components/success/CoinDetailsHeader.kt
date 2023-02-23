@@ -21,22 +21,18 @@ import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.*
+import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
+import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import java.util.*
 
 @Composable
 fun CoinDetailsHeader(
+    coin : Coin,
     modifier: Modifier = Modifier
 ) {
 
     val context = LocalContext.current
-    val coinImage = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    val coinChange = 2.3F
-    val coinId = "bitcoin"
-    val coinPrice = 12345F
-    val coinName = "Bitcoin"
-    val coinMktCapRank = 1
-    val coinSymbol = "btc"
-
 
     Row(
         modifier = modifier
@@ -48,8 +44,8 @@ fun CoinDetailsHeader(
             ),
     ) {
         CoinImage(
-            coinImage,
-            coinId,
+            coin.image,
+            coin.id,
             backgroundColor = MaterialTheme.colors.surface,
         )
 
@@ -71,13 +67,13 @@ fun CoinDetailsHeader(
                 Text(
                     modifier = Modifier
                         .padding(end = 2.dp),
-                    text = coinName,
+                    text = coin.name,
                     style = MaterialTheme.typography.h3,
                 )
                 Text(
                     text = getFormattedBalance(
                         context = context,
-                        balance = coinPrice.toDouble(),
+                        balance = coin.price,
                         displayCurrency = DisplayCurrency.USD
                     ),
                     style = MaterialTheme.typography.h4
@@ -106,7 +102,7 @@ fun CoinDetailsHeader(
                                vertical = 0.dp,
                                horizontal = 3.dp
                            ),
-                       text = coinMktCapRank.toString(),
+                       text = coin.marketCapRank.toString(),
                        style = MaterialTheme.typography.h4,
                        color = Color.White
                    )
@@ -115,22 +111,22 @@ fun CoinDetailsHeader(
                     modifier = Modifier
                         .padding(end = 2.dp)
                         .alpha(0.6f),
-                    text = coinSymbol.uppercase(Locale.ROOT),
+                    text = coin.symbol.uppercase(Locale.ROOT),
                     style = MaterialTheme.typography.h3,
                 )
                 Spacer(modifier = Modifier.weight(1.0f))
                 Icon(
                     modifier = Modifier
                         .size(32.dp)
-                        .rotate(if (coinChange < 0f) 0f else 180f),
+                        .rotate(if (coin.change < 0f) 0f else 180f),
                     imageVector = Icons.Filled.ArrowDropDown,
-                    tint = getChangeColor(coinChange),
+                    tint = getChangeColor(coin.change),
                     contentDescription = null,
                 )
                 Text(
-                    text = getFormattedChange(context, coinChange),
+                    text = getFormattedChange(context, coin.change),
                     style = MaterialTheme.typography.caption,
-                    color = getChangeColor(coinChange)
+                    color = getChangeColor(coin.change)
                 )
             }
         }
@@ -148,6 +144,7 @@ fun CoinDetailsHeaderPreview() {
         ) {
             Column {
                 CoinDetailsHeader(
+                    FAKE_COIN_LIST.toCoinEntity().first()
                 )
             }
         }
