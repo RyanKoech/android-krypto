@@ -48,6 +48,7 @@ dependencies {
     // local modules
     implementation project(":common")
     implementation project(":feature_coin_list")
+    implementation project(":feature_transaction")
 
     // retrofit - for network call
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
