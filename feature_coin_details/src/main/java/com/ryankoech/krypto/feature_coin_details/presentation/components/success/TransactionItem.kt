@@ -78,12 +78,12 @@ fun TransactionItem(
                 ) {
 
                     Text(
-                        text = "${
+                        text = "${if(isBuyingTransaction) "" else "-"}${
                             getFormattedBalance(
                                 context,
                                 transaction.currentPrice * transaction.amount
                             )
-                        } bought",
+                        } ${if(isBuyingTransaction) "bought" else "sold"}",
                         style = MaterialTheme.typography.h3,
                     )
                     Text(
@@ -111,6 +111,7 @@ fun TransactionItem(
                     )
                     Icon(
                         modifier = Modifier
+                            .size(16.dp)
                             .scale(
                                 scaleX = 1f,
                                 scaleY = if (isBuyingTransaction) -1f else 1f
@@ -123,11 +124,11 @@ fun TransactionItem(
                 }
             }
 
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Icon(
                 modifier = Modifier
-                    .size(36.dp),
+                    .size(28.dp),
                 painter = painterResource(R.drawable.icon_delete),
                 contentDescription = null,
             )
