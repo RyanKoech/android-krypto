@@ -186,9 +186,9 @@ fun CoinDetailsScreen(
 
             val coinStatistics = listOf(
                 CoinStatistic("Market Cap", getFormattedMarketCap(context, coin.marketCap), R.drawable.icon_pie_chart),
-                CoinStatistic("All Time High", getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_pie_chart),
-                CoinStatistic("24hr High", getFormattedBalance(context, coin.high24Hr), R.drawable.icon_pie_chart),
-                CoinStatistic("Total Volume", getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_pie_chart),
+                CoinStatistic("All Time High", getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_rocket),
+                CoinStatistic("24hr High", getFormattedBalance(context, coin.high24Hr), R.drawable.iconi_trophie),
+                CoinStatistic("Total Volume", getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_line_graph),
             )
 
             LazyVerticalGrid(
