@@ -4,3 +4,6 @@ data class MarketChartEntity(
     val price : Double
 )
 
+fun List<MarketChartEntity>.toPairList() : List<Pair<Int, Double>> = mapIndexed{ index, marketEntity ->
+    Pair(index, marketEntity.price)
+}
