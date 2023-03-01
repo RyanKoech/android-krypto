@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface CoinDetailsServiceApi {
 
-    @GET("/coins/{id}/market_chart")
+    @GET("coins/{id}/market_chart")
     suspend fun getCoinMarketChart(
         @Path(value = "id", encoded = true) coinId : String,
         @Query("days") days : Int,
