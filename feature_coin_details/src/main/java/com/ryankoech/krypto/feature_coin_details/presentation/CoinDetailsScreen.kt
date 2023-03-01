@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.collectAsEffect
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
@@ -51,7 +52,7 @@ fun CoinDetailsScreen(
 
     LaunchedEffect(key1 = Unit){
         viewModel.getCoinDetails(coin.id)
-        // viewModel.getTransactions(coin.id)
+        viewModel.getTransactions(coin.id)
     }
 
     val context = LocalContext.current
@@ -230,18 +231,34 @@ fun CoinDetailsScreen(
                 style = MaterialTheme.typography.h2,
             )
         }
+        
+        if(viewState.transactions.isEmpty()) {
 
+            item{
+                ErrorScreen(
+                    modifier = Modifier
+                        .padding(
+                            vertical = 40.dp,
+                        ),
+                    messageText = "Whoops, looks like a ghost town here.",
+                    res = com.ryankoech.krypto.feature_transaction.R.drawable.no_transaction,
+                    showButton = false,
+                )
+            }
+            
+        }else {
 
-        items(viewState.transactions){ transaction ->
+            items(viewState.transactions){ transaction ->
 
-            TransactionItem(
-                modifier = Modifier
-                    .padding(
-                        horizontal = 12.dp,
-                    ),
-                transaction = transaction
-            )
+                TransactionItem(
+                    modifier = Modifier
+                        .padding(
+                            horizontal = 12.dp,
+                        ),
+                    transaction = transaction
+                )
 
+            }
         }
 
     }
