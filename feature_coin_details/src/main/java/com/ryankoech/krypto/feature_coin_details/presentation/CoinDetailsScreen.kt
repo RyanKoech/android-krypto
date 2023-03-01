@@ -23,6 +23,7 @@ import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
 import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
 import com.ryankoech.krypto.feature_coin_details.R
+import com.ryankoech.krypto.feature_coin_details.domain.entity.toPairList
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.*
 import com.ryankoech.krypto.feature_coin_details.presentation.util.CoinStatistic
 import com.ryankoech.krypto.feature_coin_details.presentation.util.MarketChartRange
@@ -30,8 +31,7 @@ import com.ryankoech.krypto.feature_coin_details.presentation.viewmodel.CoinDeta
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
-import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
-import com.ryankoech.krypto.feature_transaction.data.repository.bitCoinTransaction
+import timber.log.Timber
 
 val MarketChartRangeText = listOf(
     Pair(MarketChartRange.ONE_HOUR, "1h"),
@@ -49,6 +49,11 @@ fun CoinDetailsScreen(
     modifier: Modifier = Modifier
 ) {
 
+    LaunchedEffect(key1 = Unit){
+        viewModel.getCoinDetails(coin.id)
+        // viewModel.getTransactions(coin.id)
+    }
+
     val context = LocalContext.current
     val viewState = viewModel.viewState.value
 
@@ -60,6 +65,55 @@ fun CoinDetailsScreen(
 
     var currentMarketChartRange by remember {
         mutableStateOf(MarketChartRange.ONE_DAY)
+    }
+
+    val marketChartButtonOnClick = { marketChartRange : MarketChartRange ->
+        currentMarketChartRange = marketChartRange
+    }
+
+    var marketChartData by remember {
+        mutableStateOf(listOf<Pair<Int, Double>>())
+    }
+
+    LaunchedEffect(key1 = currentMarketChartRange, key2 = viewState){
+        marketChartData = when(currentMarketChartRange){
+            MarketChartRange.ONE_HOUR -> {
+                // Every 5 min hence first 12 = 1 hour
+                try {
+                    viewState.dayMarketChart.toPairList().subList(0, 11)
+                } catch (e : Throwable){
+                    Timber.d(e.localizedMessage)
+                    viewState.dayMarketChart.toPairList()
+                }
+            }
+            MarketChartRange.ONE_DAY -> {
+                viewState.dayMarketChart.toPairList()
+            }
+            MarketChartRange.ONE_WEEK -> {
+                // Every 1 hour hence first (24 hours per day * 7 days) hours
+                try {
+                    viewState.threeMonthMarketChart.toPairList().subList(0, 167)
+                } catch (e : Throwable){
+                    Timber.d(e.localizedMessage)
+                    viewState.threeMonthMarketChart.toPairList()
+                }
+            }
+            MarketChartRange.ONE_MONTH -> {
+                // Every 1 hour hence first (24 hours per day * 30 days) hours
+                try {
+                    viewState.threeMonthMarketChart.toPairList().subList(0, 719)
+                } catch (e : Throwable){
+                    Timber.d(e.localizedMessage)
+                    viewState.threeMonthMarketChart.toPairList()
+                }
+            }
+            MarketChartRange.THREE_MONTH -> {
+                viewState.threeMonthMarketChart.toPairList()
+            }
+            MarketChartRange.ONE_YEAR -> {
+                viewState.yearMarketChart.toPairList()
+            }
+        }
     }
 
     LazyColumn(
@@ -78,25 +132,8 @@ fun CoinDetailsScreen(
         }
 
         item {
-            val data = listOf(
-                Pair(6, 111.45),
-                Pair(7, 111.0),
-                Pair(8, 113.45),
-                Pair(9, 112.25),
-                Pair(10, 116.45),
-                Pair(11, 113.35),
-                Pair(12, 118.65),
-                Pair(13, 110.15),
-                Pair(14, 113.05),
-                Pair(15, 114.25),
-                Pair(16, 116.35),
-                Pair(17, 117.45),
-                Pair(18, 112.65),
-                Pair(19, 115.45),
-                Pair(20, 111.85)
-            )
             LineChart(
-                data = data,
+                data = marketChartData,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp)
@@ -117,7 +154,7 @@ fun CoinDetailsScreen(
 
                 items(MarketChartRangeText.size){ counter ->
                     MarketRangeButton(
-                        onClick = { /*TODO*/ },
+                        onClick = { marketChartButtonOnClick(MarketChartRangeText[counter].first) },
                         text = MarketChartRangeText[counter].second,
                         selected = MarketChartRangeText[counter].first == currentMarketChartRange
                     )
