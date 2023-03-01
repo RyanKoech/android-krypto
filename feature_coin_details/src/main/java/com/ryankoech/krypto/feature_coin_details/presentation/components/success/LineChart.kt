@@ -1,44 +1,35 @@
 package com.ryankoech.krypto.feature_coin_details.presentation.components.success
 
-import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import kotlin.math.roundToInt
 
 @Composable
 fun LineChart(
+    modifier: Modifier = Modifier,
     data: List<Pair<Int, Double>> = emptyList(),
-    modifier: Modifier = Modifier
 ) {
     val spacing = 0f
     val graphColor = Color(0xff39b23f)
-    val transparentGraphColor = remember { graphColor.copy(alpha = 0.5f) }
-    val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0 }
-    val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
-    val density = LocalDensity.current
+    val upperValue = (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0
+    val lowerValue = (data.minOfOrNull { it.second }?.toInt() ?: 0)
 
-    val textPaint = remember(density) {
-        Paint().apply {
-            color = android.graphics.Color.WHITE
-            textAlign = Paint.Align.CENTER
-            textSize = density.run { 12.sp.toPx() }
-        }
-    }
-
-    Canvas(modifier = modifier) {
+    Canvas(
+        modifier = modifier
+            .background(
+                color = Color(0xfff2f2f2)
+            )
+    ) {
         val spacePerHour = (size.width - spacing) / data.size
 
         var medX: Float
@@ -66,10 +57,10 @@ fun LineChart(
 
         drawPath(
             path = strokePath,
-            color = transparentGraphColor,
+            color = graphColor,
             style = Stroke(
-                width = 3.dp.toPx(),
-                cap = StrokeCap.Round
+                width = 2.dp.toPx(),
+                cap = StrokeCap.Square
             )
         )
 
@@ -83,12 +74,12 @@ fun LineChart(
             path = fillPath,
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    transparentGraphColor,
-                    transparentGraphColor.copy(
-                        alpha = 0.8F
+                    graphColor,
+                    graphColor.copy(
+                        alpha = 0.9F
                     ),
-                    transparentGraphColor.copy(
-                        alpha = 0.1F
+                    graphColor.copy(
+                        alpha = 0.3F
                     )
                 ),
                 endY = size.height - spacing
