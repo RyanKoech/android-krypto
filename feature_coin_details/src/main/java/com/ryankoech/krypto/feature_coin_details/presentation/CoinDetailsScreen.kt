@@ -105,7 +105,9 @@ fun CoinDetailsScreen(
 
     when(viewState.screenState){
         ScreenState.LOADING -> {
-
+            CoinDetailsScreenLoading(
+                modifier = modifier,
+            )
         }
         ScreenState.ERROR -> {
 
