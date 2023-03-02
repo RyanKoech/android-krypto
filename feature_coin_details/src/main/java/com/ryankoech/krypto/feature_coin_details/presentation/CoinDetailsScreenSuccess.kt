@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_coin_details.presentation.viewstate
+package com.ryankoech.krypto.feature_coin_details.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -26,7 +26,6 @@ import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
 import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
 import com.ryankoech.krypto.feature_coin_details.R
-import com.ryankoech.krypto.feature_coin_details.presentation.MarketChartRangeText
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.*
 import com.ryankoech.krypto.feature_coin_details.presentation.util.CoinStatistic
 import com.ryankoech.krypto.feature_coin_details.presentation.util.MarketChartRange
