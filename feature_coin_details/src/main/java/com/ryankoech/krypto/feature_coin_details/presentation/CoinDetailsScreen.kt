@@ -110,7 +110,11 @@ fun CoinDetailsScreen(
             )
         }
         ScreenState.ERROR -> {
-
+            CoinDetailsScreenError(
+                onButtonClick = {
+                    viewModel.getCoinDetails(coin.id)
+                }
+            )
         }
         ScreenState.SUCCESS -> {
 
