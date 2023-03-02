@@ -21,16 +21,14 @@ import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red100
-import com.ryankoech.krypto.common.presentation.util.collectAsEffect
-import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
-import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
-import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
+import com.ryankoech.krypto.common.presentation.util.*
 import com.ryankoech.krypto.feature_coin_details.R
 import com.ryankoech.krypto.feature_coin_details.domain.entity.toPairList
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.*
 import com.ryankoech.krypto.feature_coin_details.presentation.util.CoinStatistic
 import com.ryankoech.krypto.feature_coin_details.presentation.util.MarketChartRange
 import com.ryankoech.krypto.feature_coin_details.presentation.viewmodel.CoinDetailsScreenViewModel
+import com.ryankoech.krypto.feature_coin_details.presentation.viewstate.CoinDetailsScreenSuccess
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
@@ -121,188 +119,26 @@ fun CoinDetailsScreen(
         }
     }
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize(),
-        contentPadding = PaddingValues(vertical = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ){
+    when(viewState.screenState){
+        ScreenState.LOADING -> {
 
-        item{
-            CoinDetailsHeader(
+        }
+        ScreenState.ERROR -> {
+
+        }
+        ScreenState.SUCCESS -> {
+
+            CoinDetailsScreenSuccess(
                 coin = coin,
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-            )
-        }
-
-        item {
-            LineChart(
-                data = marketChartData,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp)
-                    .height(300.dp)
-                    .background(color = Color.White)
-            )
-        }
-
-
-        item{
-
-            LazyRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ){
-
-                items(MarketChartRangeText.size){ counter ->
-                    MarketRangeButton(
-                        onClick = { marketChartButtonOnClick(MarketChartRangeText[counter].first) },
-                        text = MarketChartRangeText[counter].second,
-                        selected = MarketChartRangeText[counter].first == currentMarketChartRange
-                    )
-
-                }
-
-            }
-
-        }
-
-        item{
-            Divider(
-                modifier = Modifier.fillMaxWidth(),
-                color = Color(0xfff2f2f2)
-            )
-        }
-
-        item{
-            Text(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp),
-                text = "Coin Statistics",
-                style = MaterialTheme.typography.h2,
-            )
-        }
-
-
-        item{
-
-            val coinStatistics = listOf(
-                CoinStatistic("Market Cap", getFormattedMarketCap(context, coin.marketCap), R.drawable.icon_pie_chart),
-                CoinStatistic("All Time High", getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_rocket),
-                CoinStatistic("24hr High", getFormattedBalance(context, coin.high24Hr), R.drawable.iconi_trophie),
-                CoinStatistic("Total Volume", getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_line_graph),
+                transactions = viewState.transactions,
+                navigateToBuyTransactionScreen = navigateToBuyTransactionScreen,
+                navigateToSellTransactionScreen = navigateToSellTransactionScreen,
+                marketChartData = marketChartData,
+                marketChartButtonOnClick = marketChartButtonOnClick,
+                currentMarketChartRange = currentMarketChartRange
             )
 
-            LazyVerticalGrid(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(216.dp),
-                contentPadding = PaddingValues(horizontal = 12.dp),
-                columns = GridCells.Fixed(2),
-                horizontalArrangement = Arrangement.spacedBy(20.dp),
-                verticalArrangement = Arrangement.SpaceAround,
-                userScrollEnabled = false,
-            ) {
-
-                items(coinStatistics) { coinStatistic ->
-                    CoinStatisticsCard(
-                        resId = coinStatistic.icon,
-                        title = coinStatistic.title ,
-                        body = coinStatistic.message
-                    )
-                }
-
-            }
-
         }
-
-        item{
-            Divider(
-                modifier = Modifier.fillMaxWidth(),
-                color = Color(0xfff2f2f2)
-            )
-        }
-
-
-        item{
-            Text(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp),
-                text = "Transaction History",
-                style = MaterialTheme.typography.h2,
-            )
-        }
-        
-        if(viewState.transactions.isEmpty()) {
-
-            item{
-                ErrorScreen(
-                    modifier = Modifier
-                        .padding(
-                            vertical = 40.dp,
-                        ),
-                    messageText = "Whoops, looks like a ghost town here.",
-                    res = com.ryankoech.krypto.feature_transaction.R.drawable.no_transaction,
-                    showButton = false,
-                )
-            }
-            
-        }else {
-
-            items(viewState.transactions){ transaction ->
-
-                TransactionItem(
-                    modifier = Modifier
-                        .padding(
-                            start = 12.dp,
-                            end = 12.dp,
-                            bottom = 12.dp,
-
-                        ),
-                    transaction = transaction
-                )
-
-            }
-        }
-
-        item {
-
-            Row(
-                modifier = Modifier
-                    .padding(
-                        horizontal = 12.dp,
-                    )
-                    .fillMaxWidth(),
-            ) {
-
-                KryptoButton(
-                    modifier = Modifier
-                        .weight(1.0f),
-                    text = "Transfer In",
-                    onClick = {
-                        navigateToBuyTransactionScreen(coin.id)
-                    }
-                )
-
-                Spacer(modifier = Modifier.width(24.dp))
-
-                KryptoButton(
-                    modifier = Modifier
-                        .weight(1.0f),
-                    text = "Transfer Out",
-                    onClick = {
-                        navigateToSellTransactionScreen(coin.id)
-                    },
-                    color = Red100
-                )
-
-            }
-
-        }
-
     }
 
 }
