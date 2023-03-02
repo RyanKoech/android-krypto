@@ -18,7 +18,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.ErrorScreen
+import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.theme.Red100
 import com.ryankoech.krypto.common.presentation.util.collectAsEffect
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
@@ -47,6 +49,8 @@ val MarketChartRangeText = listOf(
 fun CoinDetailsScreen(
     viewModel : CoinDetailsScreenViewModel = hiltViewModel(),
     coin : Coin,
+    navigateToBuyTransactionScreen : (String) -> Unit,
+    navigateToSellTransactionScreen : (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -253,12 +257,50 @@ fun CoinDetailsScreen(
                 TransactionItem(
                     modifier = Modifier
                         .padding(
-                            horizontal = 12.dp,
+                            start = 12.dp,
+                            end = 12.dp,
+                            bottom = 12.dp,
+
                         ),
                     transaction = transaction
                 )
 
             }
+        }
+
+        item {
+
+            Row(
+                modifier = Modifier
+                    .padding(
+                        horizontal = 12.dp,
+                    )
+                    .fillMaxWidth(),
+            ) {
+
+                KryptoButton(
+                    modifier = Modifier
+                        .weight(1.0f),
+                    text = "Transfer In",
+                    onClick = {
+                        navigateToBuyTransactionScreen(coin.id)
+                    }
+                )
+
+                Spacer(modifier = Modifier.width(24.dp))
+
+                KryptoButton(
+                    modifier = Modifier
+                        .weight(1.0f),
+                    text = "Transfer Out",
+                    onClick = {
+                        navigateToSellTransactionScreen(coin.id)
+                    },
+                    color = Red100
+                )
+
+            }
+
         }
 
     }
@@ -276,6 +318,8 @@ fun CoinDetailsScreenPreview() {
         ) {
             CoinDetailsScreen(
                 coin = FAKE_COIN_LIST.toCoinEntity().first(),
+                navigateToBuyTransactionScreen = {},
+                navigateToSellTransactionScreen = {},
             )
         }
     }
