@@ -14,6 +14,24 @@ import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import kotlin.math.roundToInt
 
+val FAKE_LINECHART_DATA = listOf(
+    Pair(6, 111.45),
+    Pair(7, 111.0),
+    Pair(8, 113.45),
+    Pair(9, 112.25),
+    Pair(10, 116.45),
+    Pair(11, 113.35),
+    Pair(12, 118.65),
+    Pair(13, 110.15),
+    Pair(14, 113.05),
+    Pair(15, 114.25),
+    Pair(16, 116.35),
+    Pair(17, 117.45),
+    Pair(18, 112.65),
+    Pair(19, 115.45),
+    Pair(20, 111.85)
+)
+
 @Composable
 fun LineChart(
     modifier: Modifier = Modifier,
@@ -92,29 +110,13 @@ fun LineChart(
 @Preview
 @Composable
 fun LineChartPreview() {
-    val data = listOf(
-        Pair(6, 111.45),
-        Pair(7, 111.0),
-        Pair(8, 113.45),
-        Pair(9, 112.25),
-        Pair(10, 116.45),
-        Pair(11, 113.35),
-        Pair(12, 118.65),
-        Pair(13, 110.15),
-        Pair(14, 113.05),
-        Pair(15, 114.25),
-        Pair(16, 116.35),
-        Pair(17, 117.45),
-        Pair(18, 112.65),
-        Pair(19, 115.45),
-        Pair(20, 111.85)
-    )
+
     KryptoTheme {
         Surface (
             modifier = Modifier.background(color = Color.Black)
         ) {
             LineChart(
-                data = data,
+                data = FAKE_LINECHART_DATA,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(300.dp)
