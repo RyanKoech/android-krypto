@@ -113,6 +113,7 @@ fun CoinDetailsScreen(
         ScreenState.SUCCESS -> {
 
             CoinDetailsScreenSuccess(
+                modifier = modifier,
                 coin = coin,
                 transactions = viewState.transactions,
                 navigateToBuyTransactionScreen = navigateToBuyTransactionScreen,
