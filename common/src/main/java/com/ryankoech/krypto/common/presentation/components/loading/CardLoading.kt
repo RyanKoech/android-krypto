@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 
 @Composable
-fun BigCardLoading(
+fun CardLoading(
     brush: Brush,
     modifier: Modifier = Modifier,
 ){
@@ -32,13 +32,13 @@ fun BigCardLoading(
 
 @Preview
 @Composable
-fun BigCardLoadingPreview(){
+fun CardLoadingPreview(){
 
     KryptoTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             val brush = loadingEffect()
 
-            Column{ BigCardLoading(brush) }
+            Column{ CardLoading(brush) }
         }
     }
 
