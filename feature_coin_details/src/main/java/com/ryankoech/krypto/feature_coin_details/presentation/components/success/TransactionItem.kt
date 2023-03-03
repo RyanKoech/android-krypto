@@ -1,7 +1,6 @@
 package com.ryankoech.krypto.feature_coin_details.presentation.components.success
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -15,6 +14,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.Green500
@@ -44,6 +44,7 @@ fun convertLongToTime(time: Long): String {
 fun TransactionItem(
     modifier: Modifier = Modifier,
     transaction: TransactionDto,
+    symbol : String,
 ) {
 
     val context = LocalContext.current
@@ -78,18 +79,23 @@ fun TransactionItem(
                 ) {
 
                     Text(
-                        text = "${if(isBuyingTransaction) "" else "-"}${
-                            getFormattedBalance(
-                                context,
-                                transaction.currentPrice * transaction.amount
-                            )
-                        } ${if(isBuyingTransaction) "bought" else "sold"}",
+                        text = stringResource(
+                            R.string.item_transaction_expenditure,
+                            if(isBuyingTransaction) "" else "-",
+                            getFormattedBalance(context,transaction.currentPrice * transaction.amount),
+                            if(isBuyingTransaction) stringResource(R.string.transaction_type_buy) else stringResource(R.string.transaction_type_sell)
+                        ),
                         style = MaterialTheme.typography.h3,
                     )
                     Text(
                         modifier = Modifier
                             .alpha(0.6f),
-                        text = "${if (isBuyingTransaction) "+" else "-"}${transaction.amount} BTC",
+                        text =  stringResource(
+                            R.string.item_transaction_amount,
+                            if (isBuyingTransaction) "+" else "-",
+                            transaction.amount.toString(),
+                            symbol
+                        ),
                         style = MaterialTheme.typography.body1,
                     )
 
@@ -145,7 +151,8 @@ fun TransactionItemPreview() {
     KryptoTheme {
         Surface {
             TransactionItem(
-                transaction = bitCoinTransaction.first()
+                transaction = bitCoinTransaction.first(),
+                symbol = "BTC"
             )
         }
     }
