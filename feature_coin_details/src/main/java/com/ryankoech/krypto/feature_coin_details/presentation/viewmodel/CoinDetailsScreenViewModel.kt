@@ -99,7 +99,7 @@ class CoinDetailsScreenViewModel @Inject constructor(
                         )
                     }
                 }
-            }
+            }.launchIn(viewModelScope)
 
     }
 
