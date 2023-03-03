@@ -31,9 +31,9 @@ import java.util.*
 fun convertLongToTime(time: Long): String {
     val date = Date(time)
     val format = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        SimpleDateFormat("MMMM dd YYYY hh:mm:ss aa")
+        SimpleDateFormat("MMMM dd yyyy hh:mm:ss aa", Locale.ROOT)
     } else {
-        SimpleDateFormat("MM-dd-yyyy")
+        SimpleDateFormat("MM-dd-yyyy", Locale.ROOT)
     }
     return format.format(date)
 }
