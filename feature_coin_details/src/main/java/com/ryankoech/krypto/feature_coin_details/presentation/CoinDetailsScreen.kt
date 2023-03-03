@@ -18,15 +18,6 @@ import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import timber.log.Timber
 
-val MarketChartRangeText = listOf(
-    Pair(MarketChartRange.ONE_HOUR, "1h"),
-    Pair(MarketChartRange.ONE_DAY ,"1d"),
-    Pair(MarketChartRange.ONE_WEEK ,"7d"),
-    Pair(MarketChartRange.ONE_MONTH ,"30d"),
-    Pair(MarketChartRange.THREE_MONTH ,"90d"),
-    Pair(MarketChartRange.ONE_YEAR ,"1y"),
-)
-
 @Composable
 fun CoinDetailsScreen(
     viewModel : CoinDetailsScreenViewModel = hiltViewModel(),

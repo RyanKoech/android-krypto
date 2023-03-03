@@ -3,6 +3,7 @@ package com.ryankoech.krypto.feature_coin_details.presentation
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.R
 import com.ryankoech.krypto.common.presentation.ErrorScreen
@@ -14,7 +15,7 @@ fun CoinDetailsScreenError(
     modifier: Modifier = Modifier,
 ){
 
-    ErrorScreen(modifier = modifier, onButtonClick = onButtonClick, messageText = "Jeez, something's amiss", buttonText = "Retry", res = R.drawable.icon_gif_search)
+    ErrorScreen(modifier = modifier, onButtonClick = onButtonClick, messageText = stringResource(com.ryankoech.krypto.feature_coin_details.R.string.message_error_screen), buttonText = stringResource(com.ryankoech.krypto.feature_coin_details.R.string.button_retry), res = R.drawable.icon_gif_search)
 
 }
 

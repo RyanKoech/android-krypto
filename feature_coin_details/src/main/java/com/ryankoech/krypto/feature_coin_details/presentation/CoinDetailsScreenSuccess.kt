@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.ErrorScreen
@@ -48,6 +49,15 @@ fun CoinDetailsScreenSuccess(
 ) {
 
     val context = LocalContext.current
+
+    val marketChartRangeText = listOf(
+        Pair(MarketChartRange.ONE_HOUR, context.getString(R.string.button_market_chart_hour)),
+        Pair(MarketChartRange.ONE_DAY ,context.getString(R.string.button_market_chart_day)),
+        Pair(MarketChartRange.ONE_WEEK ,context.getString(R.string.button_market_chart_week)),
+        Pair(MarketChartRange.ONE_MONTH ,context.getString(R.string.button_market_chart_month)),
+        Pair(MarketChartRange.THREE_MONTH ,context.getString(R.string.button_market_chart_three_months)),
+        Pair(MarketChartRange.ONE_YEAR ,context.getString(R.string.button_market_chart_year)),
+    )
 
     LazyColumn(
         modifier = modifier
@@ -85,11 +95,11 @@ fun CoinDetailsScreenSuccess(
                 horizontalArrangement = Arrangement.SpaceBetween,
             ){
 
-                items(MarketChartRangeText.size){ counter ->
+                items(marketChartRangeText.size){ counter ->
                     MarketRangeButton(
-                        onClick = { marketChartButtonOnClick(MarketChartRangeText[counter].first) },
-                        text = MarketChartRangeText[counter].second,
-                        selected = MarketChartRangeText[counter].first == currentMarketChartRange
+                        onClick = { marketChartButtonOnClick(marketChartRangeText[counter].first) },
+                        text = marketChartRangeText[counter].second,
+                        selected = marketChartRangeText[counter].first == currentMarketChartRange
                     )
 
                 }
@@ -109,7 +119,7 @@ fun CoinDetailsScreenSuccess(
             Text(
                 modifier = Modifier
                     .padding(horizontal = 12.dp),
-                text = "Coin Statistics",
+                text = stringResource(R.string.heading_coin_statistics),
                 style = MaterialTheme.typography.h2,
             )
         }
@@ -118,10 +128,10 @@ fun CoinDetailsScreenSuccess(
         item{
 
             val coinStatistics = listOf(
-                CoinStatistic("Market Cap", getFormattedMarketCap(context, coin.marketCap), R.drawable.icon_pie_chart),
-                CoinStatistic("All Time High", getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_rocket),
-                CoinStatistic("24hr High", getFormattedBalance(context, coin.high24Hr), R.drawable.iconi_trophie),
-                CoinStatistic("Total Volume", getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_line_graph),
+                CoinStatistic(stringResource(R.string.card_heading_market_cap), getFormattedMarketCap(context, coin.marketCap), R.drawable.icon_pie_chart),
+                CoinStatistic(stringResource(R.string.card_heading_all_time_high), getFormattedBalance(context, coin.allTimeHigh), R.drawable.icon_rocket),
+                CoinStatistic(stringResource(R.string.card_heading_24hr_high), getFormattedBalance(context, coin.high24Hr), R.drawable.iconi_trophie),
+                CoinStatistic(stringResource(R.string.card_heading_total_volume), getFormattedTotalVolume(context, coin.totalVolume.toLong()), R.drawable.icon_line_graph),
             )
 
             LazyVerticalGrid(
@@ -159,7 +169,7 @@ fun CoinDetailsScreenSuccess(
             Text(
                 modifier = Modifier
                     .padding(horizontal = 12.dp),
-                text = "Transaction History",
+                text = stringResource(R.string.heading_transaction_history),
                 style = MaterialTheme.typography.h2,
             )
         }
@@ -172,7 +182,7 @@ fun CoinDetailsScreenSuccess(
                         .padding(
                             vertical = 40.dp,
                         ),
-                    messageText = "Whoops, looks like a ghost town here.",
+                    messageText = stringResource(R.string.message_no_transactions),
                     res = com.ryankoech.krypto.feature_transaction.R.drawable.no_transaction,
                     showButton = false,
                 )
@@ -190,7 +200,8 @@ fun CoinDetailsScreenSuccess(
                             bottom = 12.dp,
 
                             ),
-                    transaction = transaction
+                    transaction = transaction,
+                    symbol = coin.symbol
                 )
 
             }
@@ -209,7 +220,7 @@ fun CoinDetailsScreenSuccess(
                 KryptoButton(
                     modifier = Modifier
                         .weight(1.0f),
-                    text = "Transfer In",
+                    text = stringResource(R.string.button_transfer_in),
                     onClick = {
                         navigateToBuyTransactionScreen(coin.id)
                     }
@@ -220,7 +231,7 @@ fun CoinDetailsScreenSuccess(
                 KryptoButton(
                     modifier = Modifier
                         .weight(1.0f),
-                    text = "Transfer Out",
+                    text = stringResource(R.string.button_transfer_out),
                     onClick = {
                         navigateToSellTransactionScreen(coin.id)
                     },
