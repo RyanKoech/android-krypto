@@ -46,6 +46,7 @@ fun CoinDetailsScreenSuccess(
     marketChartData : List<Pair<Int, Double>>,
     marketChartButtonOnClick : (MarketChartRange) -> Unit,
     currentMarketChartRange : MarketChartRange,
+    onDeleteTransactionClick : (Long) -> Unit,
 ) {
 
     val context = LocalContext.current
@@ -201,7 +202,8 @@ fun CoinDetailsScreenSuccess(
 
                             ),
                     transaction = transaction,
-                    symbol = coin.symbol
+                    symbol = coin.symbol,
+                    onDeleteTransactionClick = onDeleteTransactionClick
                 )
 
             }
@@ -260,6 +262,7 @@ fun CoinDetailsScreenSuccessPreview() {
                 marketChartButtonOnClick = {},
                 marketChartData = FAKE_LINECHART_DATA,
                 transactions = bitCoinTransaction,
+                onDeleteTransactionClick = {}
             )
         }
     }

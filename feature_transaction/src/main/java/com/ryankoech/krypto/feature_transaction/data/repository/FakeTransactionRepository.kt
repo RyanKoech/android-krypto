@@ -37,4 +37,8 @@ class FakeTransactionRepository @Inject constructor() : TransactionRepository {
         }
 
     }
+
+    override suspend fun deleteCoinTransaction(date: Long) {
+        Timber.d("Deleted transaction: $date")
+    }
 }

@@ -117,7 +117,10 @@ fun CoinDetailsScreen(
                 navigateToSellTransactionScreen = navigateToSellTransactionScreen,
                 marketChartData = marketChartData,
                 marketChartButtonOnClick = marketChartButtonOnClick,
-                currentMarketChartRange = currentMarketChartRange
+                currentMarketChartRange = currentMarketChartRange,
+                onDeleteTransactionClick = { date ->
+                    viewModel.deleteCoinTransaction(date)
+                }
             )
 
         }

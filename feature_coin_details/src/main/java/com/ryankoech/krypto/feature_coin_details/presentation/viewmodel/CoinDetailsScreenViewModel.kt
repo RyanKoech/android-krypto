@@ -8,6 +8,7 @@ import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.feature_coin_details.domain.usecase.GetCoinMarketChartUseCase
 import com.ryankoech.krypto.feature_coin_details.presentation.viewstate.CoinDetailsScreenViewState
+import com.ryankoech.krypto.feature_transaction.domain.usecase.DeleteCoinTransactionUseCase
 import com.ryankoech.krypto.feature_transaction.domain.usecase.GetCoinTransactionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class CoinDetailsScreenViewModel @Inject constructor(
     private val getCoinMarketChartUseCase: GetCoinMarketChartUseCase,
     private val getCoinTransactionsUseCase: GetCoinTransactionsUseCase,
+    private val deleteCoinTransactionUseCase: DeleteCoinTransactionUseCase,
 ) : ViewModel(){
 
     private val _viewState = mutableStateOf(CoinDetailsScreenViewState())
@@ -77,6 +79,27 @@ class CoinDetailsScreenViewModel @Inject constructor(
 
 
             }.launchIn(viewModelScope)
+
+    }
+
+    fun deleteCoinTransaction(date : Long) {
+
+        deleteCoinTransactionUseCase(date)
+            .onEach { res ->
+                when(res){
+                    is Resource.Error -> {
+                        _message.emit("An error occurred while deleting the transaction.")
+                    }
+                    is Resource.Loading -> {
+                        // Do nothing
+                    }
+                    is Resource.Success -> {
+                        _viewState.value = _viewState.value.copy(
+                            transactions = _viewState.value.transactions.filter { it.date != date }
+                        )
+                    }
+                }
+            }
 
     }
 

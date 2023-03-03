@@ -1,11 +1,9 @@
 package com.ryankoech.krypto.feature_coin_details.presentation.components.success
 
 import android.os.Build
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +43,7 @@ fun TransactionItem(
     modifier: Modifier = Modifier,
     transaction: TransactionDto,
     symbol : String,
+    onDeleteTransactionClick : (Long) -> Unit,
 ) {
 
     val context = LocalContext.current
@@ -130,14 +129,20 @@ fun TransactionItem(
                 }
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
-            Icon(
-                modifier = Modifier
-                    .size(28.dp),
-                painter = painterResource(R.drawable.icon_delete),
-                contentDescription = null,
-            )
+            IconButton(
+                onClick = {
+                    onDeleteTransactionClick(transaction.date)
+                }
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .size(28.dp),
+                    painter = painterResource(R.drawable.icon_delete),
+                    contentDescription = null,
+                )
+            }
 
         }
     }
@@ -152,7 +157,8 @@ fun TransactionItemPreview() {
         Surface {
             TransactionItem(
                 transaction = bitCoinTransaction.first(),
-                symbol = "BTC"
+                symbol = "BTC",
+                onDeleteTransactionClick = {}
             )
         }
     }

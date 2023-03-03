@@ -7,4 +7,6 @@ interface TransactionRepository {
     suspend fun addTransaction(transaction : TransactionDto)
 
     suspend fun getCoinTransactions(coinId : String) : List<TransactionDto>
+
+    suspend fun deleteCoinTransaction(date : Long)
 }
