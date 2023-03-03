@@ -16,4 +16,7 @@ interface TransactionDao {
     @Query("SELECT * FROM `$TABLE_NAME_TRANSACTION` WHERE coinId = :coinId ORDER by date DESC")
     suspend fun getCoinTransactions(coinId : String) : List<TransactionDto>
 
+    @Query("DELETE FROM `$TABLE_NAME_TRANSACTION` WHERE date = :date")
+    suspend fun deleteTransaction(date : Long)
+
 }

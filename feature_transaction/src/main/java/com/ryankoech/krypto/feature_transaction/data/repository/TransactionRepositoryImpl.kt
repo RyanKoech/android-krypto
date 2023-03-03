@@ -19,4 +19,10 @@ class TransactionRepositoryImpl @Inject constructor(
 
     override suspend fun getCoinTransactions(coinId: String): List<TransactionDto> = dao.getCoinTransactions(coinId)
 
+    override suspend fun deleteCoinTransaction(date: Long) {
+        return coroutineScope {
+            dao.deleteTransaction(date)
+        }
+    }
+
 }
