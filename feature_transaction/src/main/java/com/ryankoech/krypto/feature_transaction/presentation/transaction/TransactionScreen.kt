@@ -25,6 +25,7 @@ import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_transaction.R
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
+import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
 import com.ryankoech.krypto.feature_transaction.domain.entity.toCoinEntity
 import com.ryankoech.krypto.feature_transaction.presentation.transaction.components.BuyTransactionScreen
@@ -39,6 +40,7 @@ import java.util.*
 fun TransactionScreen(
     coin : Coin,
     navigateBackToHomeScreen : () -> Unit,
+    transactionType: String,
     viewModel : TransactionScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -91,7 +93,9 @@ fun TransactionScreen(
         ),
     )
 
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(
+        if(transactionType == TransactionType.BUY.toString()) 0 else 1
+    )
     val coroutineScope = rememberCoroutineScope()
 
     Column(
@@ -148,7 +152,8 @@ fun TransactionScreenPreview() {
         Surface {
             TransactionScreen(
                 FAKE_COIN_LIST.toCoinEntity().first(),
-                {}
+                {},
+                TransactionType.SELL.toString()
             )
         }
     }

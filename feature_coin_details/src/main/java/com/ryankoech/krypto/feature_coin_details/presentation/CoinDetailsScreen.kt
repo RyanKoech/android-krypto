@@ -15,15 +15,16 @@ import com.ryankoech.krypto.feature_coin_details.presentation.util.MarketChartRa
 import com.ryankoech.krypto.feature_coin_details.presentation.viewmodel.CoinDetailsScreenViewModel
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
-import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
+import com.ryankoech.krypto.feature_transaction.domain.entity.Coin as TransactionCoin
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin as CoinListCoin
 import timber.log.Timber
 
 @Composable
 fun CoinDetailsScreen(
     viewModel : CoinDetailsScreenViewModel = hiltViewModel(),
-    coin : Coin,
-    navigateToBuyTransactionScreen : (String) -> Unit,
-    navigateToSellTransactionScreen : (String) -> Unit,
+    coin : CoinListCoin,
+    navigateToBuyTransactionScreen : (TransactionCoin) -> Unit,
+    navigateToSellTransactionScreen : (TransactionCoin) -> Unit,
     modifier: Modifier = Modifier
 ) {
 

@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.ScreenState
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortInfo
@@ -26,7 +27,7 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CoinListScreen(
-    coinItemOnClick : (String) -> Unit,
+    coinItemOnClick : (Coin) -> Unit,
     viewModel: CoinListScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {

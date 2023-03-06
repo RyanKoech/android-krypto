@@ -7,10 +7,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.ScreenState
+import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
+import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
 import com.ryankoech.krypto.feature_transaction.presentation.choose_asset.viewmodel.ChooseAssetScreenViewModel
 
 @Composable
 fun ChooseAssetScreen(
+    toTransactionScreen : (Coin, String) -> Unit,
+    toTransactionType: String,
     viewModel : ChooseAssetScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -41,7 +45,9 @@ fun ChooseAssetScreen(
 
             ChooseAssetScreenSuccess(
                 modifier = modifier,
-                onChooseAssetItemClick = {},
+                onChooseAssetItemClick = { coin ->
+                    toTransactionScreen(coin, toTransactionType)
+                },
                 coins = viewState.coins,
                 searchValue = searchValue,
                 onSearchValueChange = ::editSearchValueState
@@ -58,7 +64,10 @@ fun PreviewChooseAssetScreen() {
 
     KryptoTheme {
         Surface {
-            ChooseAssetScreen()
+            ChooseAssetScreen(
+                { _, _ -> },
+                TransactionType.BUY.toString(),
+            )
         }
     }
 

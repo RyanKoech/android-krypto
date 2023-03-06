@@ -58,9 +58,20 @@ dependencies {
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
+    implementation "androidx.navigation:navigation-compose:$navigation_compose_version"
 
     // local modules
     implementation project(":common")
+    implementation project(":feature_transaction")
+    implementation project(":feature_coin_list")
+    implementation project(":feature_coin_details")
+    implementation project(":feature_home")
+
+    // dagger-hilt - for dependency injection
+    implementation "com.google.dagger:hilt-android:$hilt_android_version"
+    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
 
     // dagger-hilt - for dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_android_version"
