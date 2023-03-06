@@ -27,22 +27,24 @@ import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
 import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
 import com.ryankoech.krypto.feature_coin_details.R
+import com.ryankoech.krypto.feature_coin_details.domain.entity.toTransactionCoin
 import com.ryankoech.krypto.feature_coin_details.presentation.components.success.*
 import com.ryankoech.krypto.feature_coin_details.presentation.util.CoinStatistic
 import com.ryankoech.krypto.feature_coin_details.presentation.util.MarketChartRange
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
-import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin as CoinListCoin
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
 import com.ryankoech.krypto.feature_transaction.data.repository.bitCoinTransaction
+import com.ryankoech.krypto.feature_transaction.domain.entity.Coin as TransactionCoin
 
 @Composable
 fun CoinDetailsScreenSuccess(
     modifier : Modifier = Modifier,
-    coin : Coin,
+    coin : CoinListCoin,
     transactions : List<TransactionDto>,
-    navigateToBuyTransactionScreen : (String) -> Unit,
-    navigateToSellTransactionScreen : (String) -> Unit,
+    navigateToBuyTransactionScreen : (TransactionCoin) -> Unit,
+    navigateToSellTransactionScreen : (TransactionCoin) -> Unit,
     marketChartData : List<Pair<Int, Double>>,
     marketChartButtonOnClick : (MarketChartRange) -> Unit,
     currentMarketChartRange : MarketChartRange,
@@ -224,7 +226,7 @@ fun CoinDetailsScreenSuccess(
                         .weight(1.0f),
                     text = stringResource(R.string.button_transfer_in),
                     onClick = {
-                        navigateToBuyTransactionScreen(coin.id)
+                        navigateToBuyTransactionScreen(coin.toTransactionCoin())
                     }
                 )
 
@@ -235,7 +237,7 @@ fun CoinDetailsScreenSuccess(
                         .weight(1.0f),
                     text = stringResource(R.string.button_transfer_out),
                     onClick = {
-                        navigateToSellTransactionScreen(coin.id)
+                        navigateToSellTransactionScreen(coin.toTransactionCoin())
                     },
                     color = Red100
                 )

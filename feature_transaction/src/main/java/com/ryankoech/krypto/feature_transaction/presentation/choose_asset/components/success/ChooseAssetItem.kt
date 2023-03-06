@@ -21,7 +21,7 @@ import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
 
 @Composable
 fun ChooseAssetItem(
-    onClick : (String) -> Unit,
+    onClick : (Coin) -> Unit,
     coin: Coin,
     modifier: Modifier = Modifier
 ) {
@@ -34,7 +34,7 @@ fun ChooseAssetItem(
                 Color(0xfff6f6f6)
             )
             .clickable {
-                onClick(coin.id)
+                onClick(coin)
             },
         verticalAlignment = Alignment.CenterVertically,
     ) {

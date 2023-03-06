@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Krypto</string>
+    <string name="screen_label_home">Home</string>
+    <string name="screen_label_choose_asset">ChooseAsset</string>
+    <string name="screen_label_transaction">Transaction</string>
+    <string name="screen_label_coin_list">CoinList</string>
+    <string name="screen_label_coin_details">CoinDetails</string>
+    <string name="screen_label_settings">Settings</string>
 </resources>

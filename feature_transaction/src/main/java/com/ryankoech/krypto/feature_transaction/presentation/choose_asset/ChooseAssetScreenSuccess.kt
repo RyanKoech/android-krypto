@@ -21,7 +21,7 @@ import com.ryankoech.krypto.feature_transaction.presentation.choose_asset.compon
 
 @Composable
 fun ChooseAssetScreenSuccess(
-    onChooseAssetItemClick : (String) -> Unit,
+    onChooseAssetItemClick : (Coin) -> Unit,
     coins : List<Coin>,
     searchValue : String,
     onSearchValueChange : (String) -> Unit,

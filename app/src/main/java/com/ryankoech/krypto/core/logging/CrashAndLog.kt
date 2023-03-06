@@ -8,7 +8,7 @@ object CrashAndLog {
         if (BuildConfig.DEBUG) {
             Timber.plant(object : Timber.DebugTree() {
                 override fun createStackElementTag(element: StackTraceElement): String? {
-                    return "(${element.fileName}:${element.lineNumber})#${element.methodName}"
+                    return "Timber: (${element.fileName}:${element.lineNumber})#${element.methodName}"
                 }
             })
         } else {
