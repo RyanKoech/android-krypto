@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -21,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ryankoech.krypto.R
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_coin_details.presentation.CoinDetailsScreen
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin as CoinListCoin
@@ -42,7 +42,14 @@ class MainActivity : ComponentActivity() {
             val viewModel = hiltViewModel<MainViewModel>()
             val navController = rememberNavController()
 
-            val items = listOf(
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentDestination = navBackStackEntry?.destination
+
+            var topBarTitle by remember {
+                mutableStateOf("")
+            }
+
+            val bottomNavigationItems = listOf(
                 Screens.Home,
                 Screens.CoinList,
                 Screens.Settings
@@ -89,11 +96,32 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        TopAppBar(
+                            title = {
+                                Text(
+                                    text = topBarTitle,
+                                    style = MaterialTheme.typography.h1
+                                )
+                            },
+                            navigationIcon =
+                                if (bottomNavigationItems.none { it.route == currentDestination?.route }) {
+                                    {
+                                        IconButton(onClick = {
+                                            navController.popBackStack()
+                                        }) {
+                                            Icon(
+                                                painter = painterResource(R.drawable.icon_arrow_left),
+                                                contentDescription = "Go back"
+                                            )
+                                        }
+                                    }
+                                } else null,
+                        )
+                    },
                     bottomBar = {
                         BottomNavigation {
-                            val navBackStackEntry by navController.currentBackStackEntryAsState()
-                            val currentDestination = navBackStackEntry?.destination
-                            items.forEach { screen ->
+                            bottomNavigationItems.forEach { screen ->
                                 BottomNavigationItem(
                                     icon = { Icon(painterResource(screen.iconResId), contentDescription = null) },
                                     label = { Text(stringResource(screen.labelResId)) },
@@ -129,6 +157,7 @@ class MainActivity : ComponentActivity() {
                         NavHost(navController = navController, startDestination = "home") {
 
                             composable(Screens.Home.route) {
+                                topBarTitle = stringResource(Screens.Home.titleResId)
                                 HomeScreen(
                                     onTransferInClick = {
                                         navigateToChooseAssetScreen(TransactionType.BUY.toString())
@@ -148,6 +177,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
                             ) { backStackEntry ->
+                                topBarTitle = stringResource(Screens.ChooseAsset.titleResId)
                                 ChooseAssetScreen(
                                     toTransactionScreen = ::navigateToTransactionScreen,
                                     toTransactionType = backStackEntry.arguments?.getString("transactionType")!!
@@ -163,6 +193,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 )
                             ) { backStackEntry ->
+                                topBarTitle = stringResource(Screens.Transaction.titleResId)
 
                                 val coin = viewModel.transactionCoin
 
@@ -179,12 +210,14 @@ class MainActivity : ComponentActivity() {
                             }
 
                             composable(Screens.CoinList.route){
+                                topBarTitle = stringResource(Screens.CoinList.titleResId)
                                 CoinListScreen(
                                     coinItemOnClick = ::navigateToCoinDetails
                                 )
                             }
 
                             composable(Screens.CoinDetails.route){
+                                topBarTitle = stringResource(Screens.CoinDetails.titleResId)
 
                                 val coin = viewModel.coinListCoin
 
@@ -207,6 +240,7 @@ class MainActivity : ComponentActivity() {
 
 
                             composable(Screens.Settings.route){
+                                topBarTitle = stringResource(Screens.Settings.titleResId)
                                 Text(
                                     text = "Settings"
                                 )
