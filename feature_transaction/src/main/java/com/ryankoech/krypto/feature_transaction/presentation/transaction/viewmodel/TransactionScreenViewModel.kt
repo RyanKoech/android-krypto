@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
+import com.ryankoech.krypto.feature_home.domain.usecase.DeleteOwnedCoinUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.SaveOwnedCoinUseCase
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionDto
@@ -22,7 +23,8 @@ import javax.inject.Inject
 class TransactionScreenViewModel @Inject constructor(
     private val saveCoinTransactionUseCase: SaveCoinTransactionUseCase,
     private val getOwnedCoinUseCase : GetOwnedCoinUseCase,
-    private val saveOwnedCoinUseCase: SaveOwnedCoinUseCase
+    private val saveOwnedCoinUseCase: SaveOwnedCoinUseCase,
+    private val deleteOwnedCoinUseCase: DeleteOwnedCoinUseCase,
 ) : ViewModel() {
 
     private val _viewState = mutableStateOf(TransactionScreenViewState())
@@ -67,6 +69,34 @@ class TransactionScreenViewModel @Inject constructor(
                 change = (transaction.currentPrice - _viewState.value.ownedCoin.value / _viewState.value.ownedCoin.value * 100).toFloat()
             )
         )
+
+        if(_viewState.value.ownedCoin.amount <= 0) {
+
+            deleteOwnedCoinUseCase(_viewState.value.ownedCoin.id)
+                .onEach { res ->
+                    when(res) {
+                        is Resource.Error -> {
+                            _viewState.value = _viewState.value.copy(
+                                screenState = ScreenState.ERROR
+                            )
+                        }
+                        is Resource.Loading -> {
+                            _viewState.value = _viewState.value.copy(
+                                screenState = ScreenState.LOADING
+                            )
+                        }
+                        is Resource.Success -> {
+                            _viewState.value = _viewState.value.copy(
+                                screenState = ScreenState.SUCCESS
+                            )
+                            insertTransaction(transaction)
+                        }
+                    }
+                }.launchIn(viewModelScope)
+
+            return
+
+        }
 
         saveOwnedCoinUseCase(_viewState.value.ownedCoin)
             .onEach { res ->

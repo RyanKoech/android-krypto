@@ -102,4 +102,8 @@ class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository 
         Timber.d("Database cleared")
     }
 
+    override suspend fun deleteOwnedCoin(coinId: String) {
+        Timber.d("Coin : $coinId has been deleted")
+    }
+
 }

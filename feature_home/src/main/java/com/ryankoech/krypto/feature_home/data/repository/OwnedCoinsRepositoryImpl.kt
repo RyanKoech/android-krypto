@@ -55,4 +55,10 @@ class OwnedCoinsRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun deleteOwnedCoin(coinId: String) {
+        return coroutineScope {
+            coinsDao.deleteOwnedCoin(coinId)
+        }
+    }
+
 }
