@@ -29,7 +29,7 @@ import com.ryankoech.krypto.feature_coin_list.presentation.theme.black200
 
 @Composable
 fun CoinItem(
-    onClick : (Coin) -> Unit,
+    onClick : (String) -> Unit,
     coin: Coin,
     modifier: Modifier = Modifier
 ) {
@@ -45,7 +45,7 @@ fun CoinItem(
                 shape = RoundedCornerShape(10.dp)
             )
             .clickable {
-                onClick(coin)
+                onClick(coin.id)
             },
     ) {
         CoinImage(coin.image, coin.id)

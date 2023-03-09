@@ -10,15 +10,8 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor() : ViewModel(){
 
-    var coinListCoin by mutableStateOf<CoinListCoin?>(null)
-        private set
-
     var transactionCoin by mutableStateOf<TransactionCoin?>(null)
         private set
-
-    fun addCoinListCoin(coin : CoinListCoin) {
-        coinListCoin = coin
-    }
 
     fun addTransactionCoin(coin: TransactionCoin){
         transactionCoin = coin

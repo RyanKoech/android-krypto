@@ -26,7 +26,7 @@ const val TEST_TAG_COIN_LIST_SCREEN_SUCCESS_COINS_LAZY_COLUMN = "test tag coin l
 
 @Composable
 fun CoinListScreenSuccess(
-    coinItemOnClick : (Coin) -> Unit,
+    coinItemOnClick : (String) -> Unit,
     screenState : ScreenState,
     editSortInfo : (SortCoinBy) -> Unit,
     sortInfoState : SortInfo,

@@ -27,7 +27,7 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CoinListScreen(
-    coinItemOnClick : (Coin) -> Unit,
+    coinItemOnClick : (String) -> Unit,
     viewModel: CoinListScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
