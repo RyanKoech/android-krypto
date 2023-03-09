@@ -32,6 +32,7 @@ fun HomeScreenSuccessWithData(
     onTransferInClick : () -> Unit,
     onTransferOutClick : () -> Unit,
     onWipeWalletClick : () -> Unit,
+    navigateToCoinDetails : (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
@@ -107,7 +108,9 @@ fun HomeScreenSuccessWithData(
         item{ Spacer(modifier = Modifier.height(24.dp)) }
 
         items(items = ownedCoins){ ownedCoin ->
-            OwnedCoinItem({},ownedCoin)
+            OwnedCoinItem({
+                navigateToCoinDetails(ownedCoin.id)
+            },ownedCoin)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -125,7 +128,7 @@ fun HomeScreenSuccessWithDataPreview() {
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
-            HomeScreenSuccessWithData(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {})
+            HomeScreenSuccessWithData(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {}, {})
         }
     }
 
