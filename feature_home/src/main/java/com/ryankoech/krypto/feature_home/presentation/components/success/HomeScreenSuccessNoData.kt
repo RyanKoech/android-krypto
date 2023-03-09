@@ -14,11 +14,12 @@ const val TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA = "test_tag_home_screen_success_n
 
 @Composable
 fun HomeScreenSuccessNoData(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToChooseAsset : () -> Unit
 ){
     ErrorScreen(
         modifier = modifier,
-        onButtonClick = {},
+        onButtonClick = navigateToChooseAsset,
         messageText = stringResource(R.string.home_screen_success_not_data_message),
         buttonText = stringResource(R.string.home_screen_success_no_data_action),
         res = R.drawable.astronaut
@@ -34,7 +35,7 @@ fun HomeScreenSuccessNoDataPreview() {
             modifier = Modifier.fillMaxSize()
         ) {
 
-            HomeScreenSuccessNoData()
+            HomeScreenSuccessNoData(Modifier, {})
 
         }
     }
