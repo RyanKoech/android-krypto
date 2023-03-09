@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
+import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import com.ryankoech.krypto.feature_home.domain.usecase.DeleteOwnedCoinUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.SaveOwnedCoinUseCase
@@ -58,6 +59,10 @@ class TransactionScreenViewModel @Inject constructor(
 
     fun saveCoinTransaction (transaction : TransactionDto) {
 
+        Timber.d(transaction.currentPrice.toString())
+        Timber.d(_viewState.value.ownedCoin.value.toString())
+        Timber.d(((transaction.currentPrice - _viewState.value.ownedCoin.value) / (_viewState.value.ownedCoin.value) * 100).toFloat().toString())
+
         _viewState.value = _viewState.value.copy(
             ownedCoin = _viewState.value.ownedCoin.copy(
                 amount = if( transaction.transactionType == TransactionType.BUY) {
@@ -66,7 +71,7 @@ class TransactionScreenViewModel @Inject constructor(
                     _viewState.value.ownedCoin.amount - transaction.amount
                 },
                 value = transaction.currentPrice,
-                change = (transaction.currentPrice - _viewState.value.ownedCoin.value / _viewState.value.ownedCoin.value * 100).toFloat()
+                change = ((transaction.currentPrice - _viewState.value.ownedCoin.value) / (_viewState.value.ownedCoin.value) * 100 ).toFloat()
             )
         )
 
