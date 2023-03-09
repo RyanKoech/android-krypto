@@ -155,7 +155,8 @@ class MainActivity : ComponentActivity() {
                                     },
                                     onTransferOutClick = {
                                         navigateToChooseAssetScreen(TransactionType.SELL.toString())
-                                    }
+                                    },
+                                    navigateToCoinDetails = ::navigateToCoinDetails
                                 )
                             }
 
