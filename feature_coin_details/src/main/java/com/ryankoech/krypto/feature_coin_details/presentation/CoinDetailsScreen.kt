@@ -16,21 +16,19 @@ import com.ryankoech.krypto.feature_coin_details.presentation.viewmodel.CoinDeta
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin as TransactionCoin
-import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin as CoinListCoin
 import timber.log.Timber
 
 @Composable
 fun CoinDetailsScreen(
     viewModel : CoinDetailsScreenViewModel = hiltViewModel(),
-    coin : CoinListCoin,
+    coinId : String,
     navigateToBuyTransactionScreen : (TransactionCoin) -> Unit,
     navigateToSellTransactionScreen : (TransactionCoin) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     LaunchedEffect(key1 = Unit){
-        viewModel.getCoinDetails(coin.id)
-        viewModel.getTransactions(coin.id)
+        viewModel.getCoin(coinId)
     }
 
     val context = LocalContext.current
@@ -104,7 +102,7 @@ fun CoinDetailsScreen(
         ScreenState.ERROR -> {
             CoinDetailsScreenError(
                 onButtonClick = {
-                    viewModel.getCoinDetails(coin.id)
+                    viewModel.getCoinDetails(coinId)
                 }
             )
         }
@@ -112,7 +110,7 @@ fun CoinDetailsScreen(
 
             CoinDetailsScreenSuccess(
                 modifier = modifier,
-                coin = coin,
+                coin = viewState.coin,
                 transactions = viewState.transactions,
                 navigateToBuyTransactionScreen = navigateToBuyTransactionScreen,
                 navigateToSellTransactionScreen = navigateToSellTransactionScreen,
@@ -139,7 +137,7 @@ fun CoinDetailsScreenPreview() {
                 .fillMaxSize()
         ) {
             CoinDetailsScreen(
-                coin = FAKE_COIN_LIST.toCoinEntity().first(),
+                coinId = "bitcoin",
                 navigateToBuyTransactionScreen = {},
                 navigateToSellTransactionScreen = {},
             )

@@ -23,7 +23,6 @@ import androidx.navigation.navArgument
 import com.ryankoech.krypto.R
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_coin_details.presentation.CoinDetailsScreen
-import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin as CoinListCoin
 import com.ryankoech.krypto.feature_coin_list.presentation.CoinListScreen
 import com.ryankoech.krypto.feature_home.presentation.HomeScreen
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
@@ -77,9 +76,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            fun navigateToCoinDetails(coin : CoinListCoin) {
-                viewModel.addCoinListCoin(coin)
-                navController.navigate(Screens.CoinDetails.route){
+            fun navigateToCoinDetails(coinId : String) {
+                navController.navigate(Screens.CoinDetails.route + "/$coinId"){
                     launchSingleTop = true
                 }
             }
@@ -209,25 +207,26 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            composable(Screens.CoinDetails.route){
+                            composable(
+                                Screens.CoinDetails.route + "/{coinId}",
+                                arguments = listOf(
+                                    navArgument("coinId") {
+                                        type = NavType.StringType
+                                        defaultValue = "bitcoin"
+                                    }
+                                )
+                            ){ backStackEntry ->
                                 topBarTitle = stringResource(Screens.CoinDetails.titleResId)
 
-                                val coin = viewModel.coinListCoin
-
-                                coin?.apply {
-                                    CoinDetailsScreen(
-                                        coin = coin,
-                                        navigateToBuyTransactionScreen = { transactionCoin ->
-                                            navigateToTransactionScreen(transactionCoin, TransactionType.BUY.toString())
-                                        },
-                                        navigateToSellTransactionScreen = { transactionCoin ->
-                                            navigateToTransactionScreen(transactionCoin, TransactionType.SELL.toString())
-                                        }
-                                    )
-                                    return@composable
-                                }
-
-                                // Fallback error screen
+                                CoinDetailsScreen(
+                                    coinId = backStackEntry.arguments?.getString("coinId")!!,
+                                    navigateToBuyTransactionScreen = { transactionCoin ->
+                                        navigateToTransactionScreen(transactionCoin, TransactionType.BUY.toString())
+                                    },
+                                    navigateToSellTransactionScreen = { transactionCoin ->
+                                        navigateToTransactionScreen(transactionCoin, TransactionType.SELL.toString())
+                                    }
+                                )
 
                             }
 

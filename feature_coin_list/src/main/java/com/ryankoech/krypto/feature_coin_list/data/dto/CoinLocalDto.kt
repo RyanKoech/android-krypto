@@ -38,3 +38,19 @@ fun List<CoinLocalDto>.toCoinEntity() : List<Coin> = map {
         totalVolume = it.totalVolume
     )
 }
+
+
+fun CoinLocalDto.toCoinEntity() : Coin =
+    Coin(
+        id = this.id,
+        name = this.name,
+        symbol = this.symbol,
+        price = this.price,
+        marketCapRank = this.marketCapRank,
+        image = this.image,
+        change = this.change,
+        marketCap = this.marketCap,
+        allTimeHigh = this.allTimeHigh,
+        high24Hr = this.high24Hr,
+        totalVolume = this.totalVolume
+    )
