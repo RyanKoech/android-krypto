@@ -28,7 +28,8 @@ fun HomeScreenSuccess(
 
     if(ownedCoins.isEmpty()){
         HomeScreenSuccessNoData(
-            modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA)
+            modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA),
+            navigateToChooseAsset = onTransferInClick,
         )
     }else{
         HomeScreenSuccessWithData(
