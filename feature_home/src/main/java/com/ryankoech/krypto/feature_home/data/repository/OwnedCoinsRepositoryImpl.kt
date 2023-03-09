@@ -7,7 +7,10 @@ import com.ryankoech.krypto.feature_home.data.data_source.local.shared_pref.Home
 import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class OwnedCoinsRepositoryImpl @Inject constructor(
@@ -50,8 +53,10 @@ class OwnedCoinsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun wipeDatabase() {
-        return coroutineScope{
-            ownedCoinsDatabase.clearAllTables()
+        return coroutineScope {
+            CoroutineScope(Dispatchers.IO).launch {
+                ownedCoinsDatabase.clearAllTables()
+            }
         }
     }
 
