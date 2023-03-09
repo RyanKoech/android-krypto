@@ -4,13 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -89,6 +92,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
                         TopAppBar(
+                            backgroundColor = MaterialTheme.colors.surface,
+                            contentColor = MaterialTheme.colors.onSurface,
+                            elevation = 0.dp,
                             title = {
                                 Text(
                                     text = topBarTitle,
@@ -111,11 +117,28 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     bottomBar = {
-                        BottomNavigation {
+                        BottomNavigation(
+                            modifier = Modifier
+                                .padding(bottom = 12.dp)
+                                .height(64.dp),
+                            backgroundColor = Color(0xfff2f2f2),
+                            contentColor = MaterialTheme.colors.onSurface,
+                        ) {
                             bottomNavigationItems.forEach { screen ->
                                 BottomNavigationItem(
-                                    icon = { Icon(painterResource(screen.iconResId), contentDescription = null) },
-                                    label = { Text(stringResource(screen.labelResId)) },
+                                    icon = {
+                                        Icon(
+                                            modifier = Modifier
+                                                .padding(bottom = 4.dp),
+                                            painter = painterResource(screen.iconResId),
+                                            contentDescription = null
+                                        )
+                                    },
+                                    label = {
+                                        Text(
+                                            text = stringResource(screen.labelResId)
+                                        )
+                                    },
                                     selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                                     onClick = {
                                         navController.navigate(screen.route) {
