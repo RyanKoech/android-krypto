@@ -158,7 +158,7 @@ fun BuyTransactionScreen(
             modifier = Modifier
                 .fillMaxWidth(),
             text = stringResource(R.string.button_label_buy, coin.name),
-            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
+            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null && enteredQuantity.toDouble() > 0,
             onClick = onClick@{
 
                 if(enteredQuantity.toDoubleOrNull().isNull()){

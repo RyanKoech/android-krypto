@@ -183,7 +183,7 @@ fun SellTransactionScreen(
                 .fillMaxWidth(),
             text = stringResource(R.string.button_label_sell, coin.name),
             color = Red200,
-            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null,
+            enabled = screenState == ScreenState.SUCCESS && enteredQuantity.toDoubleOrNull() != null && enteredQuantity.toDouble() > 0,
             onClick = onClick@{
 
                 if(enteredQuantity.toDoubleOrNull().isNull()){
