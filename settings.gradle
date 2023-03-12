@@ -16,3 +16,6 @@ rootProject.name = "Krypto"
 include ':app'
 include ':feature_home'
 include ':common'
+include ':feature_coin_list'
+include ':feature_transaction'
+include ':feature_coin_details'

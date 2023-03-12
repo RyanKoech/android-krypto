@@ -79,9 +79,6 @@ fun HomeScreenActionItem(
                     shape = MaterialTheme.shapes.small,
                     color = color
                 )
-                .clickable {
-                    onClick()
-                }
         ) {
 
             IconButton(

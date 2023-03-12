@@ -22,12 +22,14 @@ fun HomeScreenSuccess(
     onTransferInClick : () -> Unit,
     onTransferOutClick : () -> Unit,
     onWipeWalletClick : () -> Unit,
+    navigateToCoinDetails : (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     if(ownedCoins.isEmpty()){
         HomeScreenSuccessNoData(
-            modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA)
+            modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA),
+            navigateToChooseAsset = onTransferInClick,
         )
     }else{
         HomeScreenSuccessWithData(
@@ -36,6 +38,7 @@ fun HomeScreenSuccess(
             onTransferInClick = onTransferInClick,
             onTransferOutClick = onTransferOutClick,
             onWipeWalletClick = onWipeWalletClick,
+            navigateToCoinDetails = navigateToCoinDetails,
             modifier = modifier.testTag(TEST_TAG_HOME_SCREEN_SUCCESS_WITH_DATA)
         )
     }
@@ -49,7 +52,7 @@ fun HomeScreenSuccessPreview() {
     KryptoTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
 
-            HomeScreenSuccess(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {})
+            HomeScreenSuccess(FakeOwnedCoins, FakeDisplayCurrencies, {}, {}, {}, {})
 
         }
     }

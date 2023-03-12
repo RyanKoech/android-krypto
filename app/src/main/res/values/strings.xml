@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Krypto</string>
+    <string name="screen_label_home">Home</string>
+    <string name="screen_label_choose_asset">ChooseAsset</string>
+    <string name="screen_label_transaction">Transaction</string>
+    <string name="screen_label_coin_list">Assets</string>
+    <string name="screen_label_coin_details">CoinDetails</string>
+    <string name="screen_label_settings">Settings</string>
+    <string name="screen_title_home">Home</string>
+    <string name="screen_title_choose_asset">Choose an Asset</string>
+    <string name="screen_title_transaction">Transaction</string>
+    <string name="screen_title_coin_list">Cryptoassets</string>
+    <string name="screen_title_coin_details">Asset Overview</string>
+    <string name="screen_title_settings">Settings</string>
 </resources>

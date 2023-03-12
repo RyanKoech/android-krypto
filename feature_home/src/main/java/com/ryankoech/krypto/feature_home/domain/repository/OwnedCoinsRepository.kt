@@ -8,6 +8,8 @@ interface OwnedCoinsRepository {
 
     suspend fun saveOwnedCoin(coin : OwnedCoinDto) : String
 
+    suspend fun getOwnedCoin(coinId : String) : OwnedCoinDto?
+
     suspend fun getOwnedCoins() : List<OwnedCoinDto>
 
     suspend fun saveDisplayCurrencyData(displayCurrencyDataMap : HashMap<DisplayCurrency, Double>)
@@ -15,4 +17,6 @@ interface OwnedCoinsRepository {
     suspend fun getDisplayCurrencyData() : List<DisplayCurrencyDto>?
 
     suspend fun wipeDatabase()
+
+    suspend fun deleteOwnedCoin(coinId : String)
 }

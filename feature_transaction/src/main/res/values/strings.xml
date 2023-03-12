@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="placeholder_transaction_amount">Quantity</string>
+    <string name="price_coin">%s per coin.</string>
+    <string name="button_label_buy">Buy %s</string>
+    <string name="amount_tag_buying">You\'ll pay %s</string>
+    <string name="button_label_sell">Sell %s</string>
+    <string name="amount_tag_selling">You\'ll receive %s</string>
+    <string name="error_max_balance">You can not exceed your %s balance.</string>
+    <string name="tab_title_buy">Buy</string>
+    <string name="tab_title_sell">Sell</string>
+    <string name="error_message">Something went wrong. Try again later.</string>
+</resources>

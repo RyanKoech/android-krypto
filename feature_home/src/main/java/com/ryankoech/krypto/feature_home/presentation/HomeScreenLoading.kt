@@ -10,7 +10,7 @@ import com.ryankoech.krypto.common.presentation.components.loading.CoinCardLoadi
 import com.ryankoech.krypto.common.presentation.components.loading.loadingEffect
 import com.ryankoech.krypto.common.presentation.components.loading.LoadingText
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
-import com.ryankoech.krypto.feature_home.presentation.components.loading.CreditCardLoading
+import com.ryankoech.krypto.common.presentation.components.loading.CardLoading
 import com.ryankoech.krypto.feature_home.presentation.components.loading.HomeScreenActionsLoading
 
 const val TEST_TAG_HOME_SCREEN_LOADING = "test_tag_home_screen_loading"
@@ -28,7 +28,7 @@ fun HomeScreenLoading(
 
         val brush = loadingEffect()
 
-        CreditCardLoading(brush)
+        CardLoading(brush)
 
         Spacer(modifier = Modifier.height(32.dp))
 

@@ -78,6 +78,10 @@ class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository 
         }
     }
 
+    override suspend fun getOwnedCoin(coinId: String): OwnedCoinDto {
+        return FakeOwnedCoins.first()
+    }
+
     override suspend fun getOwnedCoins(): List<OwnedCoinDto> {
         return coroutineScope {
             withContext(Dispatchers.IO) {
@@ -96,6 +100,10 @@ class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository 
 
     override suspend fun wipeDatabase() {
         Timber.d("Database cleared")
+    }
+
+    override suspend fun deleteOwnedCoin(coinId: String) {
+        Timber.d("Coin : $coinId has been deleted")
     }
 
 }

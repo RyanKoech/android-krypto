@@ -18,12 +18,17 @@ import coil.request.ImageRequest
 import com.ryankoech.krypto.common.R
 
 @Composable
-fun CoinImage(url : String, name : String) {
+fun CoinImage(
+    url : String,
+    name : String,
+    backgroundColor : Color = Color.Black,
+    modifier: Modifier = Modifier,
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(60.dp)
             .background(
-                color = Color.Black,
+                color = backgroundColor,
                 shape = RoundedCornerShape(10.dp)
             ),
         contentAlignment = Alignment.Center

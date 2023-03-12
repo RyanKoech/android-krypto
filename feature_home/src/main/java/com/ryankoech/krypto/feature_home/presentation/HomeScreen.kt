@@ -18,6 +18,7 @@ import com.ryankoech.krypto.feature_home.presentation.viewmodel.HomeScreenViewMo
 fun HomeScreen(
     onTransferInClick : () -> Unit,
     onTransferOutClick : () -> Unit,
+    navigateToCoinDetails : (String) -> Unit,
     viewModel: HomeScreenViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -53,6 +54,7 @@ fun HomeScreen(
                     displayCurrencies = viewState.displayCurrencies,
                     onTransferInClick = onTransferInClick,
                     onTransferOutClick = onTransferOutClick,
+                    navigateToCoinDetails = navigateToCoinDetails,
                     onWipeWalletClick = { viewModel.wipeOwnedCoinsDatabase() }
                 )
             }
@@ -64,6 +66,6 @@ fun HomeScreen(
 @Composable
 fun HomeScreenPreview() {
     KryptoTheme {
-        HomeScreen({}, {})
+        HomeScreen({}, {}, {})
     }
 }
