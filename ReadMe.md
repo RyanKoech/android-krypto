@@ -14,6 +14,8 @@
 
 ![](https://img.shields.io/badge/Personal_Project-blue)
 
+**WIP - First release coming soon.**
+
 # Krypto
 
 > Monitor various crypto assets and perform mock purchases to test your crypto skills from the safety and comfort of your phone.
@@ -42,21 +44,18 @@ Each feature is will comprise of 3 layers; presentation, domain, data
 - [x] Coin Details Feature
 - [ ] Setting Feature
 
-## UI Designs
+## App Screenshots
 
 ### Light
-<img src="images/design_dark_splash.jpg" height="500" alt="Splash screen"/> <img src="images/design_light_onboard.jpg" height="500" alt="Onboard screen"/> <img src="images/design_light_home.jpg" height="500" alt="Home screen"/> 
-<img src="images/design_light_home_error.jpg" height="500" alt="Home error screen"/> <img src="images/design_light_coin_list.jpg" height="500" alt="Coin list screen"/> <img src="images/design_light_coin_list_error.jpg" height="500" alt="Coin list error screen"/>
-<img src="images/design_light_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/design_light_coin_details_error.jpg" height="500" alt="Coin details error screen"/> <img src="images/design_light_choose_asset.jpg" height="500" alt="Choose asset screen"/>
-<img src="images/design_light_choose_asset_error.jpg" height="500" alt="Choose asset error screen"/> <img src="images/design_light_buy_sell.jpg" height="500" alt="Buy - Sell screen"/> <img src="images/design_light_settings.jpg" height="500" alt="Settings screen"/>
-<img src="images/design_light_app_info.jpg" height="500" alt="App info screen"/> <img src="images/design_light_loading_example.jpg" height="500" alt="Loading example screen"/>
+<img src="images/screenshot_light_home.jpg" height="500" alt="Home screen"/> <img src="images/screenshot_light_home_error.jpg" height="500" alt="Home screen error"/> <img src="images/screenshot_light_coin_list.jpg" height="500" alt="Coin list screen"/> 
+<img src="images/screenshot_light_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/screenshot_light_choose_asset.jpg" height="500" alt="Choose asset screen"/> <img src="images/screenshot_light_buy_sell.jpg" height="500" alt="Buy -Sell screen"/>
 
 ### Dark
-<img src="images/design_dark_splash.jpg" height="500" alt="Splash screen"/> <img src="images/design_dark_onboard.jpg" height="500" alt="Onboard screen"/> <img src="images/design_dark_home.jpg" height="500" alt="Home screen"/> 
-<img src="images/design_dark_home_error.jpg" height="500" alt="Home error screen"/> <img src="images/design_dark_coin_list.jpg" height="500" alt="Coin list screen"/> <img src="images/design_dark_coin_list_error.jpg" height="500" alt="Coin list error screen"/>
-<img src="images/design_dark_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/design_dark_coin_details_error.jpg" height="500" alt="Coin details error screen"/> <img src="images/design_dark_choose_asset.jpg" height="500" alt="Choose asset screen"/> 
-<img src="images/design_dark_choose_asset_error.jpg" height="500" alt="Choose asset error screen"/> <img src="images/design_dark_buy_sell.jpg" height="500" alt="Buy - Sell screen"/> <img src="images/design_dark_settings.jpg" height="500" alt="Settings screen"/> 
-<img src="images/design_dark_app_info.jpg" height="500" alt="App info screen"/> <img src="images/design_dark_loading_example.jpg" height="500" alt="Loading example screen"/>
+_Coming Soon_
+
+## UI Designs
+Link to app UI designs [here](./UiDesigns.md)
+
 
 ## Getting Started
 
@@ -70,6 +69,7 @@ git clone https://github.com/RyanKoech/android-krypto.git
 Installed Android Studio or Any other android development IDEs and their respective dependencies.
 
 ## 🤝 Contributing
+**Updates coming soon**
 
 Contributions, issues, and feature requests are welcome! <br/>
 You can pick a thing to do from the tasks list provided above and work on it.<br/>
