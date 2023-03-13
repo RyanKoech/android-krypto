@@ -92,7 +92,7 @@ Give a ⭐ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENCE) licensed.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -106,4 +106,4 @@ This project is [MIT](./MIT.md) licensed.
 [issues-shield]: https://img.shields.io/github/issues/RyanKoech/android-krypto.svg?style=for-the-badge
 [issues-url]: https://github.com/RyanKoech/android-krypto/issues
 [license-shield]: https://img.shields.io/github/license/RyanKoech/android-krypto.svg?style=for-the-badge
-[license-url]: https://github.com/RyanKoech/android-krypto/blob/master/LICENSE
+[license-url]: https://github.com/RyanKoech/android-krypto/blob/master/LICENCE
