@@ -69,16 +69,15 @@ git clone https://github.com/RyanKoech/android-krypto.git
 Installed Android Studio or Any other android development IDEs and their respective dependencies.
 
 ## 🤝 Contributing
-**Updates coming soon**
 
 Contributions, issues, and feature requests are welcome! <br/>
-You can pick a thing to do from the tasks list provided above and work on it.<br/>
+You can pick a thing to do from the [issues page](../../issues) and work on it. I will be raise more soon. <br/>
 
 Observe the following in order to have your PR merged successfully.
-- Create branches from the `dev` branch
-- Create a PR to the `dev` branch
-- Prefix branch name with it purpose ie `feature_`, `bugfix_`, `hotfix_`
-- For feature branches use the following naming conventions `feature_<feature-name>`
+- Create **branches from the `dev` branch**
+- Create a **PR to the `dev` branch**
+- Prefix **branch name** with its **issue label then issue number** of the most significant issue being solved ie `bug/21`, `ui/23`, `enhancement/45`. This means you need to have an issue open before you can work on a contribution. Where an issue has several labels, choose branch name in order of precedence, `bug > enhancement > testing > ui > documentation`.
+- Fix the least number of issues per PR. Best, **1 issue per PR**. Else, tag any other issue solved in the PR.
 
 Feel free to check the [issues page](../../issues/) or [discussions page](../../discussions).
 
