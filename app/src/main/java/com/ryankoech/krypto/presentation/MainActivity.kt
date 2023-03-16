@@ -28,6 +28,7 @@ import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_coin_details.presentation.CoinDetailsScreen
 import com.ryankoech.krypto.feature_coin_list.presentation.CoinListScreen
 import com.ryankoech.krypto.feature_home.presentation.HomeScreen
+import com.ryankoech.krypto.feature_settings.presentation.AboutScreen
 import com.ryankoech.krypto.feature_settings.presentation.SettingsScreen
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin as TransactionCoin
@@ -82,6 +83,12 @@ class MainActivity : ComponentActivity() {
 
             fun navigateToCoinDetails(coinId : String) {
                 navController.navigate(Screens.CoinDetails.route + "/$coinId"){
+                    launchSingleTop = true
+                }
+            }
+
+            fun navigateToAboutScreen() {
+                navController.navigate(Screens.About.route){
                     launchSingleTop = true
                 }
             }
@@ -258,7 +265,14 @@ class MainActivity : ComponentActivity() {
 
                             composable(Screens.Settings.route){
                                 topBarTitle = stringResource(Screens.Settings.titleResId)
-                                SettingsScreen()
+                                SettingsScreen(
+                                    navigateToAboutScreen = ::navigateToAboutScreen
+                                )
+                            }
+
+                            composable(Screens.About.route){
+                                topBarTitle = stringResource(Screens.About.titleResId)
+                                AboutScreen()
                             }
 
 
