@@ -66,6 +66,7 @@ dependencies {
     implementation project(":feature_coin_list")
     implementation project(":feature_coin_details")
     implementation project(":feature_home")
+    implementation project(":feature_settings")
 
     // dagger-hilt - for dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_android_version"
