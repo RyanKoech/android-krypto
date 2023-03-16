@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_settings.R
 
@@ -38,12 +39,12 @@ fun SettingsItem(
     ) {
         Icon(
             modifier = Modifier
-                .size(32.dp),
+                .size(36.dp),
             painter = painterResource(iconRes),
             contentDescription = title,
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.width(16.dp))
 
         Column {
             Text(
@@ -52,12 +53,14 @@ fun SettingsItem(
                         bottom = 4.dp
                     ),
                 text = title,
-                style = MaterialTheme.typography.h2
+                style = MaterialTheme.typography.h2.copy(
+                    fontSize = 19.sp
+                )
             )
             
             Text(
                 text = details,
-                style = MaterialTheme.typography.caption
+                style = MaterialTheme.typography.body1
             )
         }
     }
