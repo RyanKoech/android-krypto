@@ -9,12 +9,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.feature_settings.R
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMail
 import com.ryankoech.krypto.feature_settings.presentation.components.AboutItem
 import com.ryankoech.krypto.feature_settings.presentation.util.AboutEntity
+import com.ryankoech.krypto.feature_settings.presentation.util.EMAIL_RYAN
 
 @Composable
 fun AboutScreen(
@@ -25,37 +28,37 @@ fun AboutScreen(
     val uriHandler = LocalUriHandler.current
 
 
+    val aboutList = listOf(
+        AboutEntity(
+            title = "Krypto",
+            details = stringResource(R.string.about_app_details, "1.0.0")
+        ),
+        AboutEntity(
+            title = stringResource(R.string.about_developer_title),
+            details = stringResource(R.string.about_developer_details),
+            action = {
+                uriHandler.openUri("https://github.com/RyanKoech/android-krypto")
+            }
+        ),
+        AboutEntity(
+            title = stringResource(R.string.about_contact_title),
+            details = EMAIL_RYAN,
+            action = {
+                context.sendMail(
+                    to = EMAIL_RYAN,
+                    subject = "Inquiry From Krypto",
+                    body = "Hey Ryan,\n",
+                )
+            }
+        ),
+    )
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-        val aboutList = listOf(
-            AboutEntity(
-                title = "Krypto",
-                details ="Version 1.0.0"
-            ),
-            AboutEntity(
-                title = "Developed by",
-                details = "Ryan Koech and community",
-                action = {
-                    uriHandler.openUri("https://github.com/RyanKoech/android-krypto")
-                }
-            ),
-            AboutEntity(
-                title = "Contact Me",
-                details = "sirryankoech@gmail.com",
-                action = {
-                    context.sendMail(
-                        to = "sirryankoech@gmail.com",
-                        subject = "Inquiry From Krypto",
-                        body = "Hey Ryan,\n",
-                    )
-                }
-            ),
-        )
 
         items(aboutList){ aboutListItem ->
             AboutItem(
