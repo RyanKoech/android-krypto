@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting_info_title">App Info</string>
+    <string name="setting_info_description">Learn more about Krypto</string>
+    <string name="setting_bug_report_title">Report An Issue</string>
+    <string name="setting_bug_report_description">Tell us what wrong with the app</string>
+    <string name="setting_share_app_title">Share Krypto</string>
+    <string name="setting_share_app_description">Help other people discover the app</string>
+    <string name="setting_share_app_message">A simple way to manager crypto assets and practice crypto trading. By Ryan and the android community.\n\nRelease coming soon.</string>
+    <string name="setting_rate_app_title">Rate Our App</string>
+    <string name="setting_rate_app_description">Leave a review if you loved Krypto</string>
+    <string name="setting_buy_coffee_title">Buy Me Coffee</string>
+    <string name="setting_buy_coffee_description">Help support further development</string>
+    <string name="about_app_details">Version %s</string>
+    <string name="about_developer_title">Developed by</string>
+    <string name="about_developer_details">Ryan Koech and community</string>
+    <string name="about_contact_title">Contact Me</string>
+</resources>

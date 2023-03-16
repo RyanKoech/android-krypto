@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -19,7 +20,9 @@ import com.ryankoech.krypto.feature_settings.core.ktx.rateInPlaystore
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMail
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMessage
 import com.ryankoech.krypto.feature_settings.presentation.components.SettingsItem
+import com.ryankoech.krypto.feature_settings.presentation.util.EMAIL_RYAN
 import com.ryankoech.krypto.feature_settings.presentation.util.SettingsEntity
+
 
 @Composable
 fun SettingsScreen(
@@ -32,44 +35,44 @@ fun SettingsScreen(
 
     val settingsList = listOf(
         SettingsEntity(
-            title = "App Info",
-            details = "Learn more about Krypto",
+            title = stringResource(R.string.setting_info_title),
+            details = stringResource(R.string.setting_info_description),
             iconRes = R.drawable.icon_info,
             action = navigateToAboutScreen
         ),
         SettingsEntity(
-            title = "Report An Issue",
-            details = "Tell us what wrong with the app",
+            title = stringResource(R.string.setting_bug_report_title),
+            details = stringResource(R.string.setting_bug_report_description),
             iconRes = R.drawable.icon_bug,
             action = {
                 context.sendMail(
-                    to = "sirryankoech@gmail.com",
+                    to = EMAIL_RYAN,
                     subject = "Krypto - Report a Problem",
                     body = "Device Information:\n\nYour Issue:"
                 )
             }
         ),
         SettingsEntity(
-            title = "Share Krypto",
-            details = "Help other people discover the app",
+            title = stringResource(R.string.setting_share_app_title),
+            details = stringResource(R.string.setting_share_app_description),
             iconRes = R.drawable.icon_share,
             action = {
                 context.sendMessage(
-                    message = "A simple way to manager crypto assets and practice crypto trading. By Ryan and the android community.\n\nRelease coming soon.",
+                    message = context.getString(R.string.setting_share_app_message),
                 )
             }
         ),
         SettingsEntity(
-            title = "Rate Our App",
-            details = "Leave a review if you loved Krypto",
+            title = stringResource(R.string.setting_rate_app_title),
+            details = stringResource(R.string.setting_rate_app_description),
             iconRes = R.drawable.icon_star,
             action = {
                 context.rateInPlaystore()
             }
         ),
         SettingsEntity(
-            title = "Buy Me Coffee",
-            details = "Help support further development",
+            title = stringResource(R.string.setting_buy_coffee_title),
+            details = stringResource(R.string.setting_buy_coffee_description),
             iconRes = R.drawable.icon_gift,
             action = {
                 uriHandler.openUri("https://www.buymeacoffee.com/RyanKoech")
