@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import timber.log.Timber
 
 @Composable
 fun AboutItem(
@@ -35,16 +36,17 @@ fun AboutItem(
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        var textModifier : Modifier = Modifier
+        onClick?.apply {
+            textModifier = textModifier.then(
+                Modifier.clickable {
+                    onClick()
+                }
+            )
+        }
+
         Text(
-            modifier = Modifier
-                .apply TextModifier@{
-                    val textModifier = this
-                    onClick?.apply {
-                        textModifier.clickable {
-                            onClick()
-                        }
-                    }
-                },
+            modifier = textModifier,
             text = details,
             style = MaterialTheme.typography.body1.copy(
                 fontSize = 18.sp
