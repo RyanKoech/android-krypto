@@ -35,20 +35,21 @@ Below are some of the key android concepts used/applied in this project:
 - Shared preferences
 - etc
 
-### Main Project Tasks
+### Main Project Features
 Each feature is will comprise of 3 layers; presentation, domain, data 
 
-- [x] Home Feature 
-- [x] Transaction Feature 
-- [x] Coin List Feature
-- [x] Coin Details Feature
-- [ ] Setting Feature
+- Home Feature 
+- Transaction Feature 
+- Coin List Feature
+- Coin Details Feature
+- Setting Feature
 
 ## App Screenshots
 
 ### Light
 <img src="images/screenshot_light_home.jpg" height="500" alt="Home screen"/> <img src="images/screenshot_light_home_error.jpg" height="500" alt="Home screen error"/> <img src="images/screenshot_light_coin_list.jpg" height="500" alt="Coin list screen"/> 
 <img src="images/screenshot_light_coin_details.jpg" height="500" alt="Coin details screen"/> <img src="images/screenshot_light_choose_asset.jpg" height="500" alt="Choose asset screen"/> <img src="images/screenshot_light_buy_sell.jpg" height="500" alt="Buy -Sell screen"/>
+<img src="images/screenshot_light_settings.jpg" height="500" alt="Settings screen"/> <img src="images/screenshot_light_about.jpg" height="500" alt="About Krypto asset screen"/>
 
 ### Dark
 _Coming Soon_
@@ -74,7 +75,7 @@ Contributions, issues, and feature requests are welcome! <br/>
 You can pick a thing to do from the [issues page](../../issues) and work on it. I will be raise more soon. <br/>
 
 Observe the following in order to have your PR merged successfully.
-- Create **branches from the `dev` branch**
+- Create **branches from the `dev` branch** of your forked repo.
 - Create a **PR to the `dev` branch**
 - Prefix **branch name** with its **issue label then issue number** of the most significant issue being solved ie `bug/21`, `ui/23`, `enhancement/45`. This means you need to have an issue open before you can work on a contribution. Where an issue has several labels, choose branch name in order of precedence, `bug > enhancement > testing > ui > documentation`.
 - Fix the least number of issues per PR. Best, **1 issue per PR**. Else, tag any other issue solved in the PR.
