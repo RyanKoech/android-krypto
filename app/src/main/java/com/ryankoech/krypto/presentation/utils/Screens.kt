@@ -43,4 +43,9 @@ sealed class Screens(
         iconResId = R.drawable.icon_settings,
         titleResId = R.string.screen_title_settings
     )
+    object About : Screens(
+        route = "about",
+        labelResId = R.string.screen_label_about,
+        titleResId = R.string.screen_title_about
+    )
 }
