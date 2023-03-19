@@ -1,9 +1,8 @@
 package com.ryankoech.krypto.feature_home.domain.usecase
 
-import com.google.common.truth.Truth
+import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.ryankoech.krypto.common.core.util.Resource
-import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.feature_home.core.util.EXCEPTION_MESSAGE
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
@@ -39,10 +38,12 @@ class SaveOwnedCoinUseCaseTest {
         repository = FakeOwnedCoinsRepositoryImpl()
         saveOwnedCoinsUseCase = SaveOwnedCoinUseCase(repository)
 
-        val resource = saveOwnedCoinsUseCase(ownedCoinDto)
-
-        assertThat(resource).isInstanceOf(Resource.Success::class.java)
-        assertThat(resource.data).isEqualTo(ownedCoinDto.id)
+        saveOwnedCoinsUseCase(ownedCoinDto).test {
+            val resource = awaitItem()
+            assertThat(resource).isInstanceOf(Resource.Success::class.java)
+            assertThat(resource.data).isEqualTo(ownedCoinDto.id)
+            awaitComplete()
+        }
     }
 
     @Test
@@ -52,10 +53,13 @@ class SaveOwnedCoinUseCaseTest {
 
         saveOwnedCoinsUseCase = SaveOwnedCoinUseCase(repository)
 
-        val resource = saveOwnedCoinsUseCase(ownedCoinDto)
+        saveOwnedCoinsUseCase(ownedCoinDto).test {
+            val resource = awaitItem()
+            assertThat(resource).isInstanceOf(Resource.Error::class.java)
+            assertThat(resource.message).isEqualTo(EXCEPTION_MESSAGE)
+            awaitComplete()
+        }
 
-        assertThat(resource).isInstanceOf(Resource.Error::class.java)
-        assertThat(resource.message).isEqualTo(EXCEPTION_MESSAGE)
     }
 
 }
