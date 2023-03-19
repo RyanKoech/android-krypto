@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_coin_list.data.data_source.local.db
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinLocalDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.TANLENAME_COIN_DTO
@@ -9,7 +10,7 @@ import com.ryankoech.krypto.feature_coin_list.data.dto.TANLENAME_COIN_DTO
 @Dao
 interface CoinDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCoins(coins : List<CoinLocalDto>)
 
     @Query("SELECT * FROM $TANLENAME_COIN_DTO")
