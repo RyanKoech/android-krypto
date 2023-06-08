@@ -1,10 +1,10 @@
-package com.ryankoech.krypto.feature_home.domain.usecase
+package com.ryankoech.krypto.feature_coin_list.domain.usecase
 
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.core.di.HILT_NAME_REPO_FOR_ALL
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
-import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
+import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAME_REPO_FOR_ALL
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -16,14 +16,15 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class GetDisplayCurrencyDataUseCase @Inject constructor(
-    @Named(HILT_NAME_REPO_FOR_ALL) private val repository: OwnedCoinsRepository
+    @Named(HILT_NAME_REPO_FOR_ALL) private val repository: CoinRepository
 ) {
 
     @VisibleForTesting
     internal val defaultList = listOf( DisplayCurrencyDto(DisplayCurrency.USD, 1.0))
 
     operator fun invoke() = flow<Resource<List<DisplayCurrencyDto>>> {
-        val currencyData = repository.getDisplayCurrencyData() ?: defaultList
+        val displayCurrenciesDto = repository.getDisplayCurrencyData()
+        val currencyData = if (displayCurrenciesDto.isNullOrEmpty())  defaultList  else displayCurrenciesDto
         emit(Resource.Success(currencyData))
     }.onStart {
         emit(Resource.Success(defaultList))

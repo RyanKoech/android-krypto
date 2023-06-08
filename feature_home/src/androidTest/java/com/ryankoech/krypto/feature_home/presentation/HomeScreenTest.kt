@@ -9,7 +9,7 @@ import com.ryankoech.krypto.feature_home.R
 import com.ryankoech.krypto.feature_home.core.util.EXCEPTION_MESSAGE
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
-import com.ryankoech.krypto.feature_home.domain.usecase.GetDisplayCurrencyDataUseCase
+import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetDisplayCurrencyDataUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinsUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.WipeDatabaseUseCase
 import com.ryankoech.krypto.feature_home.presentation.components.success.HOME_SCREEN_ACTION_ITEM_WIPE_WALLET

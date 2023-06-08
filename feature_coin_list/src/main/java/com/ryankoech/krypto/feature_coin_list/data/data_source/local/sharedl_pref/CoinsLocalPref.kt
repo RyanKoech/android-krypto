@@ -1,23 +1,23 @@
-package com.ryankoech.krypto.feature_home.data.data_source.local.shared_pref
+package com.ryankoech.krypto.feature_coin_list.data.data_source.local.sharedl_pref
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.core.ktx.toDisplayCurrencyList
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.core.ktx.toDisplayCurrencyList
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.coroutineScope
 import timber.log.Timber
 import javax.inject.Inject
 
-class HomeLocalPref @Inject constructor(
+class CoinsLocalPref @Inject constructor(
     @ApplicationContext private val context : Context
 ) {
 
     companion object {
-        private const val PREF_NAME = "feature_home_local_pref"
+        private const val PREF_NAME = "feature_coin_local_pref"
         private const val DISPLAY_CURRENCY_KEY = "display_currency_data"
     }
 
@@ -50,7 +50,7 @@ class HomeLocalPref @Inject constructor(
                     gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
                 displayCurrencyData
             }catch (e : Exception) {
-                Timber.e(e)
+                Timber.w(e)
                 null
             }
         }

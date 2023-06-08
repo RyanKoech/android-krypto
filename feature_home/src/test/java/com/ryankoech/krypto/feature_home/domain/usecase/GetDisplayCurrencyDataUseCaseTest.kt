@@ -2,6 +2,7 @@ package com.ryankoech.krypto.feature_home.domain.usecase
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetDisplayCurrencyDataUseCase
 import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository

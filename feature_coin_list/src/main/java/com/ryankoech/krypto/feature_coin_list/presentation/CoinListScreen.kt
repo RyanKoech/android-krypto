@@ -93,7 +93,7 @@ fun CoinListScreen(
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
 
         if(viewState.screenState == ScreenState.ERROR) {
