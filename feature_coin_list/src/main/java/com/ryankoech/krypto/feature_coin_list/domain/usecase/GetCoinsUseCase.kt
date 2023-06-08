@@ -1,6 +1,7 @@
 package com.ryankoech.krypto.feature_coin_list.domain.usecase
 
 import com.ryankoech.krypto.common.core.util.Resource
+import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.feature_coin_list.core.di.HILT_NAME_REPO_FOR_ALL
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
@@ -43,6 +44,7 @@ class GetCoinsUseCase @Inject constructor(
             // Save to local
             if(!cacheCoin.isNullOrEmpty()) {
                 repository.saveCoins(cacheCoin!!.toLocalCoinDto())
+                saveDisplayCurrencies(cacheCoin!!)
             }
             response
         } else {
@@ -71,6 +73,20 @@ class GetCoinsUseCase @Inject constructor(
             Timber.e(e)
             emit(Resource.Error(e.localizedMessage ?: "Unexpected Error Occurred."))
         }
+    }
+
+    private suspend fun saveDisplayCurrencies(coins : List<CoinDto>) {
+        val displayCurrenciesMap = hashMapOf<DisplayCurrency, Double>()
+        displayCurrenciesMap[DisplayCurrency.USD] = 1.0
+        val displayCurrencies = DisplayCurrency.values().map { it.toString() }
+        for (coin in coins) {
+            val coinSymbol = coin.symbol.uppercase(Locale.ROOT)
+            if (displayCurrencies.contains(coinSymbol)) {
+                displayCurrenciesMap[DisplayCurrency.valueOf(coinSymbol)] = coin.current_price
+            }
+        }
+
+        repository.saveDisplayCurrencyData(displayCurrenciesMap)
     }
     companion object{
         @VisibleForTesting

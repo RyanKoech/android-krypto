@@ -5,7 +5,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.core.ktx.toDisplayCurrencyList
+import com.ryankoech.krypto.feature_coin_list.data.data_source.local.sharedl_pref.CoinsLocalPref
+import com.ryankoech.krypto.feature_coin_list.core.ktx.toDisplayCurrencyList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -16,18 +17,18 @@ import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-class HomeLocalPrefTest {
+class CoinsLocalPrefTest {
 
-    private var homeLocalPref: HomeLocalPref? = null
+    private var coinsLocalPref: CoinsLocalPref? = null
 
     @Before
     fun setUp() {
-        homeLocalPref = HomeLocalPref(ApplicationProvider.getApplicationContext<Context?>().applicationContext)
+        coinsLocalPref = CoinsLocalPref(ApplicationProvider.getApplicationContext<Context?>().applicationContext)
     }
 
     @After
     fun tearDown() {
-        homeLocalPref = null
+        coinsLocalPref = null
     }
 
     @Test
@@ -39,10 +40,10 @@ class HomeLocalPrefTest {
             DisplayCurrency.BTC to 4.0,
             DisplayCurrency.BNB to 5.0,
         )
-        homeLocalPref!!.saveDisplayCurrencyData(fakeDisplayCurrencyMap)
+        coinsLocalPref!!.saveDisplayCurrencyData(fakeDisplayCurrencyMap)
 
         runBlocking {
-            val retrievedDisplayCurrencyList = homeLocalPref!!.getDisplayCurrencyData()
+            val retrievedDisplayCurrencyList = coinsLocalPref!!.getDisplayCurrencyData()
             assertThat(retrievedDisplayCurrencyList).isEqualTo(fakeDisplayCurrencyMap.toDisplayCurrencyList())
         }
     }

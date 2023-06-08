@@ -14,11 +14,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.core.ktx.getNextIndex
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.getBalance
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.getChange
-import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoins
 import com.ryankoech.krypto.feature_home.presentation.util.CreditCardDetails
 

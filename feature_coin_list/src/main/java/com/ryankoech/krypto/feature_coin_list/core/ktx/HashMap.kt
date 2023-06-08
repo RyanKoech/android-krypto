@@ -1,7 +1,7 @@
-package com.ryankoech.krypto.feature_home.core.ktx
+package com.ryankoech.krypto.feature_coin_list.core.ktx
 
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
 
 fun HashMap<DisplayCurrency, Double>.toDisplayCurrencyList() : List<DisplayCurrencyDto> {
 
