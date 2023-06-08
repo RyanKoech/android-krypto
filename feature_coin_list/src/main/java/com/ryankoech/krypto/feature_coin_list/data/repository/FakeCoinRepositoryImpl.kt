@@ -1,8 +1,10 @@
 package com.ryankoech.krypto.feature_coin_list.data.repository
 
+import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.CoinLocalDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.Roi
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_coin_list.data.dto.toLocalCoinDto
 import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import retrofit2.Response
@@ -212,6 +214,15 @@ val FAKE_COIN_LIST = listOf(
     )
 )
 
+val FakeDisplayCurrencies = listOf(
+    DisplayCurrencyDto(DisplayCurrency.BNB, 262.4234),
+    DisplayCurrencyDto(DisplayCurrency.USD, 1.0),
+    DisplayCurrencyDto(DisplayCurrency.ETH, 1274.1234),
+    DisplayCurrencyDto(DisplayCurrency.BTC, 17505.54256),
+    DisplayCurrencyDto(DisplayCurrency.LTC, 74.13),
+).sortedBy { it.currency.ordinal }
+
+
 class FakeCoinRepositoryImpl @Inject constructor() : CoinRepository {
     override suspend fun getCoins(): Response<List<CoinDto>> {
         return Response.success(FAKE_COIN_LIST)
@@ -224,4 +235,12 @@ class FakeCoinRepositoryImpl @Inject constructor() : CoinRepository {
     }
 
     override suspend fun getCoin(coinId: String): CoinLocalDto = FAKE_COIN_LIST.toLocalCoinDto().first()
+
+    override suspend fun saveDisplayCurrencyData(displayCurrencyDataMap: HashMap<DisplayCurrency, Double>) {
+        Timber.d("Saved Local DisplayCurrency Data")
+    }
+
+    override suspend fun getDisplayCurrencyData(): List<DisplayCurrencyDto>?{
+        return FakeDisplayCurrencies
+    }
 }

@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.getBalance
 import com.ryankoech.krypto.feature_home.R

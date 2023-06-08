@@ -1,4 +1,4 @@
-package com.ryankoech.krypto.feature_home.data.dto.display_currency
+package com.ryankoech.krypto.feature_coin_list.data.dto.display_currency
 
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
 

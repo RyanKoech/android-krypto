@@ -1,7 +1,7 @@
 package com.ryankoech.krypto.feature_home.data.repository
 
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
-import com.ryankoech.krypto.feature_home.data.dto.display_currency.DisplayCurrencyDto
+import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
 import kotlinx.coroutines.Dispatchers
@@ -61,14 +61,6 @@ val FakeOwnedCoins = listOf(
     ),
 )
 
-val FakeDisplayCurrencies = listOf(
-    DisplayCurrencyDto(DisplayCurrency.BNB, 262.4234),
-    DisplayCurrencyDto(DisplayCurrency.USD, 1.0),
-    DisplayCurrencyDto(DisplayCurrency.ETH, 1274.1234),
-    DisplayCurrencyDto(DisplayCurrency.BTC, 17505.54256),
-    DisplayCurrencyDto(DisplayCurrency.LTC, 74.13),
-).sortedBy { it.currency.ordinal }
-
 class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository {
 
     override suspend fun saveOwnedCoin(coin: OwnedCoinDto): String {
@@ -88,14 +80,6 @@ class FakeOwnedCoinsRepositoryImpl @Inject constructor() : OwnedCoinsRepository 
                 FakeOwnedCoins
             }
         }
-    }
-
-    override suspend fun saveDisplayCurrencyData(displayCurrencyDataMap: HashMap<DisplayCurrency, Double>) {
-        Timber.d("Saved Local DisplayCurrency Data")
-    }
-
-    override suspend fun getDisplayCurrencyData(): List<DisplayCurrencyDto>?{
-        return FakeDisplayCurrencies
     }
 
     override suspend fun wipeDatabase() {

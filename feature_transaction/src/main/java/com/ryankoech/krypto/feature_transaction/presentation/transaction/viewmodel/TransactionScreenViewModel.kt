@@ -59,10 +59,6 @@ class TransactionScreenViewModel @Inject constructor(
 
     fun saveCoinTransaction (transaction : TransactionDto) {
 
-        Timber.d(transaction.currentPrice.toString())
-        Timber.d(_viewState.value.ownedCoin.value.toString())
-        Timber.d(((transaction.currentPrice - _viewState.value.ownedCoin.value) / (_viewState.value.ownedCoin.value) * 100).toFloat().toString())
-
         _viewState.value = _viewState.value.copy(
             ownedCoin = _viewState.value.ownedCoin.copy(
                 amount = if( transaction.transactionType == TransactionType.BUY) {

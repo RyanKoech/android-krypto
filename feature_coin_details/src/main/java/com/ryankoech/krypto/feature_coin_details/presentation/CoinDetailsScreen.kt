@@ -59,7 +59,7 @@ fun CoinDetailsScreen(
                 try {
                     viewState.dayMarketChart.toPairList().subList(0, 11)
                 } catch (e : Throwable){
-                    Timber.d(e.localizedMessage)
+                    Timber.w(e.localizedMessage)
                     viewState.dayMarketChart.toPairList()
                 }
             }
@@ -71,7 +71,7 @@ fun CoinDetailsScreen(
                 try {
                     viewState.threeMonthMarketChart.toPairList().subList(0, 167)
                 } catch (e : Throwable){
-                    Timber.d(e.localizedMessage)
+                    Timber.w(e.localizedMessage)
                     viewState.threeMonthMarketChart.toPairList()
                 }
             }
@@ -80,7 +80,7 @@ fun CoinDetailsScreen(
                 try {
                     viewState.threeMonthMarketChart.toPairList().subList(0, 719)
                 } catch (e : Throwable){
-                    Timber.d(e.localizedMessage)
+                    Timber.w(e.localizedMessage)
                     viewState.threeMonthMarketChart.toPairList()
                 }
             }

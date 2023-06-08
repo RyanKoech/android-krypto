@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.common.presentation.util.ScreenState
-import com.ryankoech.krypto.feature_home.domain.usecase.GetDisplayCurrencyDataUseCase
+import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetDisplayCurrencyDataUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.GetOwnedCoinsUseCase
 import com.ryankoech.krypto.feature_home.domain.usecase.WipeDatabaseUseCase
 import com.ryankoech.krypto.feature_home.presentation.viewstate.HomeScreenViewState
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
