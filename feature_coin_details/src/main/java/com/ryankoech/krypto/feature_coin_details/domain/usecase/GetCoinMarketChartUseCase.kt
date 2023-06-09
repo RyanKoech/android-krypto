@@ -1,6 +1,5 @@
 package com.ryankoech.krypto.feature_coin_details.domain.usecase
 
-import com.ryankoech.krypto.common.core.ktx.isNotNull
 import com.ryankoech.krypto.common.core.util.Resource
 import com.ryankoech.krypto.feature_coin_details.core.di.HILT_NAME_REPO_FOR_ALL
 import com.ryankoech.krypto.feature_coin_details.data.dto.market_chart_dto.toMarketChartEntityList
@@ -17,17 +16,7 @@ import javax.inject.Named
 class GetCoinMarketChartUseCase @Inject constructor(
     @Named(HILT_NAME_REPO_FOR_ALL) private val repository: CoinDetailsRepository
 ) {
-    private var cacheCoinId : String? = null
-    private var cacheChartEntities : List<List<MarketChartEntity>>? = null
-
     operator fun invoke(coinId : String) = flow<Resource<List<List<MarketChartEntity>>>> {
-
-        if(cacheCoinId.isNotNull() && cacheCoinId == coinId && !cacheChartEntities.isNullOrEmpty()){
-            emit(Resource.Success(
-                    cacheChartEntities!!
-            ))
-            return@flow
-        }
 
         val dayMarketChartResponse = repository.getDayMarketChart(coinId)
         val threeMonthMarketChartResponse = repository.getThreeMonthsMarketChart(coinId)
@@ -35,28 +24,12 @@ class GetCoinMarketChartUseCase @Inject constructor(
 
         if(dayMarketChartResponse.isSuccessful && threeMonthMarketChartResponse.isSuccessful && yearMarketChartResponse.isSuccessful) {
 
-            val dayMarketChartEntity = dayMarketChartResponse.body()!!.toMarketChartEntityList()
-            val threeMonthMarketChartEntity = threeMonthMarketChartResponse.body()!!.toMarketChartEntityList()
-            val yearMarketChartEntity = yearMarketChartResponse.body()!!.toMarketChartEntityList()
+            emit(Resource.Success(listOf(
+                dayMarketChartResponse.body()!!.toMarketChartEntityList(),
+                threeMonthMarketChartResponse.body()!!.toMarketChartEntityList(),
+                yearMarketChartResponse.body()!!.toMarketChartEntityList(),
+            )))
 
-            // Clear cache after 1 minute
-            Timer().schedule(object : TimerTask() {
-                override fun run() {
-                    cacheChartEntities = null
-                    cacheCoinId = null
-                }
-            }, 60_000)
-
-            cacheChartEntities = listOf(
-                dayMarketChartEntity,
-                threeMonthMarketChartEntity,
-                yearMarketChartEntity
-            )
-            cacheCoinId = coinId
-
-            emit(Resource.Success(
-                cacheChartEntities!!
-            ))
         } else {
             throw Exception("Response not Successful.")
         }
