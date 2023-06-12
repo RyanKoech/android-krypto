@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.feature_settings.BuildConfig
 import com.ryankoech.krypto.feature_settings.R
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMail
 import com.ryankoech.krypto.feature_settings.presentation.components.AboutItem
@@ -31,7 +32,7 @@ fun AboutScreen(
     val aboutList = listOf(
         AboutEntity(
             title = "Krypto",
-            details = stringResource(R.string.about_app_details, "1.0.0")
+            details = stringResource(R.string.about_app_details, BuildConfig.VERSION_NAME)
         ),
         AboutEntity(
             title = stringResource(R.string.about_developer_title),

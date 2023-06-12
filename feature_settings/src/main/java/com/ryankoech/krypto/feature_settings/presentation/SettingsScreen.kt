@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.feature_settings.BuildConfig
 import com.ryankoech.krypto.feature_settings.R
 import com.ryankoech.krypto.feature_settings.core.ktx.rateInPlaystore
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMail
@@ -47,7 +48,7 @@ fun SettingsScreen(
             action = {
                 context.sendMail(
                     to = EMAIL_RYAN,
-                    subject = "Krypto - Report a Problem",
+                    subject = "Krypto - Report a Problem (Version: ${BuildConfig.VERSION_NAME})",
                     body = "Device Information:\n\nYour Issue:"
                 )
             }

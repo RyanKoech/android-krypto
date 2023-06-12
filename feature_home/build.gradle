@@ -5,13 +5,15 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: "$rootDir/base_build.gradle"
+
 android {
     namespace 'com.ryankoech.krypto.feature_home'
-    compileSdk 33
+    compileSdk rootProject.compileSdk
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -44,70 +46,30 @@ android {
 
 dependencies {
 
-    // core android
-    implementation "androidx.core:core-ktx:$ktx_core_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "com.google.android.material:material:$material_version"
-
     // local modules
     implementation project(":common")
     implementation project(path: ':feature_coin_list')
 
-    //Compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.activity:activity-compose:$compose_activity_version"
-
     // room - for storing data locally
-    implementation "androidx.room:room-ktx:$room_version"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
-    // dagger-hilt - for dependency injection
-    implementation "com.google.dagger:hilt-android:$hilt_android_version"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
+    implementation room.room_ktx
+    implementation room.runtime
+    annotationProcessor room.compiler
+    kapt room.compiler
 
     // gson
-    implementation "com.google.code.gson:gson:$gson_version"
-
-    // timber
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    // junit4
-    testImplementation "junit:junit:$junit_version"
-
-    // google truth
-    testImplementation "com.google.truth:truth:$google_truth_version"
+    implementation gson.gson
 
     // mockk
-    testImplementation "io.mockk:mockk-android:$mockk_version"
-    testImplementation "io.mockk:mockk-agent:$mockk_version"
+    testImplementation mockk.android
+    testImplementation mockk.agent
 
     // coroutines test
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    testImplementation coroutines.coroutines_test
 
     // turbine
-    testImplementation "app.cash.turbine:turbine:$turbine_version"
-
-    // junit4
-    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
-
-    // espresso
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-
-    // compose ui
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
-
-    // google truth
-    androidTestImplementation "com.google.truth:truth:$google_truth_version"
+    testImplementation turbine.turbine
 
     // mockk
-    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
-    androidTestImplementation "io.mockk:mockk-agent:$mockk_version"
+    androidTestImplementation mockk.android
+    androidTestImplementation mockk.agent
 }
