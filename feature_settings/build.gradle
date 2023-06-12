@@ -4,19 +4,31 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: "$rootDir/base_build.gradle"
+
 android {
     namespace 'com.ryankoech.krypto.feature_settings'
-    compileSdk 33
+    compileSdk rootProject.compileSdk
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("long", "VERSION_CODE", "${defaultConfig.versionCode}")
+        buildConfigField("String","VERSION_NAME","\"${defaultConfig.versionName}\"")
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix ".debug"
+            buildConfigField("long", "VERSION_CODE", "${defaultConfig.versionCode}")
+            buildConfigField("String","VERSION_NAME","\"${defaultConfig.versionName}${versionNameSuffix}\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -38,30 +50,6 @@ android {
 }
 
 dependencies {
-
-    // core android
-    implementation "androidx.core:core-ktx:$ktx_core_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "com.google.android.material:material:$material_version"
-
     // local modules
     implementation project(":common")
-
-    // timber
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    //Compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.activity:activity-compose:$compose_activity_version"
-
-    // junit4
-    testImplementation "junit:junit:$junit_version"
-
-    // junit4
-    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
-
-    // espresso
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }

@@ -1,0 +1,42 @@
+dependencies {
+
+    // core android
+    implementation android_core.core
+    implementation app_compat.app_compat
+    implementation material.material
+
+    //Compose
+    implementation compose.ui
+    implementation compose.material
+    implementation compose.preview
+    implementation compose.activity_compose
+
+    // dagger-hilt - for dependency injection
+    implementation dagger_hilt.hilt_android
+    implementation dagger_hilt.navigation_compose
+    kapt dagger_hilt.android_compiler
+    kapt dagger_hilt.hilt_compiler
+
+    // timber
+    implementation timber.timber
+
+    // junit4
+    testImplementation junit.junit
+
+    // google truth
+    testImplementation truth.truth
+
+    // junit4
+    androidTestImplementation junit.ext_junit
+
+    // espresso
+    androidTestImplementation espresso.core
+
+    // compose ui
+    androidTestImplementation compose.ui_test_junit4
+    debugImplementation compose.ui_tooling
+    debugImplementation compose.ui_test_manifest
+
+    // google truth
+    androidTestImplementation truth.truth
+}

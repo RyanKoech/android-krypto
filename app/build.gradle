@@ -5,15 +5,18 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: "$rootDir/base_build.gradle"
+
 android {
-    compileSdk 33
+    namespace 'com.ryankoech.krypto'
+    compileSdk rootProject.compileSdk
 
     defaultConfig {
         applicationId "com.ryankoech.krypto"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -25,6 +28,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
+            versionNameSuffix ".debug"
         }
         release {
             minifyEnabled true
@@ -52,48 +56,15 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-    namespace 'com.ryankoech.krypto'
 }
 
 dependencies {
 
-    // core android
-    implementation 'androidx.core:core-ktx:1.9.0'
-
-    // compose
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.activity:activity-compose:$compose_activity_version"
-    implementation "androidx.navigation:navigation-compose:$navigation_compose_version"
-
     // local modules
-    implementation project(":common")
     implementation project(":feature_transaction")
     implementation project(":feature_coin_list")
     implementation project(":feature_coin_details")
     implementation project(":feature_home")
     implementation project(":feature_settings")
-
-    // dagger-hilt - for dependency injection
-    implementation "com.google.dagger:hilt-android:$hilt_android_version"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
-
-    // dagger-hilt - for dependency injection
-    implementation "com.google.dagger:hilt-android:$hilt_android_version"
-    implementation "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compile_version"
-
-    // timber
-    implementation "com.jakewharton.timber:timber:$timber_version"
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation project(":common")
 }

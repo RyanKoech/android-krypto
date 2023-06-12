@@ -1,0 +1,132 @@
+ext {
+    minSdk = 21
+    targetSdk = 33
+    versionMajor = 1
+    versionMinor = 0
+    versionPatch = 0
+    versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
+    compileSdk = 33
+    versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+
+
+    compose_version = '1.4.0-alpha02'
+    room_version = '2.4.3'
+    ktx_core_version = '1.9.0'
+    app_compat_version = '1.5.1'
+    material_version = '1.7.0'
+    junit_version = '4.13.2'
+    junit_ext_version = '1.1.4'
+    espresso_version = '3.5.0'
+    compose_activity_version = '1.6.1'
+    coil_compose = '2.1.0'
+    hilt_android_version = '2.43.2'
+    hilt_android_compile_version = '2.42'
+    hilt_lifecycle_viewmodel_version = '1.0.0-alpha03'
+    hilt_compile_version = '1.0.0'
+    hilt_navigation_compose_version = '1.1.0-alpha01'
+    gson_version = '2.9.1'
+    timber_version = '5.0.1'
+    google_truth_version = '1.1.3'
+    mockk_version = '1.13.3'
+    coroutines_test_version = '1.6.4'
+    turbine_version = '0.12.1'
+    okhttp_logging_interceptor_version = '5.0.0-alpha.9'
+    retrofit_version = '2.9.0'
+    accompanist_version = '0.28.0'
+    navigation_compose_version = '2.5.3'
+
+    accompanist = [
+            pager : "com.google.accompanist:accompanist-pager:$accompanist_version",
+            pager_indicators : "com.google.accompanist:accompanist-pager-indicators:$accompanist_version",
+    ]
+
+    android_core = [
+            // core android
+            core : "androidx.core:core-ktx:1.9.0"
+    ]
+
+    app_compat = [
+            app_compat : "androidx.appcompat:appcompat:$app_compat_version"
+    ]
+
+    coil = [
+            compose : "io.coil-kt:coil-compose:$coil_compose",
+            gif : "io.coil-kt:coil-gif:$coil_compose",
+    ]
+
+    compose = [
+            // compose
+            ui : "androidx.compose.ui:ui:$compose_version",
+            material : "androidx.compose.material:material:$compose_version",
+            preview : "androidx.compose.ui:ui-tooling-preview:$compose_version",
+            activity_compose : "androidx.activity:activity-compose:$compose_activity_version",
+            navigation : "androidx.navigation:navigation-compose:$navigation_compose_version",
+            ui_test_junit4 : "androidx.compose.ui:ui-test-junit4:$compose_version",
+            ui_tooling : "androidx.compose.ui:ui-tooling:$compose_version",
+            ui_test_manifest : "androidx.compose.ui:ui-test-manifest:$compose_version",
+    ]
+
+    dagger_hilt = [
+            // dagger-hilt - for dependency injection
+            hilt_android : "com.google.dagger:hilt-android:$hilt_android_version",
+            navigation_compose : "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version",
+            android_compiler : "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version",
+            hilt_compiler : "androidx.hilt:hilt-compiler:$hilt_compile_version",
+    ]
+
+    gson = [
+            gson : "com.google.code.gson:gson:$gson_version"
+    ]
+
+    material = [
+            material : "com.google.android.material:material:$material_version"
+    ]
+
+    retrofit2 = [
+            retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            converter_gson : "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            logging_interceptor : "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version"
+    ]
+
+    room = [
+            // room - for storing data locally
+            room_ktx : "androidx.room:room-ktx:$room_version",
+            runtime : "androidx.room:room-runtime:$room_version",
+            compiler : "androidx.room:room-compiler:$room_version",
+    ]
+
+    timber = [
+            // timber
+            timber : "com.jakewharton.timber:timber:$timber_version"
+    ]
+
+    coroutines = [
+            coroutines_test : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    ]
+
+    junit = [
+            // JUnit
+            junit : "junit:junit:4.13.2",
+            ext_junit : "androidx.test.ext:junit:1.1.4"
+    ]
+
+    espresso = [
+            core : "androidx.test.espresso:espresso-core:3.5.0"
+    ]
+
+    mockk = [
+            // mockk
+            android : "io.mockk:mockk-android:$mockk_version",
+            agent : "io.mockk:mockk-agent:$mockk_version",
+    ]
+
+    truth = [
+            truth : "com.google.truth:truth:$google_truth_version"
+    ]
+
+    turbine = [
+            turbine : "app.cash.turbine:turbine:$turbine_version"
+    ]
+
+
+}
