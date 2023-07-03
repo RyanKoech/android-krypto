@@ -17,5 +17,8 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Enable android.useAndroidX property
+        run: echo 'android.useAndroidX=true' >> gradle.properties
+
       - name: Build Debug Apk
         run: ./gradlew assembleDebug
