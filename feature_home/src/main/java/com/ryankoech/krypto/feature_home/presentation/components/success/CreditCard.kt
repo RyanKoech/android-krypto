@@ -1,6 +1,7 @@
 package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,7 +48,7 @@ fun CreditCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(LocalConfiguration.current.screenHeightDp.dp/4),
+            .height(LocalConfiguration.current.screenHeightDp.dp / 4),
         elevation = 5.dp,
         shape = MaterialTheme.shapes.large
     ) {
@@ -65,79 +67,121 @@ fun CreditCard(
                     )
                 ),
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize()
-            ) {
+            Row (Modifier.fillMaxSize()){
+                Column(
+                    Modifier
+                        .background(color = Color.Black)
+                        .width(60.dp)
+                        .fillMaxHeight()
 
-                Row {
-                    Text(
-                        text = stringResource(R.string.credit_card_title),
-                        style = MaterialTheme.typography.h3
-                    )
-                    Spacer(modifier = Modifier.weight(1.0f))
-                    Card(
-                        modifier = Modifier
-                            .clickable{
-                                onChangeDisplayCurrency()
-                            },
-                        border = BorderStroke(1.dp,Color.Black),
-                        backgroundColor = teaGreen200,
-                        elevation = 0.dp,
-                        shape = MaterialTheme.shapes.small
                     ) {
-                        Row(
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 30.dp, end = 5.dp)
+                            .fillMaxWidth()
+                    ) {
+                        Text(
+                            text = "Wallet",
+                            color = Color.White,
+                            modifier = Modifier.rotate(270f)
+                        )
+                    }
+                    Column(
+                        Modifier.padding(top = 90.dp, start = 18.dp )
+
+
+                    ) {
+                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
+                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
+                        Image(painter = painterResource(id = R.drawable.baseline_circle_green), contentDescription = null,Modifier.size(10.dp))
+
+                    }
+
+                    
+                }
+                Box(
+                    Modifier
+                        .width(5.dp)
+                        .fillMaxHeight()
+                        .background(color = Color.White)) {
+                    // Spacer
+                }
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+//                        .fillMaxSize()
+                ) {
+
+                    Row {
+                        Text(
+                            text = stringResource(R.string.credit_card_title),
+                            style = MaterialTheme.typography.h3
+                        )
+                        Spacer(modifier = Modifier.weight(1.0f))
+                        Card(
                             modifier = Modifier
-                                .padding(start = 6.dp, top = 6.dp, end = 4.dp, bottom = 6.dp),
-                            verticalAlignment = Alignment.Bottom
+                                .clickable{
+                                    onChangeDisplayCurrency()
+                                },
+                            border = BorderStroke(1.dp,Color.Black),
+                            backgroundColor = teaGreen200,
+                            elevation = 0.dp,
+                            shape = MaterialTheme.shapes.small
                         ) {
-                            Text(
-                                text = creditCardDetails.displayCurrency.toString(),
-                                style = MaterialTheme.typography.h4,
-                                fontSize = 12.sp
-                            )
-                            Icon(
+                            Row(
                                 modifier = Modifier
-                                    .size(16.dp),
-                                imageVector = Icons.Default.ArrowDropDown,
-                                contentDescription = "Change display currency",
-                            )
+                                    .padding(start = 6.dp, top = 6.dp, end = 4.dp, bottom = 6.dp),
+                                verticalAlignment = Alignment.Bottom
+                            ) {
+                                Text(
+                                    text = creditCardDetails.displayCurrency.toString(),
+                                    style = MaterialTheme.typography.h4,
+                                    fontSize = 12.sp
+                                )
+                                Icon(
+                                    modifier = Modifier
+                                        .size(16.dp),
+                                    imageVector = Icons.Default.ArrowDropDown,
+                                    contentDescription = "Change display currency",
+                                )
+                            }
                         }
+                    }
+
+                    Text(
+                        text = getFormattedBalance(context, creditCardDetails.balance, creditCardDetails.displayCurrency),
+                        style = MaterialTheme.typography.h1,
+                        fontSize = 32.sp
+                    )
+
+                    Spacer(modifier = Modifier.weight(1.0f))
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = pluralStringResource(R.plurals.credit_card_assets, creditCardDetails.count, creditCardDetails.count),
+                            style = MaterialTheme.typography.h4,
+                            fontSize = 13.sp
+                        )
+                        Icon(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
+                            imageVector = Icons.Filled.ArrowDropDown,
+                            tint = getChangeColor(creditCardDetails.change),
+                            contentDescription = null,
+                        )
+                        Text(
+                            text = getFormattedChange(context, creditCardDetails.change),
+                            style = MaterialTheme.typography.h4,
+                            color = getChangeColor(creditCardDetails.change),
+                        )
                     }
                 }
 
-                Text(
-                    text = getFormattedBalance(context, creditCardDetails.balance, creditCardDetails.displayCurrency),
-                    style = MaterialTheme.typography.h1,
-                    fontSize = 32.sp
-                )
-
-                Spacer(modifier = Modifier.weight(1.0f))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = pluralStringResource(R.plurals.credit_card_assets, creditCardDetails.count, creditCardDetails.count),
-                        style = MaterialTheme.typography.h4,
-                        fontSize = 13.sp
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .rotate(if (creditCardDetails.change < 0f) 0f else 180f),
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        tint = getChangeColor(creditCardDetails.change),
-                        contentDescription = null,
-                    )
-                    Text(
-                        text = getFormattedChange(context, creditCardDetails.change),
-                        style = MaterialTheme.typography.h4,
-                        color = getChangeColor(creditCardDetails.change),
-                    )
-                }
             }
+
         }
 
     }
