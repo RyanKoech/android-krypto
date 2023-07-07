@@ -121,6 +121,8 @@ fun CoinItem(
                     color = getChangeColor(coin.change)
                 )
                 Spacer(modifier = Modifier.weight(1.0f))
+                Text(text = "MCap", style = MaterialTheme.typography.body2)
+                Spacer(modifier = Modifier.width(5.dp))
                 Text(
                     modifier = Modifier
                         .alpha(0.6f),
