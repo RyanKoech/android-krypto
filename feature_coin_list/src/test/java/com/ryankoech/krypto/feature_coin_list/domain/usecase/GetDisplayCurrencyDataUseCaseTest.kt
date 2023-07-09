@@ -1,16 +1,14 @@
-package com.ryankoech.krypto.feature_home.domain.usecase
+package com.ryankoech.krypto.feature_coin_list.domain.usecase
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.ryankoech.krypto.feature_coin_list.domain.usecase.GetDisplayCurrencyDataUseCase
-import com.ryankoech.krypto.feature_home.data.repository.FakeDisplayCurrencies
-import com.ryankoech.krypto.feature_home.data.repository.FakeOwnedCoinsRepositoryImpl
-import com.ryankoech.krypto.feature_home.domain.repository.OwnedCoinsRepository
+import com.ryankoech.krypto.feature_coin_list.data.repository.FakeCoinRepositoryImpl
+import com.ryankoech.krypto.feature_coin_list.data.repository.FakeDisplayCurrencies
+import com.ryankoech.krypto.feature_coin_list.domain.repository.CoinRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-
 import org.junit.Before
 import org.junit.Test
 
@@ -18,15 +16,15 @@ import org.junit.Test
 class GetDisplayCurrencyDataUseCaseTest {
 
     private val exceptionMessage = "Mock Exception"
-    private lateinit var fakeRepository: OwnedCoinsRepository
+    private lateinit var fakeRepository: CoinRepository
 
     @Before
     fun setUp() {
-        fakeRepository = FakeOwnedCoinsRepositoryImpl()
+        fakeRepository = FakeCoinRepositoryImpl()
     }
 
     @Test
-    fun `call flow onStart - return default list`() = runTest{
+    fun `call flow onStart - return default list`() = runTest {
         val getDisplayCurrencyDataUseCase = GetDisplayCurrencyDataUseCase(fakeRepository)
 
         getDisplayCurrencyDataUseCase().test {
@@ -39,9 +37,9 @@ class GetDisplayCurrencyDataUseCaseTest {
     }
 
     @Test
-    fun `repository throw exception - return Result type Error with default list` () = runTest {
+    fun `repository throw exception - return Result type Error with default list`() = runTest {
 
-        val mockRepository = mockk<OwnedCoinsRepository>()
+        val mockRepository = mockk<CoinRepository>()
 
         coEvery { mockRepository.getDisplayCurrencyData() } throws Exception(exceptionMessage)
 
