@@ -22,3 +22,18 @@ jobs:
 
       - name: Build Debug Apk
         run: ./gradlew assembleDebug
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Enable android.useAndroidX property
+        run: echo 'android.useAndroidX=true' >> gradle.properties
+
+      - name: Build Debug Apk
+        run: ./gradlew testDebug
