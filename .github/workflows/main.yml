@@ -35,5 +35,8 @@ jobs:
       - name: Enable android.useAndroidX property
         run: echo 'android.useAndroidX=true' >> gradle.properties
 
+      - name: Set more jvm memory property
+        run: echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+
       - name: Build Debug Apk
-        run: ./gradlew testDebug
+        run: ./gradlew test
