@@ -2,6 +2,8 @@ package com.ryankoech.krypto.feature_coin_list.data.data_source.local.sharedl_pr
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
@@ -16,7 +18,7 @@ class CoinsLocalPref @Inject constructor(
     @ApplicationContext private val context : Context
 ) {
 
-    companion object {
+    @Keep companion object {
         private const val PREF_NAME = "feature_coin_local_pref"
         private const val DISPLAY_CURRENCY_KEY = "display_currency_data"
     }
@@ -46,9 +48,13 @@ class CoinsLocalPref @Inject constructor(
                     prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
                 val json = prefs?.getString(DISPLAY_CURRENCY_KEY, "")
-                val displayCurrencyData: List<DisplayCurrencyDto> =
-                    gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
-                displayCurrencyData
+                if (json.isNullOrEmpty()) {
+                    listOf()
+                } else {
+                    val displayCurrencyData: List<DisplayCurrencyDto> =
+                        gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
+                    displayCurrencyData
+                }
             }catch (e : Exception) {
                 Timber.w(e)
                 null
