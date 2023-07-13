@@ -3,13 +3,13 @@ ext {
     targetSdk = 33
     versionMajor = 1
     versionMinor = 0
-    versionPatch = 0
+    versionPatch = 1
     versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
     compileSdk = 33
     versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
 
 
-    compose_version = '1.4.0-alpha02'
+    compose_version = '1.4.1'
     room_version = '2.4.3'
     ktx_core_version = '1.9.0'
     app_compat_version = '1.5.1'
@@ -19,8 +19,7 @@ ext {
     espresso_version = '3.5.0'
     compose_activity_version = '1.6.1'
     coil_compose = '2.1.0'
-    hilt_android_version = '2.43.2'
-    hilt_android_compile_version = '2.42'
+    hilt_android_version = '2.44.1'
     hilt_lifecycle_viewmodel_version = '1.0.0-alpha03'
     hilt_compile_version = '1.0.0'
     hilt_navigation_compose_version = '1.1.0-alpha01'
@@ -70,7 +69,7 @@ ext {
             // dagger-hilt - for dependency injection
             hilt_android : "com.google.dagger:hilt-android:$hilt_android_version",
             navigation_compose : "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version",
-            android_compiler : "com.google.dagger:hilt-android-compiler:$hilt_android_compile_version",
+            android_compiler : "com.google.dagger:hilt-android-compiler:$hilt_android_version",
             hilt_compiler : "androidx.hilt:hilt-compiler:$hilt_compile_version",
     ]
 
