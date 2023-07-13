@@ -73,7 +73,6 @@ fun CoinDetailsHeader(
                         .padding(end = 4.dp)
                         .basicMarquee(),
                     text = coin.name,
-                    maxLines = 1,
                     style = MaterialTheme.typography.h3,
                 )
                 Text(
