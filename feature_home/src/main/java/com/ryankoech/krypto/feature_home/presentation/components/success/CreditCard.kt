@@ -38,7 +38,7 @@ import com.ryankoech.krypto.feature_home.R
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CreditCard(
-    onChangeDisplayCurrency : () -> Unit,
+    onChangeDisplayCurrency: () -> Unit,
     creditCardDetails: CreditCardDetails,
     modifier: Modifier = Modifier
 ) {
@@ -67,49 +67,61 @@ fun CreditCard(
                     )
                 ),
         ) {
-            Row (Modifier.fillMaxSize()){
+            Row(Modifier.fillMaxSize()) {
                 Column(
                     Modifier
                         .background(color = Color.Black)
                         .width(60.dp)
                         .fillMaxHeight()
 
-                    ) {
+                ) {
                     Box(
                         modifier = Modifier
                             .padding(top = 30.dp, end = 5.dp)
                             .fillMaxWidth()
                     ) {
                         Text(
-                            text = "Wallet",
+                            text = stringResource(R.string.wallet),
                             color = Color.White,
                             modifier = Modifier.rotate(270f)
                         )
                     }
                     Column(
-                        Modifier.padding(top = 90.dp, start = 18.dp )
+                        Modifier.padding(top = 90.dp, start = 18.dp)
 
 
                     ) {
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_green), contentDescription = null,Modifier.size(10.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_circle_white),
+                            contentDescription = null,
+                            Modifier.size(10.dp)
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_circle_white),
+                            contentDescription = null,
+                            Modifier.size(10.dp)
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_circle_white),
+                            contentDescription = null,
+                            Modifier.size(10.dp)
+                                .background(color = Color.Green),
+                        )
 
                     }
 
-                    
+
                 }
                 Box(
                     Modifier
                         .width(5.dp)
                         .fillMaxHeight()
-                        .background(color = Color.White)) {
-                    // Spacer
+                        .background(color = Color.White)
+                ) {
                 }
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
-//                        .fillMaxSize()
                 ) {
 
                     Row {
@@ -120,10 +132,10 @@ fun CreditCard(
                         Spacer(modifier = Modifier.weight(1.0f))
                         Card(
                             modifier = Modifier
-                                .clickable{
+                                .clickable {
                                     onChangeDisplayCurrency()
                                 },
-                            border = BorderStroke(1.dp,Color.Black),
+                            border = BorderStroke(1.dp, Color.Black),
                             backgroundColor = teaGreen200,
                             elevation = 0.dp,
                             shape = MaterialTheme.shapes.small
@@ -149,7 +161,11 @@ fun CreditCard(
                     }
 
                     Text(
-                        text = getFormattedBalance(context, creditCardDetails.balance, creditCardDetails.displayCurrency),
+                        text = getFormattedBalance(
+                            context,
+                            creditCardDetails.balance,
+                            creditCardDetails.displayCurrency
+                        ),
                         style = MaterialTheme.typography.h1,
                         fontSize = 32.sp
                     )
@@ -160,7 +176,11 @@ fun CreditCard(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = pluralStringResource(R.plurals.credit_card_assets, creditCardDetails.count, creditCardDetails.count),
+                            text = pluralStringResource(
+                                R.plurals.credit_card_assets,
+                                creditCardDetails.count,
+                                creditCardDetails.count
+                            ),
                             style = MaterialTheme.typography.h4,
                             fontSize = 13.sp
                         )
@@ -186,7 +206,6 @@ fun CreditCard(
 
     }
 }
-
 
 
 @Preview

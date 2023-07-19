@@ -65,33 +65,54 @@ fun getFormattedMarketCap(context: Context, value : Long) : String {
 
     return if(value < million) {
         val df = DecimalFormat("#,###.##")
-        context.getString(R.string.coin_market_cap, df.format(value), "")
-    }else if(value < billion){
-        context.getString(
+        val marketCapString = context.getString(R.string.market_cap)
+
+        val coinMarketCapString =   context.getString(
+             (R.string.coin_market_cap), df.format(value), "")
+        return "$marketCapString $coinMarketCapString"
+
+
+    }else if(value < billion) {
+        val marketCapString = context.getString(R.string.market_cap)
+        val coinMarketCapString = context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / million.toDouble()),
             context.getString(R.string.symbol_million)
         )
+
+        return "$marketCapString $coinMarketCapString"
     }else if(value < trillion){
-        context.getString(
+        val marketCapString = context.getString(R.string.market_cap)
+        val coinMarketCapString = context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / billion.toDouble()),
             context.getString(R.string.symbol_billion)
         )
+
+        return "$marketCapString $coinMarketCapString"
     }else if(value < quadrillion){
-        context.getString(
+        val marketCapString = context.getString(R.string.market_cap)
+        val coinMarketCapString = context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / trillion.toDouble()),
             context.getString(R.string.symbol_trillion)
         )
+        return "$coinMarketCapString $marketCapString"
     }else if(value < quintillion){
-        context.getString(
+        val marketCapString =  context.getString(R.string.market_cap)
+        val coinMarketCapString = context.getString(
             R.string.coin_market_cap,
             getInFourDecimalPlaces(value.toDouble() / quadrillion.toDouble()),
             context.getString(R.string.symbol_quadrillion)
         )
+        return "$marketCapString $coinMarketCapString"
+
     }else {
+        val marketCapString =  context.getString(R.string.market_cap)
+        val coinMarketCapString =
         context.getString(R.string.symbol_quintillion_fallback, "$")
+        return "$marketCapString $coinMarketCapString"
+
     }
 }
 
