@@ -1,6 +1,8 @@
 package com.ryankoech.krypto.feature_coin_list.presentation.components.success
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,24 +14,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.*
-import com.ryankoech.krypto.feature_coin_list.R
 import com.ryankoech.krypto.feature_coin_list.data.dto.toCoinEntity
 import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
-import com.ryankoech.krypto.feature_coin_list.presentation.theme.black100
 import com.ryankoech.krypto.feature_coin_list.presentation.theme.black200
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CoinItem(
-    onClick : (String) -> Unit,
+    onClick: (String) -> Unit,
     coin: Coin,
     modifier: Modifier = Modifier
 ) {
@@ -67,7 +66,9 @@ fun CoinItem(
             ) {
                 Text(
                     modifier = Modifier
-                        .padding(end = 2.dp),
+                        .padding(end = 4.dp)
+                        .weight(1f)
+                        .basicMarquee(),
                     text = coin.name,
                     style = MaterialTheme.typography.h3,
                 )
