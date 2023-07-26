@@ -10,4 +10,5 @@
     <string name="symbol_trillion">Tr</string>
     <string name="symbol_quadrillion">Qdr</string>
     <string name="symbol_quintillion_fallback">Over %s1 Qnt</string>
+    <string name="wallet">Wallet</string>
 </resources>

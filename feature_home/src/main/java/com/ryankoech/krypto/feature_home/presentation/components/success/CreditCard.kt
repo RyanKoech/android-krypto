@@ -72,29 +72,52 @@ fun CreditCard(
                     Modifier
                         .background(color = Color.Black)
                         .width(60.dp)
-                        .fillMaxHeight()
+                        .fillMaxHeight(),
+
+
+
 
                     ) {
                     Box(
                         modifier = Modifier
                             .padding(top = 30.dp, end = 5.dp)
                             .fillMaxWidth()
+                            .wrapContentSize(Alignment.Center)
                     ) {
                         Text(
-                            text = "Wallet",
+                            stringResource(id = R.string.wallet),
                             color = Color.White,
                             modifier = Modifier.rotate(270f)
                         )
                     }
-                    Column(
-                        Modifier.padding(top = 90.dp, start = 18.dp )
+                    Box ( Modifier
+                        .padding(top = 90.dp, start = 18.dp)
+                        .fillMaxWidth()
+                        .wrapContentSize(Alignment.Center)
+                    )
+                    {
+                        Column(
+                            modifier = Modifier.align(Alignment.Center),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_circle_white),
+                                contentDescription = null,
+                                Modifier.size(10.dp)
+                            )
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_circle_white),
+                                contentDescription = null,
+                                Modifier.size(10.dp)
+                            )
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_circle_green),
+                                contentDescription = null,
+                                Modifier.size(10.dp)
+                            )
 
-
-                    ) {
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_white), contentDescription = null,Modifier.size(10.dp))
-                        Image(painter = painterResource(id = R.drawable.baseline_circle_green), contentDescription = null,Modifier.size(10.dp))
-
+                        }
                     }
 
                     
@@ -104,17 +127,15 @@ fun CreditCard(
                         .width(5.dp)
                         .fillMaxHeight()
                         .background(color = Color.White)) {
-                    // Spacer
                 }
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
-//                        .fillMaxSize()
                 ) {
 
                     Row {
                         Text(
-                            text = stringResource(R.string.credit_card_title),
+                            text = stringResource(R.string.wallet),
                             style = MaterialTheme.typography.h3
                         )
                         Spacer(modifier = Modifier.weight(1.0f))
