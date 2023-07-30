@@ -8,20 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Enable android.useAndroidX property
-        run: echo 'android.useAndroidX=true' >> gradle.properties
-
-      - name: Build Debug Apk
-        run: ./gradlew assembleDebug
 
   test:
     runs-on: ubuntu-latest
@@ -30,13 +16,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
 
-      - name: Enable android.useAndroidX property
-        run: echo 'android.useAndroidX=true' >> gradle.properties
+      - name: Make setup script executable
+        run: chmod +x setup.sh
 
-      - name: Set more jvm memory property
-        run: echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+      - name: Run setup script
+        run: ./setup.sh
 
-      - name: Build Debug Apk
+      - name: Run Unit Tests
         run: ./gradlew test

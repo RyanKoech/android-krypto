@@ -63,7 +63,17 @@ Link to app UI designs [here](./UiDesigns.md)
 To get a local copy up and running follow these simple example steps.
 
 ```bash
+# Clone Repo
 git clone https://github.com/RyanKoech/android-krypto.git
+
+# Make setup script executable
+chmod +x setup.sh
+
+# Run setup script (Linux) a bat file exists for windows systems as well
+./setup.sh
+
+# Build Debug Apk
+./gradlew assembleDebug
 ```
 
 ### Prerequisites
