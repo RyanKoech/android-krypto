@@ -74,11 +74,36 @@ Installed Android Studio or Any other android development IDEs and their respect
 Contributions, issues, and feature requests are welcome! <br/>
 You can pick a thing to do from the [issues page](../../issues) and work on it. I will be raise more soon. <br/>
 
+### i. Branching
+
+#### General
 Observe the following in order to have your PR merged successfully.
 - Create **branches from the `dev` branch** of your forked repo.
 - Create a **PR to the `dev` branch**
-- Prefix **branch name** with its **issue label then issue number** of the most significant issue being solved ie `bug/21`, `ui/23`, `enhancement/45`. This means you need to have an issue open before you can work on a contribution. Where an issue has several labels, choose branch name in order of precedence, `bug > enhancement > testing > ui > documentation`.
+- Prefix **branch name** with its **issue label then issue number** of the most significant issue being solved ie `bug/21`, `ui/23`, `enhancement/45`. This means you need to have an issue open before you can work on a contribution. Where an issue has several labels, choose branch name in order of precedence, `enhancement > bug > ui > testing > documentation`.
 - Fix the least number of issues per PR. Best, **1 issue per PR**. Else, tag any other issue solved in the PR.
+
+#### Branch Naming Format
+`<issue type>/<issue number>`
+
+### ii. Pull Request
+
+#### General
+Observe the following in order to have your PR merged successfully.
+- Ensure an issue is open for the pull request you made.
+
+#### Pull Request Naming Format
+`<issue type>-<issue number> :: <PR description (Typically same as issue name)>`
+
+### iii. Commits
+
+#### General
+Observe the following in order to have your PR merged successfully.
+- Ensure your commit messaged accurately describe the changes made
+
+#### Commit Message Format
+`<issue type>-<issue number> :: <commit message>`
+
 
 Feel free to check the [issues page](../../issues/) or [discussions page](../../discussions).
 
