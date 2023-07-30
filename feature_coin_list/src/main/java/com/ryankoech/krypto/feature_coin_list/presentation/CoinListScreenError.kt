@@ -3,10 +3,10 @@ package com.ryankoech.krypto.feature_coin_list.presentation
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.R
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 
 const val TEST_TAG_COIN_LIST_SCREEN_ERROR = "test tag coin list screen error"
 
@@ -20,7 +20,7 @@ fun CoinListScreenError(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun CoinListScreenErrorPreview(){
 

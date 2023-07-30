@@ -3,9 +3,9 @@ package com.ryankoech.krypto.feature_transaction.presentation.choose_asset
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.common.presentation.util.ScreenState
 import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.TransactionType
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
@@ -58,7 +58,7 @@ fun ChooseAssetScreen(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun PreviewChooseAssetScreen() {
 
