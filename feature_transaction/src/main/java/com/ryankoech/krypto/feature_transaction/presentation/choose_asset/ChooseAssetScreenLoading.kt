@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.loading.loadingEffect
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_transaction.presentation.choose_asset.components.loading.ChooseAssetItemLoading
 
 @Composable
@@ -32,7 +32,7 @@ fun ChooseAssetScreenLoading(
     }
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun ChooseAssetScreenLoadingPreview() {
 

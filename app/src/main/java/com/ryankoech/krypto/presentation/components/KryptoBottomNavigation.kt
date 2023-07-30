@@ -14,9 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.presentation.utils.Screens
 
 private val BottomNavigationItems = listOf(
@@ -61,7 +61,7 @@ fun KryptoBottomNavigation(
     }
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun KryptoBottomNavigationPreview() {
     val isSelected : (Screens) -> Boolean = {

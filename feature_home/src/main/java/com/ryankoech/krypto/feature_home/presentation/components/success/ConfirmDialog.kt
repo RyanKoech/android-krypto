@@ -7,8 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_home.R
 
 @Composable
@@ -49,7 +49,7 @@ fun ConfirmDialog(
     )
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun ConfirmBoxPreview() {
     KryptoTheme {
