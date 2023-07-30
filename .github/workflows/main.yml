@@ -24,8 +24,5 @@ jobs:
       - name: Run setup script
         run: ./setup.sh
 
-      - name: Set more jvm memory property
-        run: echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
-
-      - name: Build Debug Apk
+      - name: Run Unit Tests
         run: ./gradlew test
