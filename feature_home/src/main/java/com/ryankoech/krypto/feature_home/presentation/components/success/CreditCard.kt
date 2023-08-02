@@ -52,7 +52,6 @@ fun CreditCard(
         elevation = 5.dp,
         shape = MaterialTheme.shapes.large
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -73,10 +72,6 @@ fun CreditCard(
                         .background(color = Color.Black)
                         .width(60.dp)
                         .fillMaxHeight(),
-
-
-
-
                     ) {
                     Box(
                         modifier = Modifier
@@ -85,7 +80,7 @@ fun CreditCard(
                             .wrapContentSize(Alignment.Center)
                     ) {
                         Text(
-                            stringResource(id = R.string.wallet),
+                            stringResource(id = R.string.credit_card_title),
                             color = Color.White,
                             modifier = Modifier.rotate(270f)
                         )
@@ -112,9 +107,10 @@ fun CreditCard(
                                 Modifier.size(10.dp)
                             )
                             Image(
-                                painter = painterResource(id = R.drawable.baseline_circle_green),
+                                painter = painterResource(id = R.drawable.baseline_circle_white),
                                 contentDescription = null,
                                 Modifier.size(10.dp)
+                                    .background(color = Color.Green)
                             )
 
                         }
