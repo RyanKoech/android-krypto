@@ -13,11 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.Green500
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red400
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.feature_coin_details.R
 import com.ryankoech.krypto.feature_transaction.core.ktx.bottomBorder
@@ -149,7 +149,7 @@ fun TransactionItem(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun TransactionItemPreview() {
 

@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_settings.BuildConfig
 import com.ryankoech.krypto.feature_settings.R
 import com.ryankoech.krypto.feature_settings.core.ktx.sendMail
@@ -74,7 +74,7 @@ fun AboutScreen(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun AboutScreenPreview() {
     KryptoTheme {

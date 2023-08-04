@@ -7,9 +7,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 
 @Composable
 fun MarketRangeButton(
@@ -44,7 +44,7 @@ fun MarketRangeButton(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun MarketRangeButtonPreview() {
 

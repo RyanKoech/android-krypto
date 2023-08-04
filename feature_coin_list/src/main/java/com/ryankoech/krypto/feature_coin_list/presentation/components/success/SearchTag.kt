@@ -10,9 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_coin_list.R
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Order
 import com.ryankoech.krypto.feature_coin_list.domain.entity.SortCoinBy
@@ -74,7 +74,7 @@ fun SearchTag(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun SearchTagPreview() {
 

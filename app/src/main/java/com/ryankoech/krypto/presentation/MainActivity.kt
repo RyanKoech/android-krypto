@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -25,6 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ryankoech.krypto.R
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_coin_details.presentation.CoinDetailsScreen
 import com.ryankoech.krypto.feature_coin_list.presentation.CoinListScreen
 import com.ryankoech.krypto.feature_home.presentation.HomeScreen
@@ -34,6 +34,7 @@ import com.ryankoech.krypto.feature_transaction.data.dto.transaction_dto.Transac
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin as TransactionCoin
 import com.ryankoech.krypto.feature_transaction.presentation.choose_asset.ChooseAssetScreen
 import com.ryankoech.krypto.feature_transaction.presentation.transaction.TransactionScreen
+import com.ryankoech.krypto.presentation.components.KryptoBottomNavigation
 import com.ryankoech.krypto.presentation.utils.Screens
 import com.ryankoech.krypto.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,6 +59,10 @@ class MainActivity : ComponentActivity() {
                 Screens.CoinList,
                 Screens.Settings
             )
+            
+            val isBottomNavItemSelected : (Screens) -> Boolean = { screen ->
+                currentDestination?.hierarchy?.any { it.route == screen.route } == true
+            }
 
             fun navigateToTransactionScreen(coin : TransactionCoin, transactionType: String) {
                 viewModel.addTransactionCoin(coin)
@@ -125,47 +130,24 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     bottomBar = {
-                        BottomNavigation(
-                            modifier = Modifier
-                                .padding(bottom = 12.dp)
-                                .height(64.dp),
-                            backgroundColor = Color(0xfff2f2f2),
-                            contentColor = MaterialTheme.colors.onSurface,
-                        ) {
-                            bottomNavigationItems.forEach { screen ->
-                                BottomNavigationItem(
-                                    icon = {
-                                        Icon(
-                                            modifier = Modifier
-                                                .padding(bottom = 4.dp),
-                                            painter = painterResource(screen.iconResId),
-                                            contentDescription = null
-                                        )
-                                    },
-                                    label = {
-                                        Text(
-                                            text = stringResource(screen.labelResId)
-                                        )
-                                    },
-                                    selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                                    onClick = {
-                                        navController.navigate(screen.route) {
-                                            // Pop up to the start destination of the graph to
-                                            // avoid building up a large stack of destinations
-                                            // on the back stack as users select items
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                saveState = true
-                                            }
-                                            // Avoid multiple copies of the same destination when
-                                            // reselecting the same item
-                                            launchSingleTop = true
-                                            // Restore state when reselecting a previously selected item
-                                            restoreState = true
-                                        }
+                        KryptoBottomNavigation(
+                            selected = isBottomNavItemSelected,
+                            onClick = { screen ->
+                                navController.navigate(screen.route) {
+                                    // Pop up to the start destination of the graph to
+                                    // avoid building up a large stack of destinations
+                                    // on the back stack as users select items
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
                                     }
-                                )
+                                    // Avoid multiple copies of the same destination when
+                                    // reselecting the same item
+                                    launchSingleTop = true
+                                    // Restore state when reselecting a previously selected item
+                                    restoreState = true
+                                }
                             }
-                        }
+                        )
                     }
 
                 ) { innerPadding ->
@@ -289,7 +271,7 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@KryptoPreview
 @Composable
 fun DefaultPreview() {
     KryptoTheme {
