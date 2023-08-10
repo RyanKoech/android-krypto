@@ -1,6 +1,8 @@
 package com.ryankoech.krypto.feature_coin_details.presentation.components.success
 
-import androidx.compose.foundation.background   
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -16,7 +18,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
@@ -26,9 +27,10 @@ import com.ryankoech.krypto.feature_coin_list.data.repository.FAKE_COIN_LIST
 import com.ryankoech.krypto.feature_coin_list.domain.entity.Coin
 import java.util.*
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CoinDetailsHeader(
-    coin : Coin,
+    coin: Coin,
     modifier: Modifier = Modifier
 ) {
 
@@ -66,7 +68,9 @@ fun CoinDetailsHeader(
             ) {
                 Text(
                     modifier = Modifier
-                        .padding(end = 2.dp),
+                        .weight(1f)
+                        .padding(end = 4.dp)
+                        .basicMarquee(),
                     text = coin.name,
                     style = MaterialTheme.typography.h3,
                 )
@@ -95,17 +99,17 @@ fun CoinDetailsHeader(
                             shape = RoundedCornerShape(3.dp)
                         ),
 
-                ){
-                   Text(
-                       modifier = Modifier
-                           .padding(
-                               vertical = 0.dp,
-                               horizontal = 3.dp
-                           ),
-                       text = coin.marketCapRank.toString(),
-                       style = MaterialTheme.typography.h4,
-                       color = Color.White
-                   )
+                    ) {
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                vertical = 0.dp,
+                                horizontal = 3.dp
+                            ),
+                        text = coin.marketCapRank.toString(),
+                        style = MaterialTheme.typography.h4,
+                        color = Color.White
+                    )
                 }
                 Text(
                     modifier = Modifier
@@ -134,7 +138,7 @@ fun CoinDetailsHeader(
 
 }
 
-@Preview(showBackground = true)
+@KryptoPreview
 @Composable
 fun CoinDetailsHeaderPreview() {
     KryptoTheme {
@@ -145,6 +149,9 @@ fun CoinDetailsHeaderPreview() {
             Column {
                 CoinDetailsHeader(
                     FAKE_COIN_LIST.toCoinEntity().first()
+                )
+                CoinDetailsHeader(
+                    FAKE_COIN_LIST.toCoinEntity().last()
                 )
             }
         }

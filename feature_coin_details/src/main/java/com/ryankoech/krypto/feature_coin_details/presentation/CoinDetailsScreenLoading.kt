@@ -10,12 +10,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.loading.CardLoading
 import com.ryankoech.krypto.common.presentation.components.loading.CoinCardLoading
 import com.ryankoech.krypto.common.presentation.components.loading.loadingEffect
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 
 @Composable
 fun CoinDetailsScreenLoading(
@@ -101,7 +101,7 @@ fun CoinDetailsScreenLoading(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun CoinDetailsScreenLoadingPreview() {
 

@@ -5,9 +5,9 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_home.R
 
 const val TEST_TAG_HOME_SCREEN_SUCCESS_NO_DATA = "test_tag_home_screen_success_no_data"
@@ -26,7 +26,7 @@ fun HomeScreenSuccessNoData(
     )
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun HomeScreenSuccessNoDataPreview() {
 

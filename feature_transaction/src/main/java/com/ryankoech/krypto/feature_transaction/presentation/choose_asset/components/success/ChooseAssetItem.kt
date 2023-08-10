@@ -11,10 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_transaction.R
 import com.ryankoech.krypto.feature_transaction.core.ktx.bottomBorder
 import com.ryankoech.krypto.feature_transaction.domain.entity.Coin
@@ -70,7 +70,7 @@ fun ChooseAssetItem(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun PreviewChooseAssetItem() {
 

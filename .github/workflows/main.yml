@@ -8,17 +8,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
 
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
 
-      - name: Enable android.useAndroidX property
-        run: echo 'android.useAndroidX=true' >> gradle.properties
+      - name: Make setup script executable
+        run: chmod +x setup.sh
 
-      - name: Build Debug Apk
-        run: ./gradlew assembleDebug
+      - name: Run setup script
+        run: ./setup.sh
+
+      - name: Run Unit Tests
+        run: ./gradlew test
