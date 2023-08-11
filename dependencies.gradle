@@ -2,8 +2,8 @@ ext {
     minSdk = 21
     targetSdk = 33
     versionMajor = 1
-    versionMinor = 0
-    versionPatch = 2
+    versionMinor = 1
+    versionPatch = 0
     versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
     compileSdk = 33
     versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
