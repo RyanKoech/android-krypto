@@ -48,13 +48,9 @@ class CoinsLocalPref @Inject constructor(
                     prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
                 val json = prefs?.getString(DISPLAY_CURRENCY_KEY, "")
-                if (json.isNullOrEmpty()) {
-                    listOf()
-                } else {
-                    val displayCurrencyData: List<DisplayCurrencyDto> =
-                        gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
-                    displayCurrencyData
-                }
+                val displayCurrencyData: List<DisplayCurrencyDto> =
+                    gson.fromJson(json, object : TypeToken<List<DisplayCurrencyDto>>() {}.type)
+                displayCurrencyData
             }catch (e : Exception) {
                 Timber.w(e)
                 null
