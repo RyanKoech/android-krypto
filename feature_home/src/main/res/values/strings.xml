@@ -17,5 +17,6 @@
         <item quantity="one">%d Asset</item>
         <item quantity="other">%d Assets</item>
     </plurals>
+    <string name="wallet">Wallet</string>
 
 </resources>
