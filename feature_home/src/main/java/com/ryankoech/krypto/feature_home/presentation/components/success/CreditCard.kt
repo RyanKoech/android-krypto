@@ -1,23 +1,21 @@
 package com.ryankoech.krypto.feature_home.presentation.components.success
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -35,7 +33,6 @@ import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.feature_home.R
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CreditCard(
     onChangeDisplayCurrency : () -> Unit,
@@ -66,64 +63,75 @@ fun CreditCard(
                     )
                 ),
         ) {
-            Row (Modifier.fillMaxSize()){
+            Row (
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
                 Column(
-                    Modifier
-                        .background(color = Color.Black)
-                        .width(60.dp)
-                        .fillMaxHeight(),
-                    ) {
+                    modifier = Modifier
+                        .background(
+                            color = Color.Black
+                        )
+                        .fillMaxHeight()
+                        .padding(
+                            bottom = 24.dp,
+                            top = 36.dp,
+                            start = 4.dp,
+                            end = 4.dp,
+                        ),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween,
+                ) {
                     Box(
                         modifier = Modifier
-                            .padding(top = 30.dp, end = 5.dp)
-                            .fillMaxWidth()
-                            .wrapContentSize(Alignment.Center)
                     ) {
                         Text(
-                            stringResource(id = R.string.credit_card_title),
+                            stringResource(id = R.string.wallet),
                             color = Color.White,
                             modifier = Modifier.rotate(270f)
                         )
                     }
-                    Box ( Modifier
-                        .padding(top = 90.dp, start = 18.dp)
-                        .fillMaxWidth()
-                        .wrapContentSize(Alignment.Center)
-                    )
-                    {
                         Column(
-                            modifier = Modifier.align(Alignment.Center),
-                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier,
+                            verticalArrangement = Arrangement.spacedBy(2.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.baseline_circle_white),
-                                contentDescription = null,
-                                Modifier.size(10.dp)
+                            Box(
+                                modifier = Modifier
+                                    .size(9.dp)
+                                    .background(
+                                        color = Color.White,
+                                        shape = CircleShape
+                                    )
                             )
-                            Image(
-                                painter = painterResource(id = R.drawable.baseline_circle_white),
-                                contentDescription = null,
-                                Modifier.size(10.dp)
+                            Box(
+                                modifier = Modifier
+                                    .size(9.dp)
+                                    .background(
+                                        color = Color.White,
+                                        shape = CircleShape
+                                    )
                             )
-                            Image(
-                                painter = painterResource(id = R.drawable.baseline_circle_white),
-                                contentDescription = null,
-                                Modifier.size(10.dp)
-                                    .background(color = Color.Green)
+                            Box(
+                                modifier = Modifier
+                                    .size(9.dp)
+                                    .background(
+                                        color = limeGreen400,
+                                        shape = CircleShape
+                                    )
                             )
 
                         }
-                    }
 
-                    
                 }
-                Box(
+                Spacer(
                     Modifier
                         .width(5.dp)
                         .fillMaxHeight()
-                        .background(color = Color.White)) {
-                }
+                        .background(
+                            color = Color.White
+                        )
+                )
                 Column(
                     modifier = Modifier
                         .padding(16.dp)
@@ -131,7 +139,7 @@ fun CreditCard(
 
                     Row {
                         Text(
-                            text = stringResource(R.string.wallet),
+                            text = stringResource(R.string.credit_card_title),
                             style = MaterialTheme.typography.h3
                         )
                         Spacer(modifier = Modifier.weight(1.0f))
