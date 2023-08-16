@@ -14,12 +14,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.components.CoinImage
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
 import com.ryankoech.krypto.common.presentation.util.DisplayCurrency
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.common.presentation.util.getChangeColor
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedChange
@@ -107,7 +107,7 @@ fun OwnedCoinItem(
 
 }
 
-@Preview(showBackground = true)
+@KryptoPreview
 @Composable
 fun OwnedCoinItemPreview() {
         KryptoTheme {

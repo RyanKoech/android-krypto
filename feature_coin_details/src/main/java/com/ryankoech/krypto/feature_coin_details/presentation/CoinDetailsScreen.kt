@@ -6,7 +6,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.util.*
@@ -56,10 +55,10 @@ fun CoinDetailsScreen(
         marketChartData = when(currentMarketChartRange){
             MarketChartRange.ONE_HOUR -> {
                 // Every 5 min hence first 12 = 1 hour
-                try {
-                    viewState.dayMarketChart.toPairList().subList(0, 11)
-                } catch (e : Throwable){
-                    Timber.w(e.localizedMessage)
+                val list  = viewState.dayMarketChart.toPairList()
+                if (list.size >= 12) {
+                    list.subList(0, 12)
+                } else {
                     viewState.dayMarketChart.toPairList()
                 }
             }
@@ -68,19 +67,19 @@ fun CoinDetailsScreen(
             }
             MarketChartRange.ONE_WEEK -> {
                 // Every 1 hour hence first (24 hours per day * 7 days) hours
-                try {
-                    viewState.threeMonthMarketChart.toPairList().subList(0, 167)
-                } catch (e : Throwable){
-                    Timber.w(e.localizedMessage)
+                val list  = viewState.threeMonthMarketChart.toPairList()
+                if (list.size >= 168) {
+                    list.subList(0, 168)
+                } else {
                     viewState.threeMonthMarketChart.toPairList()
                 }
             }
             MarketChartRange.ONE_MONTH -> {
                 // Every 1 hour hence first (24 hours per day * 30 days) hours
-                try {
-                    viewState.threeMonthMarketChart.toPairList().subList(0, 719)
-                } catch (e : Throwable){
-                    Timber.w(e.localizedMessage)
+                val list  = viewState.threeMonthMarketChart.toPairList()
+                if (list.size >= 720) {
+                    list.subList(0, 720)
+                } else {
                     viewState.threeMonthMarketChart.toPairList()
                 }
             }
@@ -127,7 +126,7 @@ fun CoinDetailsScreen(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun CoinDetailsScreenPreview() {
 

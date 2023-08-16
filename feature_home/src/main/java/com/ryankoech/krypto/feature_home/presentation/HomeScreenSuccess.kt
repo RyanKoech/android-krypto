@@ -5,8 +5,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.feature_coin_list.data.dto.display_currency.DisplayCurrencyDto
 import com.ryankoech.krypto.feature_coin_list.data.repository.FakeDisplayCurrencies
 import com.ryankoech.krypto.feature_home.data.dto.owned_coin.OwnedCoinDto
@@ -45,7 +45,7 @@ fun HomeScreenSuccess(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun HomeScreenSuccessPreview() {
 

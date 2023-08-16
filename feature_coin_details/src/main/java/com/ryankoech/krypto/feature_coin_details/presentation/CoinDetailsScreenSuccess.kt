@@ -17,12 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ryankoech.krypto.common.presentation.ErrorScreen
 import com.ryankoech.krypto.common.presentation.components.KryptoButton
 import com.ryankoech.krypto.common.presentation.theme.KryptoTheme
 import com.ryankoech.krypto.common.presentation.theme.Red100
+import com.ryankoech.krypto.common.presentation.util.KryptoPreview
 import com.ryankoech.krypto.common.presentation.util.getFormattedBalance
 import com.ryankoech.krypto.common.presentation.util.getFormattedMarketCap
 import com.ryankoech.krypto.common.presentation.util.getFormattedTotalVolume
@@ -250,7 +250,7 @@ fun CoinDetailsScreenSuccess(
 
 }
 
-@Preview
+@KryptoPreview
 @Composable
 fun CoinDetailsScreenSuccessPreview() {
 
